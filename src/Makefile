@@ -4,7 +4,7 @@ default: jar
 
 jar:
 	find -name "*.java" | xargs -i javac -d . {}
-	find -name "*.class" | xargs -i jar cvmf MANIFEST.MF main.jar {}
+	jar cvmf $(DIR)/MANIFEST.MF main.jar *.class ./pieces/*.class ./commands/*.class
 
 run: jar
 	java -jar main.jar
@@ -13,4 +13,4 @@ xboard: jar
 	xboard -fd "$(DIR)" -fcp "java -jar main.jar"
 
 clean:
-	rm -rf *.class
+	find -name "*.class" | xargs -i rm {}
