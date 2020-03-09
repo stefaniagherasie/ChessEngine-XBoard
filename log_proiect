@@ -1,2 +1,7 @@
-Rares - 9mar
+==Rares - 9mar==
 Makefile + Classes : ChessBoard, ChessMain + Interfaces : Piece, Command
+makefile-ul merge rulat fara sa trebuiasca sa schimbati vreun parametru
+make: face fisierul .jar
+make jar: face fisierul .jar
+make run: face .jar si il ruleaza
+make xboard: face fisierul .jar si il pune ca fcp pt xboard
