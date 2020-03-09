@@ -1,3 +1,4 @@
+import pieces.*;
 
 public class ChessBoard {
 	private static ChessBoard uniqueInstance = null;
@@ -13,7 +14,6 @@ public class ChessBoard {
 		return uniqueInstance;
 	}
 	
-	//primeste b7
 	public Piece getPiece(String s) {
 		if (s.charAt(0) < 'a' && s.charAt(0) > 'h')
 			return null;

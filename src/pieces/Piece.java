@@ -1,3 +1,4 @@
+package pieces;
 
 public interface Piece {
 	public boolean verifyMove(String move);

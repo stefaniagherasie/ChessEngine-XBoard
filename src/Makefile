@@ -1,15 +1,16 @@
-default:
-	javac -d . *.java
+DIR = $(shell pwd)
+
+default: jar
 
 jar:
-	javac -d . *.java
-	jar cvmf MANIFEST.MF main.jar *.class
+	find -name "*.java" | xargs -i javac -d . {}
+	find -name "*.class" | xargs -i jar cvmf MANIFEST.MF main.jar {}
 
 run: jar
 	java -jar main.jar
 
 xboard: jar
-	xboard -fd "/home/student/proiect_PA/src" -fcp "java -jar main.jar"
+	xboard -fd "$(DIR)" -fcp "java -jar main.jar"
 
 clean:
-	rm *.class
+	rm -rf *.class
