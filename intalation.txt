@@ -1,0 +1,4 @@
+sudo apt-get install libcairo2-dev libjpeg2-dev libgif-dev
+sudo apt-get install libxaw7-dev
+
+

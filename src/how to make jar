@@ -1,0 +1,8 @@
+javac -d . Main.java
+vim MANIFEST.MF
+jar cvmf MANIFEST.MF main.jar Main.class
+
+
+...
+how to run xboard with your engine
+xboard -fd "dir_curent" -fcp "java -jar main.jar"
