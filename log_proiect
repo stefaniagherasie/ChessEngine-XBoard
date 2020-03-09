@@ -5,3 +5,5 @@ make: face fisierul .jar
 make jar: face fisierul .jar
 make run: face .jar si il ruleaza
 make xboard: face fisierul .jar si il pune ca fcp pt xboard
+make clean: sterge fisierle .class
+VA ROG NU INCARCATI FISIERE .class! dati si voi un make clean inainte
