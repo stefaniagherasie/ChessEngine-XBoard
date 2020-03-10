@@ -4,7 +4,7 @@ default: jar
 
 jar:
 	find -name "*.java" | xargs -i javac -d . {}
-	jar cvmf $(DIR)/MANIFEST.MF main.jar *.class ./pieces/*.class ./commands/*.class
+	jar cvmf $(DIR)/MANIFEST.MF main.jar ./main/*.class ./pieces/*.class ./commands/*.class
 
 run: jar
 	java -jar main.jar

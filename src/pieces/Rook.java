@@ -1,6 +1,17 @@
 package pieces;
+import main.*;
 
 public class Rook implements Piece {
+	private Position pos;
+	private boolean color;
+	
+	public Rook (String color, String position) {
+		pos = new Position(position);
+		if (color.equals("white"))
+			this.color = true;
+		else
+			this.color = false;
+	}
 
 	@Override
 	public boolean verifyMove(String move) {
@@ -16,8 +27,7 @@ public class Rook implements Piece {
 
 	@Override
 	public boolean getColor() {
-		// TODO Auto-generated method stub
-		return false;
+		return color;
 	}
 
 }

@@ -1,4 +1,4 @@
-==Rares - 9mar==
+== Rares - 9 mar ==
 Makefile + Classes : ChessBoard, ChessMain + Interfaces : Piece, Command
 makefile-ul merge rulat fara sa trebuiasca sa schimbati vreun parametru
 make: face fisierul .jar
@@ -7,3 +7,8 @@ make run: face .jar si il ruleaza
 make xboard: face fisierul .jar si il pune ca fcp pt xboard
 make clean: sterge fisierle .class
 VA ROG NU INCARCATI FISIERE .class! dati si voi un make clean inainte
+
+
+== Rares - 10 mar ==
+TODO:   Comsina PiecesFactory
+	Stefutz constructori piese

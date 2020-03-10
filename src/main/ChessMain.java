@@ -1,3 +1,4 @@
+package main;
 import pieces.*;
 
 public class ChessMain {

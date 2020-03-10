@@ -1,6 +1,6 @@
 package commands;
 
-
-public interface Command {
-	public void print();
+public abstract class Command {
+	protected abstract void print();
+	protected abstract void execute();
 }
