@@ -1,6 +1,17 @@
 package pieces;
+import main.*;
 
 public class King implements Piece {
+	private Position pos;
+	private boolean color;
+	
+	public King (String color, String position) {
+		pos = new Position(position);
+		if (color.equals("white"))
+			this.color = true;
+		else
+			this.color = false;
+	}
 
 	@Override
 	public boolean verifyMove(String move) {
@@ -16,8 +27,7 @@ public class King implements Piece {
 
 	@Override
 	public boolean getColor() {
-		// TODO Auto-generated method stub
-		return false;
+		return color;
 	}
 
 }

@@ -1,6 +1,18 @@
 package pieces;
+import main.*;
 
 public class Pawn implements Piece{
+
+	private Position pos;
+	private boolean color;
+	
+	public Pawn (String color, String position) {
+		pos = new Position(position);
+		if (color.equals("white"))
+			this.color = true;
+		else
+			this.color = false;
+	}
 
 	@Override
 	public boolean verifyMove(String move) {
@@ -16,8 +28,7 @@ public class Pawn implements Piece{
 
 	@Override
 	public boolean getColor() {
-		// TODO Auto-generated method stub
-		return false;
+		return color;
 	}
 
 }
