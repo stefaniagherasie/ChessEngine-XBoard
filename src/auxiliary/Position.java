@@ -1,4 +1,4 @@
-package main;
+package auxiliary;
 
 public class Position {
 	int letter, number;

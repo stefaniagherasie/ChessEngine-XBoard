@@ -8,9 +8,9 @@ public class ChessMain {
 		
 		ChessBoard b = ChessBoard.getInstance();
 		
-		/*CommandReader reader = new CommandReader();
+		CommandReader reader = new CommandReader(System.in);
 		
-		playGame(reader);*/
+		playGame(reader);
 		
 	}
 	

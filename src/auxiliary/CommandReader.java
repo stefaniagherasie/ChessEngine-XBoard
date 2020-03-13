@@ -8,7 +8,6 @@ import commands.Command;
 public class CommandReader {
 	
 	private final BufferedReader in;
-	
 	private CommandFactory cf;
 	
 	public CommandReader (InputStream in) {

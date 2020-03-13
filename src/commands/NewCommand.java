@@ -5,7 +5,6 @@ public class NewCommand extends Command{
 	
 	public NewCommand(String args) {
 		super(args);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -15,7 +14,7 @@ public class NewCommand extends Command{
 	
 	@Override
 	protected void execute() {
-		ChessBoard.getInstance().reset();
+		
 	}
 
 }

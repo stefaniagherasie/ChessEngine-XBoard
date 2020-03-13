@@ -3,3 +3,4 @@
 /CommandReader.class
 /EmptyLineException.class
 /LineErrorException.class
+/Position.class

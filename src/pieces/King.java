@@ -1,5 +1,6 @@
 package pieces;
 import main.*;
+import auxiliary.Position;
 
 public class King implements Piece {
 	private Position pos;

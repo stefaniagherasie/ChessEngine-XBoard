@@ -1,4 +1,5 @@
 package pieces;
+import auxiliary.Position;
 import main.*;
 
 public class Rook implements Piece {
