@@ -18,13 +18,36 @@ public class ChessBoard {
 	
 	//steaza boardul la pozitia initiala
 	public void reset() {
+		PiecesFactory pf = new PiecesFactory();
 		char[] pos = {'a', '1'};
-		for (int i = 0; i < 8; i++, pos[0]++)
-			for (int j = 0; j < 8; pos[1]++)
-				board[i][j] = PiecesFactory.createPiece(new String (pos));
+		for (int i = 0; i < 8; i++, pos[1]++) {
+			for (int j = 0; j < 8; j++, pos[0]++) 
+				board[i][j] = pf.createPiece(new String (pos));
+			pos[0] = 'a';
+		}
 	}
 	
-	  
+	public void printBoard() {
+		for (int i = 0; i < 8; i++) {
+			for (int j = 0; j < 8; j++) {
+				if (board[i][j] instanceof Pawn)
+					System.out.print("P ");
+				if (board[i][j] instanceof Rook)
+					System.out.print("R ");
+				if (board[i][j] instanceof Bishop)
+					System.out.print("B ");
+				if (board[i][j] instanceof Knight)
+					System.out.print("k ");
+				if (board[i][j] instanceof Queen)
+					System.out.print("Q ");
+				if (board[i][j] instanceof King)
+					System.out.print("K ");
+				if (board[i][j] == null)
+					System.out.print("0 ");
+			}
+			System.out.println();
+		}
+	}
 	
 	/*public Piece getPiece(String s) {
 		if (s.charAt(0) < 'a' && s.charAt(0) > 'h')

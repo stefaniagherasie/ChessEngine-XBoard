@@ -6,6 +6,8 @@ public class ChessMain {
 		
 		ChessBoard b = ChessBoard.getInstance();
 		
+		b.printBoard();
+		
 		while (true);
 		
 	}
