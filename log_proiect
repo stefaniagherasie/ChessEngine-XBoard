@@ -14,3 +14,7 @@ TODO:   Comsina PiecesFactory
 	Stefutz constructori piese
 Cosmina: task completed!
 Stefania: all done!
+
+== Rares - 13 mar ==
+Created CommandFactoy, si toate clasele pt comanezi (fara cod)
+Am facut CommandReader - interctiunea cu xboard pt citire

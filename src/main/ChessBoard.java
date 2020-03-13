@@ -1,9 +1,12 @@
 package main;
+import auxiliary.PiecesFactory;
 import pieces.*;
 
 public class ChessBoard {
 	private static ChessBoard uniqueInstance = null;
 	private Piece[][] board;
+	//true = white; false = black
+	private boolean playingColor;
 	
 	private ChessBoard() {
 		board = new Piece[8][8];
@@ -27,6 +30,7 @@ public class ChessBoard {
 		}
 	}
 	
+	//afiseaza la stdout masa
 	public void printBoard() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
@@ -48,6 +52,16 @@ public class ChessBoard {
 			System.out.println();
 		}
 	}
+
+	public boolean isPlayingColor() {
+		return playingColor;
+	}
+
+	public void setPlayingColor(boolean playingColor) {
+		this.playingColor = playingColor;
+	}
+	
+	
 	
 	/*public Piece getPiece(String s) {
 		if (s.charAt(0) < 'a' && s.charAt(0) > 'h')

@@ -1,2 +1,10 @@
 /Command.class
 /NewCommand.class
+/ForceCommand.class
+/GoCommand.class
+/WhiteCommand.class
+/BlackCommand.class
+/QuitCommand.class
+/ResignCommand.class
+/MoveCommand.class
+/XBoardCommand.class

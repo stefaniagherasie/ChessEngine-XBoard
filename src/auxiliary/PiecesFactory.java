@@ -1,4 +1,12 @@
-package pieces;
+package auxiliary;
+
+import pieces.Bishop;
+import pieces.King;
+import pieces.Knight;
+import pieces.Pawn;
+import pieces.Piece;
+import pieces.Queen;
+import pieces.Rook;
 
 public class PiecesFactory {
 	public Piece createPiece(String s) {
