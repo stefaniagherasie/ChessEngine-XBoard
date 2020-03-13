@@ -1,6 +1,10 @@
 package commands;
 
 public class MoveCommand extends Command{
+	
+	public MoveCommand(String args) {
+		super(args);
+	}
 
 	@Override
 	protected void print() {

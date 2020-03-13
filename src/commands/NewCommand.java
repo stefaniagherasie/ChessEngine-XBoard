@@ -3,11 +3,11 @@ import main.*;
 
 public class NewCommand extends Command{
 	
-	public NewCommand() {
-		execute();
-		print();
+	public NewCommand(String args) {
+		super(args);
+		// TODO Auto-generated constructor stub
 	}
-	
+
 	@Override
 	protected void print() {
 		System.out.println("new");

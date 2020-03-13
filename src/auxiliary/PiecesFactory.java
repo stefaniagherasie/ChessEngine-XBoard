@@ -9,6 +9,16 @@ import pieces.Queen;
 import pieces.Rook;
 
 public class PiecesFactory {
+	private static PiecesFactory uniqueInstance;
+	
+	private PiecesFactory() {}
+	
+	public static PiecesFactory getInstance() {
+		if (uniqueInstance == null)
+			uniqueInstance = new PiecesFactory();
+		return uniqueInstance;
+	}
+	
 	public Piece createPiece(String s) {
 		if (s.equals("a8"))
 			return new Rook("black", "a8");

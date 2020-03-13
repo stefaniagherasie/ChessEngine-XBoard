@@ -1,6 +1,12 @@
 package commands;
 
 public abstract class Command {
+	private String args;
+	
+	public Command(String args) {
+		this.args = args;
+	}
+	
 	/**
 	 * Method that prints the command in accordance with xboard's needs
 	 */
@@ -9,4 +15,8 @@ public abstract class Command {
 	 * Method that makes the internal changes for the engine
 	 */
 	protected abstract void execute();
+	
+	public String getArgs() {
+		return args;
+	}
 }

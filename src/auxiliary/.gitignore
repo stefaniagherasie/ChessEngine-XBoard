@@ -1,3 +1,5 @@
 /PiecesFactory.class
 /CommandFactory.class
 /CommandReader.class
+/EmptyLineException.class
+/LineErrorException.class

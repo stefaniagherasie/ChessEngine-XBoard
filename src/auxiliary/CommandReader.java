@@ -1,5 +1,4 @@
 package auxiliary;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,12 +9,25 @@ public class CommandReader {
 	
 	private final BufferedReader in;
 	
+	private CommandFactory cf;
+	
 	public CommandReader (InputStream in) {
 		this.in = new BufferedReader(new InputStreamReader(in));
+		cf = CommandFactory.getInstance();
 	}
 	
+	/**
+	 * Works like an Iterator's next command
+	 * @return the command read from xboard
+	 */
 	public Command next() {
-		return null;
+		try {	
+			return cf.createCommand(split(read()));
+		}
+		catch (LineErrorException e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
 	}
 	
 	/**
@@ -26,10 +38,7 @@ public class CommandReader {
 	 * @return a string array with the first position as the command itself and
 	 * the second one as the arguments of the command
 	 */
-	private String[] split(String line) {
-		if (line == null)
-			return null;
-		
+	private String[] split(String line) throws LineErrorException{
 		String[] command;
 		int i = line.indexOf(' ');
 		if (i == -1) {
@@ -47,13 +56,15 @@ public class CommandReader {
 	/**
 	 * Reads the next line outputed by xboard
 	 */
-	private String read() {
+	private String read() throws LineErrorException{
 		try {
 			String line = in.readLine();
+			if (line == null)
+				throw new LineErrorException();
 			return line.trim();			
 		}
 		catch (IOException e) {
-			return null;
+			throw new LineErrorException();
 		}
 	}
 	

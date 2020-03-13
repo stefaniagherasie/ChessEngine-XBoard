@@ -21,7 +21,7 @@ public class ChessBoard {
 	
 	//steaza boardul la pozitia initiala
 	public void reset() {
-		PiecesFactory pf = new PiecesFactory();
+		PiecesFactory pf = PiecesFactory.getInstance();
 		char[] pos = {'a', '1'};
 		for (int i = 0; i < 8; i++, pos[1]++) {
 			for (int j = 0; j < 8; j++, pos[0]++) 
