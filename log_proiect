@@ -18,3 +18,15 @@ Stefania: all done!
 == Rares - 13 mar ==
 Created CommandFactoy, si toate clasele pt comanezi (fara cod)
 Am facut CommandReader - interctiunea cu xboard pt citire
+
+== Rares - 14 mar ==
+LET'S DO THIS!
+am facut comanda de move(updateul boardului in urma citirii miscarii facute de oponent)
+am stars interfata piece si am facut clasa abstract AbstractPiece (<-must check!)
+
+clasa VoidPiece = spatiu liber pe masa
+clasa voidCommand = momentan while-ul din main nu trebuie sa proceseze nimic, dar trebuie sa cicleze
+
+in clasa ChessBoard variabila:
+-playingColor = culoarea jucata de engine (true = white/ false = black)
+-playerTurn = jucatorul care este la mutare (true = white/ false = black)

@@ -12,26 +12,31 @@ public class CommandFactory {
 		return uniqueInstance;
 	}
 	
-	public Command createCommand(String[] s) {
-		if (s[0].equals("xboard"))
-			return new XBoardCommand(s[1]);
-		if (s[0].equals("new"))
-			return new NewCommand(s[1]);
-		if (s[0].equals("force"))
-			return new ForceCommand(s[1]);
-		if (s[0].equals("go"))
-			return new GoCommand(s[1]);
-		if (s[0].equals("white"))
-			return new WhiteCommand(s[1]);
-		if (s[0].equals("black"))
-			return new BlackCommand(s[1]);
-		if (s[0].equals("quit"))
-			return new QuitCommand(s[1]);
-		if (s[0].equals("resign"))
-			return new ResignCommand(s[1]);
-		if (s[0].equals("move"))
-			return new MoveCommand(s[1]);
+	public Command createCommand(String s) {
 		
-		return null;
+		if (s.equals("xboard"))
+			return new XBoardCommand();
+		if (s.equals("new"))
+			return new NewCommand();
+		if (s.equals("force"))
+			return new ForceCommand();
+		if (s.equals("go"))
+			return new GoCommand();
+		if (s.equals("white"))
+			return new WhiteCommand();
+		if (s.equals("black"))
+			return new BlackCommand();
+		if (s.equals("quit"))
+			return new QuitCommand();
+		if (s.equals("resign"))
+			return new ResignCommand();
+		if (isMoveCommand(s))
+			return new MoveCommand(s);
+		
+		return new VoidCommand();
+	}
+	
+	private boolean isMoveCommand(String s) {
+		return Position.legalPosition(s.substring(0,2)) && Position.legalPosition(s.substring(2));
 	}
 }

@@ -1,12 +1,6 @@
 package auxiliary;
 
-import pieces.Bishop;
-import pieces.King;
-import pieces.Knight;
-import pieces.Pawn;
-import pieces.Piece;
-import pieces.Queen;
-import pieces.Rook;
+import pieces.*;
 
 public class PiecesFactory {
 	private static PiecesFactory uniqueInstance;
@@ -19,7 +13,7 @@ public class PiecesFactory {
 		return uniqueInstance;
 	}
 	
-	public Piece createPiece(String s) {
+	public AbstractPiece createPiece(String s) {
 		if (s.equals("a8"))
 			return new Rook("black", "a8");
 		if (s.equals("h8"))
@@ -84,6 +78,6 @@ public class PiecesFactory {
 			return new Pawn("white", "g2");
 		if (s.equals("h2"))
 			return new Pawn("white", "h2");
-		return null;
+		return new VoidPiece();
 	}
 }

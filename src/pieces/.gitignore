@@ -6,3 +6,5 @@
 /Knight.class
 /Rook.class
 /PiecesFactory.class
+/AbstractPiece.class
+/VoidPiece.class

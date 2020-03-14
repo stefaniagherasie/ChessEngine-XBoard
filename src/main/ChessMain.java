@@ -1,24 +1,26 @@
 package main;
-import pieces.*;
 import auxiliary.*;
 import commands.*;
 
 public class ChessMain {
+	
 	public static void main(String[] args) {
 		
 		ChessBoard b = ChessBoard.getInstance();
 		
 		CommandReader reader = new CommandReader(System.in);
 		
-		playGame(reader);
+		playGame(reader, b);
 		
 	}
 	
-	public static void playGame (CommandReader reader) {
-		Command com = reader.next();
+	public static void playGame (CommandReader reader, ChessBoard board) {
+		Command command = reader.next();
 		
-		while (!(com instanceof QuitCommand)) {
+		while (!(command instanceof QuitCommand)) {
+			command.execute();
 			
+			command = reader.next();
 		}
 	}
 }

@@ -1,33 +1,32 @@
 package pieces;
 import main.*;
+
+import java.util.ArrayList;
+
 import auxiliary.Position;
 
-public class Knight implements Piece {
-	private Position pos;
-	private boolean color;
+public class Knight extends AbstractPiece {
 	
 	public Knight (String color, String position) {
-		pos = new Position(position);
-		if (color.equals("white"))
-			this.color = true;
-		else
-			this.color = false;
+		super(color, position);
 	}
 
 	@Override
-	public boolean verifyMove(String move) {
+	public boolean verifyMove(Position pos) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public String move() {
+	public void move(Position pos) {
+		if (verifyMove(pos))
+			super.pos = pos;
+	}
+
+	@Override
+	public ArrayList<Position> getPossibleMoves() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public boolean getColor() {
-		return color;
-	}
 }

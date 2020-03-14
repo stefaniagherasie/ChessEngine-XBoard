@@ -1,34 +1,32 @@
 package pieces;
 import main.*;
+
+import java.util.ArrayList;
+
 import auxiliary.Position;
 
-public class King implements Piece {
-	private Position pos;
-	private boolean color;
+public class King extends AbstractPiece {
 	
 	public King (String color, String position) {
-		pos = new Position(position);
-		if (color.equals("white"))
-			this.color = true;
-		else
-			this.color = false;
+		super(color, position);
 	}
 
 	@Override
-	public boolean verifyMove(String move) {
+	public boolean verifyMove(Position pos) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public String move() {
-		// TODO Auto-generated method stub
-		return null;
+	public void move(Position pos) {
+		if (verifyMove(pos))
+			super.pos = pos;
 	}
 
 	@Override
-	public boolean getColor() {
-		return color;
+	public ArrayList<Position> getPossibleMoves() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -1,0 +1,15 @@
+xboard null
+protover 2
+t9 null
+protover null
+xboard null
+protover 2
+new null
+random null
+level 40
+post null
+hard null
+time 30000
+otim 30000
+a2a4 null
+result *
