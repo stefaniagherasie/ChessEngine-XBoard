@@ -25,7 +25,7 @@ public class ChessBoard {
 		return uniqueInstance;
 	}
 	
-	//steaza boardul la pozitia initiala
+	//seteaza boardul la pozitia initiala
 	public void reset() {
 		PiecesFactory pf = PiecesFactory.getInstance();
 		char[] pos = {'a', '1'};
@@ -46,6 +46,7 @@ public class ChessBoard {
 		if (pos.legalPosition())
 			board[pos.getLetter()][pos.getNumber()] = p;
 	}
+
 	
 	//afiseaza la stdout masa
 	public void printBoard() {

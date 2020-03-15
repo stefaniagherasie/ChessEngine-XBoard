@@ -8,7 +8,7 @@ public class BlackCommand extends Command{
 	public void execute() {
 		// TODO Auto-generated method stub
 		ChessBoard b = ChessBoard.getInstance();
-		b.setPlayingColor(true);
+		b.setPlayingColor(false);
 	}
 
 }
