@@ -30,3 +30,13 @@ clasa voidCommand = momentan while-ul din main nu trebuie sa proceseze nimic, da
 in clasa ChessBoard variabila:
 -playingColor = culoarea jucata de engine (true = white/ false = black)
 -playerTurn = jucatorul care este la mutare (true = white/ false = black)
+
+== Cosmina - 15 mar ==
+am implementat White, Black, New, Resign, Force, Go
+la xboard si quit cred ca trebuie lasat gol
+
+pentru partea de force si go consider ca ne trebuie doar o variabila pe care trebuie sa
+o setam si sa o verificam atunci cand facem o mutare, altfel am duplica o parte din codul
+pt move pt force; astfel:
+	in clasa ChessBoard variabila:
+		-forceMode = true/false.sssss
