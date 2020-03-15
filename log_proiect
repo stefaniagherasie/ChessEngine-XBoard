@@ -40,3 +40,8 @@ o setam si sa o verificam atunci cand facem o mutare, altfel am duplica o parte 
 pt move pt force; astfel:
 	in clasa ChessBoard variabila:
 		-forceMode = true/false.sssss
+
+== Stefi - 15 mar ==
+Am incercat sa generez o miscare random de pion pentru Xboard(in clasa ChessMain).
+Nu stiu exact de ce nu ma lasa sa accesez metoda getPossibleMoves din clasa Pawn.
+Am comentat partea de cod si vedem maine care este problema.
