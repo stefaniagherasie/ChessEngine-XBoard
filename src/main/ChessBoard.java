@@ -10,6 +10,7 @@ public class ChessBoard {
 	private static boolean playingColor;
 	//true = albul trb sa miste, false = negru trb sa mute
 	private static boolean playerTurn;
+	private static boolean forceMode;
 	
 	private ChessBoard() {
 		board = new AbstractPiece[8][8];
@@ -87,5 +88,13 @@ public class ChessBoard {
 
 	public void setPlayerTurn(boolean playerTurn) {
 		ChessBoard.playerTurn = playerTurn;
+	}
+	
+	public static boolean isforceMode() {
+		return forceMode;
+	}
+	
+	public void setforceMode(boolean forceMode) {
+		ChessBoard.forceMode = forceMode;
 	}
 }

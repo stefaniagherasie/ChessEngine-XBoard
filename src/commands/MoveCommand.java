@@ -22,12 +22,14 @@ public class MoveCommand extends Command{
 		b.setPiece(startPos, new VoidPiece());
 		b.setPiece(endPos, movedPiece);
 		
-		//next player's turn
-		b.updatePlayerTurn();
-		
-		
-		/* DEBUG */
-		b.printBoard();
-		System.out.println(movedPiece.getPossibleMoves().toString());
+		//if(!b.isforceMode()) {
+			//next player's turn
+			b.updatePlayerTurn();
+			
+			
+			/* DEBUG */
+			b.printBoard();
+			System.out.println(movedPiece.getPossibleMoves().toString());
+	//	}
 	}
 }
