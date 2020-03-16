@@ -79,8 +79,8 @@ public class ChessBoard {
 		return playingColor;
 	}
 
-	public void setPlayingColor(boolean playingColor) {
-		this.playingColor = playingColor;
+	public void setPlayingColor(boolean playingC) {
+		playingColor = playingC;
 	}
 
 	public static boolean isPlayerTurn() {

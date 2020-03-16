@@ -2,21 +2,19 @@ package main;
 import auxiliary.*;
 import commands.*;
 import pieces.*;
-import java.util.*;
+import java.util.ArrayList;
 
 public class ChessMain {
 	
 	public static void main(String[] args) {
 		
-		ChessBoard b = ChessBoard.getInstance();
-		
 		CommandReader reader = new CommandReader(System.in);
 		
-		playGame(reader, b);
+		playGame(reader);
 		
 	}
 	
-	public static void playGame (CommandReader reader, ChessBoard board) {
+	public static void playGame (CommandReader reader) {
 		Command command = reader.next();
 		
 		while (!(command instanceof QuitCommand)) {
@@ -24,20 +22,23 @@ public class ChessMain {
 				
 			
 			//our turn to move
-			if(board.isPlayingColor() == board.isPlayerTurn() && !board.isforceMode()) 
+			if(ChessBoard.isPlayingColor() == ChessBoard.isPlayerTurn() && !ChessBoard.isforceMode()) 
 			{
-				ArrayList<ArrayList <Position>> position = new ArrayList<ArrayList <Position>>();
-				ArrayList<AbstractPiece> piece = new ArrayList<AbstractPiece>();
+				ArrayList<ArrayList <Position>> positions = new ArrayList<ArrayList <Position>>();
+				ArrayList<AbstractPiece> pieces = new ArrayList<AbstractPiece>();
 				for(int i = 0; i < 8; i++) {
 					for(int j = 0; j < 8; j++) {
-					AbstractPiece p = board.getPiece(new Position(i, j));
-						if(p instanceof Pawn && board.isPlayingColor() == p.getColor()) {
-							piece.add(p);
-							position.add(p.getPossibleMoves());
+					AbstractPiece p = ChessBoard.getInstance().getPiece(new Position(i, j));
+						if(p instanceof Pawn && ChessBoard.isPlayingColor() == p.getColor()) {
+							pieces.add(p);
+							positions.add(p.getPossibleMoves());
 						}
 					}
 				}
-				afisate_move(position, piece);
+				if (pieces.size() == 0);
+					//resign
+				
+				afisate_move(positions, pieces);
 			}
 			
 			
@@ -46,15 +47,19 @@ public class ChessMain {
 		}
 	}
 	
-	public static void afisate_move(ArrayList<ArrayList <Position>> position, ArrayList<AbstractPiece> pieces) {
-		int index = (int)(Math.random() * pieces.size());
+	public static void afisate_move(ArrayList<ArrayList <Position>> positions, ArrayList<AbstractPiece> pieces) {
+		int index = (int)(Math.random() * 10) % pieces.size();
 		
 		AbstractPiece piece = pieces.get(index);
-		ArrayList<Position> possibleMoves = position.get(index);
+		ArrayList<Position> possibleMoves = positions.get(index);
 		
-		int index2 = (int)(Math.random() * possibleMoves.size());
+		
+		int index2 = (int)(Math.random() * 10) % possibleMoves.size();
 		System.out.println("move " + piece.getPosition().toString() + possibleMoves.get(index2).toString());
 		
+		//updating board
 		piece.move(possibleMoves.get(index2));
+		//updating player turn
+		ChessBoard.updatePlayerTurn();
 	}
 }

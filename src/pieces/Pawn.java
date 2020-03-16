@@ -15,7 +15,8 @@ public class Pawn extends AbstractPiece{
 	public ArrayList<Position> getPossibleMoves() {
 		possibleMoves = new ArrayList<Position>();
 		ChessBoard board = ChessBoard.getInstance();
-		int d; //d pentru directie de verificare in functie de culoarea jucata
+
+		int d;
 		if (ChessBoard.isPlayingColor() == true)
 			d = 1;
 		else
