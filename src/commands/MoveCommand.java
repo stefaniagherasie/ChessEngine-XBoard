@@ -29,7 +29,7 @@ public class MoveCommand extends Command{
 			
 			/* DEBUG */
 			b.printBoard();
-			System.out.println(movedPiece.getPossibleMoves().toString());
+			//System.out.println(movedPiece.getPossibleMoves().toString());
 	//	}
 	}
 }

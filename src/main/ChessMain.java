@@ -2,7 +2,7 @@ package main;
 import auxiliary.*;
 import commands.*;
 import pieces.*;
-import java.util.ArrayList;
+import java.util.*;
 
 public class ChessMain {
 	
@@ -24,23 +24,37 @@ public class ChessMain {
 				
 			
 			//our turn to move
-			if(board.isPlayingColor() == board.isPlayerTurn()) 
+			if(board.isPlayingColor() == board.isPlayerTurn() && !board.isforceMode()) 
 			{
-				ArrayList<Position> pawnFirstMoves = new ArrayList<Position>();
-				for(Character c = 'a'; c <= 'h'; c++) {
-					String pos = (Character.toString(c)).concat("2");
-					Pawn pawn = new Pawn("white", pos);
-					// ????
-					pawnFirstMoves.addAll(pawn.getPossibleMoves());
-
+				ArrayList<ArrayList <Position>> position = new ArrayList<ArrayList <Position>>();
+				ArrayList<AbstractPiece> piece = new ArrayList<AbstractPiece>();
+				for(int i = 0; i < 8; i++) {
+					for(int j = 0; j < 8; j++) {
+					AbstractPiece p = board.getPiece(new Position(i, j));
+						if(p instanceof Pawn && board.isPlayingColor() == p.getColor()) {
+							piece.add(p);
+							position.add(p.getPossibleMoves());
+						}
+					}
 				}
-
-				Position random_move = pawnFirstMoves.get((int)Math.random() * (pawnFirstMoves.size() - 1) + 0);
+				afisate_move(position, piece);
 			}
 			
-
+			
 
 			command = reader.next();
 		}
+	}
+	
+	public static void afisate_move(ArrayList<ArrayList <Position>> position, ArrayList<AbstractPiece> pieces) {
+		int index = (int)(Math.random() * pieces.size());
+		
+		AbstractPiece piece = pieces.get(index);
+		ArrayList<Position> possibleMoves = position.get(index);
+		
+		int index2 = (int)(Math.random() * possibleMoves.size());
+		System.out.println("move " + piece.getPosition().toString() + possibleMoves.get(index2).toString());
+		
+		piece.move(possibleMoves.get(index2));
 	}
 }

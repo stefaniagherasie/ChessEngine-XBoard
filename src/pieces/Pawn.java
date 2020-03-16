@@ -30,10 +30,12 @@ public class Pawn extends AbstractPiece{
 			possibleMoves.add(new Position(pos, 0, d*1));
 		
 		if (board.getPiece(new Position(pos, d*1, d*1)) != null &&
+				!(board.getPiece(new Position(pos, d*(1), d*1)) instanceof VoidPiece) &&
 				board.getPiece(new Position(pos, d*1, d*1)).color != board.isPlayingColor())
 			possibleMoves.add(new Position(pos, d*1, d*1));
 		
 		if (board.getPiece(new Position(pos, d*(-1), d*1)) != null &&
+				!(board.getPiece(new Position(pos, d*(-1), d*1)) instanceof VoidPiece) &&
 				board.getPiece(new Position(pos, d*(-1), d*1)).color != board.isPlayingColor())
 			possibleMoves.add(new Position(pos, d*(-1), d*1));
 		
@@ -47,6 +49,9 @@ public class Pawn extends AbstractPiece{
 
 	@Override
 	public void move(Position pos) {
+		ChessBoard b = ChessBoard.getInstance();
+		b.setPiece(this.pos, new VoidPiece());
+		b.setPiece(pos, this);
 		this.pos = pos;
 		if (moved == false)
 			moved = true;

@@ -13,7 +13,8 @@ public class CommandFactory {
 	}
 	
 	public Command createCommand(String s) {
-		
+		if(s.equals("protover"))
+			return new ProtoverCommand();
 		if (s.equals("xboard"))
 			return new XBoardCommand();
 		if (s.equals("new"))

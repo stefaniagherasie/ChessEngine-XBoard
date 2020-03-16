@@ -74,6 +74,7 @@ public class Position {
 
 	@Override
 	public String toString() {
-		return "Position [letter=" + (char)(letter + 97) + ", number=" + (char)(number + 49) + "]";
+		char [] output = {(char)(letter + 97), (char)(number + 49)};
+		return new String(output);
 	}
 }

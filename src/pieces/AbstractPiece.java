@@ -17,6 +17,13 @@ public abstract class AbstractPiece {
 		}
 	}
 	
+	
+	@Override
+	public String toString() {
+		return "AbstractPiece [pos=" + pos + ", color=" + color + "]";
+	}
+
+
 	public abstract ArrayList<Position> getPossibleMoves();
 	
 	/**
@@ -36,5 +43,9 @@ public abstract class AbstractPiece {
 	 */
 	public boolean getColor() {
 		return color;
+	}
+	
+	public Position getPosition() {
+		return pos;
 	}
 }
