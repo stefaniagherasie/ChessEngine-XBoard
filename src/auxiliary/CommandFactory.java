@@ -37,6 +37,8 @@ public class CommandFactory {
 	}
 	
 	private boolean isMoveCommand(String s) {
-		return Position.legalPosition(s.substring(0,2)) && Position.legalPosition(s.substring(2));
+		if(s.length() >= 4)
+			return Position.legalPosition(s.substring(0,2)) && Position.legalPosition(s.substring(2));
+		else return false;
 	}
 }

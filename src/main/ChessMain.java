@@ -22,22 +22,22 @@ public class ChessMain {
 		while (!(command instanceof QuitCommand)) {
 			command.execute();
 				
-			/*
+			
 			//our turn to move
-			//if(board.isPlayingColor == board.isPlayerTurn) 
+			if(board.isPlayingColor() == board.isPlayerTurn()) 
 			{
 				ArrayList<Position> pawnFirstMoves = new ArrayList<Position>();
 				for(Character c = 'a'; c <= 'h'; c++) {
 					String pos = (Character.toString(c)).concat("2");
 					Pawn pawn = new Pawn("white", pos);
 					// ????
-					//pawnFirstMoves.addAll(pawn.getPossibleMoves);
+					pawnFirstMoves.addAll(pawn.getPossibleMoves());
 
 				}
 
 				Position random_move = pawnFirstMoves.get((int)Math.random() * (pawnFirstMoves.size() - 1) + 0);
 			}
-			*/
+			
 
 
 			command = reader.next();

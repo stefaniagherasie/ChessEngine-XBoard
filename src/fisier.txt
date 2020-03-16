@@ -1,7 +1,15 @@
 xboard null
 protover 2
-t9 null
-protover null
+new null
+random null
+level 40
+post null
+hard null
+force null
+analyze null
+. null
+exit null
+quit null
 xboard null
 protover 2
 new null
@@ -9,7 +17,6 @@ random null
 level 40
 post null
 hard null
-time 30000
-otim 30000
-a2a4 null
 result *
+force null
+quit null
