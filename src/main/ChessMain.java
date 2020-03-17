@@ -35,11 +35,10 @@ public class ChessMain {
 						}
 					}
 				}
-				if (pieces.size() == 0);
-					//resign
 				
-				afisate_move(positions, pieces);
-				ChessBoard.getInstance().printBoard();
+				 if (!afisate_move(positions, pieces))
+					 //resign
+					 System.out.println("resign");
 			}
 			
 			
@@ -48,7 +47,16 @@ public class ChessMain {
 		}
 	}
 	
-	public static void afisate_move(ArrayList<ArrayList <Position>> positions, ArrayList<AbstractPiece> pieces) {
+	public static boolean afisate_move(ArrayList<ArrayList <Position>> positions, ArrayList<AbstractPiece> pieces) {
+		//verifiacre daca mai exista miscari
+		int totalNumberOfMoves = 0;
+		for (ArrayList<Position> p: positions) {
+			totalNumberOfMoves += p.size();
+		}
+		if (totalNumberOfMoves == 0)
+			return false;
+		
+		
 		AbstractPiece piece;
 		ArrayList<Position> possibleMoves;
 		
@@ -65,5 +73,6 @@ public class ChessMain {
 		piece.move(possibleMoves.get(index2));
 		//updating player turn
 		ChessBoard.updatePlayerTurn();
+		return true;
 	}
 }
