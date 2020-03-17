@@ -15,7 +15,8 @@ public class Pawn extends AbstractPiece{
 	public ArrayList<Position> getPossibleMoves() {
 		possibleMoves = new ArrayList<Position>();
 		ChessBoard board = ChessBoard.getInstance();
-
+		
+		//the direction that the pawn has to go is different for white and black
 		int d;
 		if (ChessBoard.isPlayingColor() == true)
 			d = 1;
@@ -52,11 +53,11 @@ public class Pawn extends AbstractPiece{
 	}
 
 	@Override
-	public void move(Position pos) {
+	public void move(Position newPos) {
 		ChessBoard b = ChessBoard.getInstance();
-		b.setPiece(this.pos, new VoidPiece());
-		b.setPiece(pos, this);
-		this.pos = pos;
+		b.setPiece(pos, new VoidPiece());
+		b.setPiece(newPos, this);
+		pos = newPos;
 		if (moved == false)
 			moved = true;
 	}

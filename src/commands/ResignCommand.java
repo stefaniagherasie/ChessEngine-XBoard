@@ -12,7 +12,6 @@ public class ResignCommand extends Command{
 			System.out.println("0-1 {White resigns}");
 		else
 			System.out.println("0-1 {Black resigns}");
-		//??b.qiut
 	}
 
 }

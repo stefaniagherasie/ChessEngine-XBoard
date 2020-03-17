@@ -19,17 +19,8 @@ public class MoveCommand extends Command{
 		//changing the board
 		AbstractPiece movedPiece = b.getPiece(startPos);
 		movedPiece.move(endPos);
-		b.setPiece(startPos, new VoidPiece());
-		b.setPiece(endPos, movedPiece);
 		
-		//if(!b.isforceMode()) {
-			//next player's turn
-			b.updatePlayerTurn();
-			
-			
-			/* DEBUG */
-			b.printBoard();
-			//System.out.println(movedPiece.getPossibleMoves().toString());
-	//	}
+		//next player's turn
+		b.updatePlayerTurn();
 	}
 }

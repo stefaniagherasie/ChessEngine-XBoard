@@ -36,18 +36,18 @@ public class ChessMain {
 					}
 				}
 				
-				 if (!afisate_move(positions, pieces))
+				if (!showRandomMove(positions, pieces))
 					 //resign
 					 System.out.println("resign");
 			}
 			
-			
+			ChessBoard.getInstance().printBoard();
 
 			command = reader.next();
 		}
 	}
 	
-	public static boolean afisate_move(ArrayList<ArrayList <Position>> positions, ArrayList<AbstractPiece> pieces) {
+	public static boolean showRandomMove(ArrayList<ArrayList <Position>> positions, ArrayList<AbstractPiece> pieces) {
 		//verifiacre daca mai exista miscari
 		int totalNumberOfMoves = 0;
 		for (ArrayList<Position> p: positions) {

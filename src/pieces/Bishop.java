@@ -11,9 +11,11 @@ public class Bishop extends AbstractPiece {
 	}
 
 	@Override
-	public void move(Position pos) {
-		if (verifyMove(pos))
-			super.pos = pos;
+	public void move(Position newPos) {
+		ChessBoard b = ChessBoard.getInstance();
+		b.setPiece(pos, new VoidPiece());
+		b.setPiece(newPos, this);
+		pos = newPos;
 	}
 
 	@Override

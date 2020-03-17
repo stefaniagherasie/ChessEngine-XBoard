@@ -20,9 +20,7 @@ public class VoidPiece extends AbstractPiece{
 	}
 
 	@Override
-	public void move(Position pos) {
-		
-	}
+	public void move(Position pos) {}
 
 	@Override
 	public ArrayList<Position> getPossibleMoves() {

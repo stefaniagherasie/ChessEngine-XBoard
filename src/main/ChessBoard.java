@@ -14,7 +14,6 @@ public class ChessBoard {
 	
 	private ChessBoard() {
 		board = new AbstractPiece[8][8];
-		playingColor = false;
 		playerTurn = true;
 		reset();
 	}
@@ -87,15 +86,15 @@ public class ChessBoard {
 		return playerTurn;
 	}
 
-	public void setPlayerTurn(boolean playerTurn) {
-		ChessBoard.playerTurn = playerTurn;
+	public void setPlayerTurn(boolean playerT) {
+		playerTurn = playerT;
 	}
 	
 	public static boolean isforceMode() {
 		return forceMode;
 	}
 	
-	public void setforceMode(boolean forceMode) {
-		ChessBoard.forceMode = forceMode;
+	public void setforceMode(boolean forceM) {
+		forceMode = forceM;
 	}
 }
