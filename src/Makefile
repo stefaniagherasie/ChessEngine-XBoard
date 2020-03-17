@@ -11,3 +11,4 @@ run: jar
 
 clean:
 	find -name "*.class" | xargs -i rm {}
+	rm main.jar
