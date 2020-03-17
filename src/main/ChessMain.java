@@ -40,8 +40,6 @@ public class ChessMain {
 					 //resign
 					 System.out.println("resign");
 			}
-			
-			ChessBoard.getInstance().printBoard();
 
 			command = reader.next();
 		}

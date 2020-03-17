@@ -14,13 +14,10 @@ public class MoveCommand extends Command{
 	
 	@Override
 	public void execute() {
-		ChessBoard b = ChessBoard.getInstance();
-		
 		//changing the board
-		AbstractPiece movedPiece = b.getPiece(startPos);
-		movedPiece.move(endPos);
+		ChessBoard.getInstance().getPiece(startPos).move(endPos);
 		
 		//next player's turn
-		b.updatePlayerTurn();
+		ChessBoard.updatePlayerTurn();
 	}
 }

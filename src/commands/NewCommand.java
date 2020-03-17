@@ -7,6 +7,8 @@ public class NewCommand extends Command{
 		ChessBoard b = ChessBoard.getInstance();
 		b.reset();
 		b.setPlayerTurn(true);
+		b.setPlayingColor(false);
+		b.setforceMode(false);
 	}
 
 }
