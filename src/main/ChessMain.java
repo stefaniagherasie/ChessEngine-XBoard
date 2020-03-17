@@ -45,6 +45,10 @@ public class ChessMain {
 		}
 	}
 	
+	/*
+	 * metoda temorara doar pentru aceasta etapa
+	 * primeste lista de pioni si posibilele lor miscari si alege sa faca una la intamplare
+	 */
 	public static boolean showRandomMove(ArrayList<ArrayList <Position>> positions, ArrayList<AbstractPiece> pieces) {
 		//verifiacre daca mai exista miscari
 		int totalNumberOfMoves = 0;

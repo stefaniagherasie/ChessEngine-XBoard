@@ -1,6 +1,5 @@
 package auxiliary;
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -22,18 +21,10 @@ public class CommandReader {
 	 */
 	public Command next() {
 		try {
-			FileWriter fw = new FileWriter("fisier.txt", true);
-			String[] a = split(read());
-			fw.write(a[0] + " " + a[1] + "\n");
-			fw.close();
-			return cf.createCommand(a[0]);
-			//return cf.createCommand(split(read())[0]);
+			return cf.createCommand(split(read())[0]);
 		}
 		catch (LineErrorException e) {
 			System.out.println(e.getMessage());
-			return null;
-		}
-		catch (IOException e) {
 			return null;
 		}
 	}

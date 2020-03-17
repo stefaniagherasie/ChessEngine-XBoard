@@ -11,13 +11,12 @@ MEMBRII:	BADITA Rares-Octavian(capitan)
 == INSTRUCTIUNI DE COMPILARE
 
 Makefile-ul contine urmatoarele reguli:
-	default - realizeaza fisierul cu extensia .jar
+	default - la fel ca make jar
 	make jar - realizeaza fisierul cu extensia .jar
-	make run - face fisierul .jar si il ruleaza 
-	make xboard - face fisierul .jar si il pune ca fcp pentru XBoard
+	make run - face fisierul .jar si il pune ca fcp pentru XBoard
 	make clean - sterge fisierele .class
 
-Pentru rularea temei in cadrul XBoard-ului se poate folosi "make xboard".
+Pentru rularea temei in cadrul XBoard-ului se poate folosi "make run" apelat in folderul sursa (src/).
 Se recomanda rularea "make clean" pentru testari repetate.
 
 

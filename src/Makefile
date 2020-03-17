@@ -7,9 +7,6 @@ jar:
 	jar cvmf $(DIR)/MANIFEST.MF main.jar ./main/*.class ./pieces/*.class ./commands/*.class ./auxiliary/*.class
 
 run: jar
-	java -jar main.jar
-
-xboard: jar
 	xboard -fd "$(DIR)" -fcp "java -jar main.jar"
 
 clean:
