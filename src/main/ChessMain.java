@@ -39,6 +39,7 @@ public class ChessMain {
 					//resign
 				
 				afisate_move(positions, pieces);
+				ChessBoard.getInstance().printBoard();
 			}
 			
 			
@@ -48,11 +49,14 @@ public class ChessMain {
 	}
 	
 	public static void afisate_move(ArrayList<ArrayList <Position>> positions, ArrayList<AbstractPiece> pieces) {
-		int index = (int)(Math.random() * 10) % pieces.size();
+		AbstractPiece piece;
+		ArrayList<Position> possibleMoves;
 		
-		AbstractPiece piece = pieces.get(index);
-		ArrayList<Position> possibleMoves = positions.get(index);
-		
+		do {
+			int index = (int)(Math.random() * 10) % pieces.size();
+			piece = pieces.get(index);
+			possibleMoves = positions.get(index);
+		} while (possibleMoves.size() == 0);
 		
 		int index2 = (int)(Math.random() * 10) % possibleMoves.size();
 		System.out.println("move " + piece.getPosition().toString() + possibleMoves.get(index2).toString());

@@ -43,9 +43,12 @@ public class Pawn extends AbstractPiece{
 		return possibleMoves;
 	}
 	
+	//momentan nefolosita
 	@Override
 	public boolean verifyMove(Position newPos) {
-		return true;
+		if (getPossibleMoves().contains(newPos))
+			return true;
+		return false;
 	}
 
 	@Override

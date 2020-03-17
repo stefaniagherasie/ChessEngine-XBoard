@@ -13,11 +13,22 @@ public class Position {
 		number = p.charAt(1) - 49;
 	}
 	
+	/**
+	 * Constructor that builds a position based on 2 integers
+	 * @param a equivalent of the letter
+	 * @param b equivalent if the number
+	 */
 	public Position(int a, int b) {
 		letter = a;
 		number = b;
 	}
 	
+	/**
+	 * Constructor that builds a position relative to an other position
+	 * @param p original position
+	 * @param a letter difference
+	 * @param b number difference
+	 */
 	public Position(Position p, int a, int b) {
 		letter = p.letter + a;
 		number = p.number + b;
