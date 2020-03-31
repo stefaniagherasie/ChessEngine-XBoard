@@ -47,7 +47,7 @@ Nu stiu exact de ce nu ma lasa sa accesez metoda getPossibleMoves din clasa Pawn
 Am comentat partea de cod si vedem maine care este problema.
 
 
-== Cosmin - 16 mar ==
+== Cosmina - 16 mar ==
 Am scris cod pentru generare miscarile random, rezolvat problema cu protover
 
 == Stefi - 16 mar ==
@@ -55,3 +55,6 @@ Am facut ReadMe-ul.
 
 == Rares - 17 mar ==
 done with the bugs
+
+== Cosmina - 31 mar ==
+bishop and rook done!
