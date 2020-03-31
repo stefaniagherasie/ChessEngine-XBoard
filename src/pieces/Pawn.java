@@ -28,7 +28,7 @@ public class Pawn extends AbstractPiece{
 				board.getPiece(new Position(pos, 0, d*2)) instanceof VoidPiece)
 			possibleMoves.add(new Position(pos, 0, d*2));
 		
-		if (board.getPiece(new Position(pos, 0, d*1)) instanceof VoidPiece)
+		if (board.getPiece(new Position(pos, 0, d*1)) instanceof VoidPiece )
 			possibleMoves.add(new Position(pos, 0, d*1));
 		
 		if (board.getPiece(new Position(pos, d*1, d*1)) != null &&

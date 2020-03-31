@@ -33,6 +33,14 @@ public class ChessMain {
 							pieces.add(p);
 							positions.add(p.getPossibleMoves());
 						}
+						if(p instanceof Bishop && ChessBoard.isPlayingColor() == p.getColor()) {
+							pieces.add(p);
+							positions.add(p.getPossibleMoves());
+						}
+						if(p instanceof Rook && ChessBoard.isPlayingColor() == p.getColor()) {
+							pieces.add(p);
+							positions.add(p.getPossibleMoves());
+						}
 					}
 				}
 				
