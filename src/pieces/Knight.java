@@ -21,10 +21,12 @@ public class Knight extends AbstractPiece {
 				// obtinem doar pozitii de genul (|1|, |2|) sau (|2|, |1|)
 				if(i != 0 && j != 0 && (Math.abs(i) != Math.abs(j))
 					&& board.getPiece(new Position(pos, i, j)) != null) {
+
 						if(!(board.getPiece(new Position(pos, i, j)) instanceof VoidPiece) &&
 							board.getPiece(new Position(pos, i, j)).color != board.isPlayingColor()){
 							possibleMoves.add(new Position(pos, i, j));
 						}
+						
 						if((board.getPiece(new Position(pos, i, j)) instanceof VoidPiece))
 							possibleMoves.add(new Position(pos, i, j));					
 					}
