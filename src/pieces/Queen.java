@@ -24,6 +24,7 @@ public class Queen extends AbstractPiece {
 
 				int k = 1;
 				while(board.getPiece(new Position(pos, k*i, k*j)) != null) {
+					
 					if(!(board.getPiece(new Position(pos, k*i, k*j)) instanceof VoidPiece) &&
 						board.getPiece(new Position(pos, k*i, k*j)).color != board.isPlayingColor()){
 						possibleMoves.add(new Position(pos, k*i, k*j));
