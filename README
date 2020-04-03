@@ -16,15 +16,18 @@ Makefile-ul contine urmatoarele reguli:
 	make run - face fisierul .jar si il pune ca fcp pentru XBoard
 	make clean - sterge fisierele .class
 
-Pentru rularea temei in cadrul XBoard-ului se poate folosi "make run" apelat in folderul sursa (src/).
+Pentru rularea temei in cadrul XBoard-ului se poate folosi "make run" apelat 
+in folderul sursa (src/).
 Se recomanda rularea "make clean" pentru testari repetate.
 
 
 
 == DETALII DESPRE STRUCTURA PROIECTULUI
 
-Proiectul presupune realizarea reprezentarii internă a tablei de joc și a pieselor de joc, precum și o interfațare cu programul XBoard.
-Interfațarea va presupune posibilitatea de a interpreta și interacționa cu următoarele comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move.
+Proiectul presupune realizarea reprezentarii internă a tablei de joc și a pieselor
+de joc, precum și o interfațare cu programul XBoard.
+Interfațarea va presupune posibilitatea de a interpreta și interacționa cu următoarele 
+comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move.
 
 Proiectul este implementat in Java si urmareste interactiune cu XBoard-ul.
 Am realizat 4 pachete pentru structurarea claselor(main, commands, pieces,
@@ -110,7 +113,8 @@ proiectului.
 Am pornit prin a structura un schelet de cod, care a fost apoi dezvoltat
 individual si in echipa pentru a se potrivi cerintelor proiectului. 
 Pentru a da exemplu de responsibilitati individuale, Rares s-a ocupat de 
-crearea tablei, a pozitiilor si a piesei implementate(pion), citirea comenzilor, Cosmina de implementarea comenzilor si Stefania de generarea
+crearea tablei, a pozitiilor si a piesei implementate(pion), citirea comenzilor, 
+Cosmina de implementarea comenzilor si Stefania de generarea
 aleatorie a miscarilor si realizarea unui ReadMe.
 Fiecare membru a incercat sa contribuie la proiect, mai ales in rezolvarea
 erorilor si problemelor care au aparut.
