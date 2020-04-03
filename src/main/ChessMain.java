@@ -41,6 +41,18 @@ public class ChessMain {
 							pieces.add(p);
 							positions.add(p.getPossibleMoves());
 						}
+						if(p instanceof Knight && ChessBoard.isPlayingColor() == p.getColor()) {
+							pieces.add(p);
+							positions.add(p.getPossibleMoves());
+						}
+						if(p instanceof King && ChessBoard.isPlayingColor() == p.getColor()) {
+							pieces.add(p);
+							positions.add(p.getPossibleMoves());
+						}
+						if(p instanceof Queen && ChessBoard.isPlayingColor() == p.getColor()) {
+							pieces.add(p);
+							positions.add(p.getPossibleMoves());
+						}
 					}
 				}
 				
