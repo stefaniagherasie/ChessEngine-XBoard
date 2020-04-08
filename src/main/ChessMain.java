@@ -17,6 +17,8 @@ public class ChessMain {
 	public static void playGame (CommandReader reader) {
 		Command command = reader.next();
 		
+		ChessBoard.getInstance().printBoard();
+		
 		while (!(command instanceof QuitCommand)) {
 			command.execute();
 				
@@ -24,41 +26,29 @@ public class ChessMain {
 			//our turn to move
 			if(ChessBoard.isPlayingColor() == ChessBoard.isPlayerTurn() && !ChessBoard.isforceMode()) 
 			{
-				ArrayList<ArrayList <Position>> positions = new ArrayList<ArrayList <Position>>();
-				ArrayList<AbstractPiece> pieces = new ArrayList<AbstractPiece>();
-				for(int i = 0; i < 8; i++) {
-					for(int j = 0; j < 8; j++) {
-					AbstractPiece p = ChessBoard.getInstance().getPiece(new Position(i, j));
-						if(p instanceof Pawn && ChessBoard.isPlayingColor() == p.getColor()) {
-							pieces.add(p);
-							positions.add(p.getPossibleMoves());
-						}
-						if(p instanceof Bishop && ChessBoard.isPlayingColor() == p.getColor()) {
-							pieces.add(p);
-							positions.add(p.getPossibleMoves());
-						}
-						if(p instanceof Rook && ChessBoard.isPlayingColor() == p.getColor()) {
-							pieces.add(p);
-							positions.add(p.getPossibleMoves());
-						}
-						if(p instanceof Knight && ChessBoard.isPlayingColor() == p.getColor()) {
-							pieces.add(p);
-							positions.add(p.getPossibleMoves());
-						}
-						if(p instanceof King && ChessBoard.isPlayingColor() == p.getColor()) {
-							pieces.add(p);
-							positions.add(p.getPossibleMoves());
-						}
-						if(p instanceof Queen && ChessBoard.isPlayingColor() == p.getColor()) {
-							pieces.add(p);
-							positions.add(p.getPossibleMoves());
+				ChessBoard.getInstance().printBoard();
+				
+				if (ChessBoard.isInCheck()) {
+					System.out.println("I am in check baby!");
+				} else {
+					ArrayList<ArrayList <Position>> positions = new ArrayList<ArrayList <Position>>();
+					ArrayList<AbstractPiece> pieces = new ArrayList<AbstractPiece>();
+					
+					for(int i = 0; i < 8; i++) {
+						for(int j = 0; j < 8; j++) {
+						AbstractPiece p = ChessBoard.getInstance().getPiece(new Position(i, j));
+							if(!(p instanceof VoidPiece) && ChessBoard.isPlayingColor() == p.getColor()) {
+								pieces.add(p);
+								positions.add(p.getPossibleMoves());
+							} 
 						}
 					}
+					
+					if (!showRandomMove(positions, pieces))
+						 //resign
+						 System.out.println("resign");
 				}
-				
-				if (!showRandomMove(positions, pieces))
-					 //resign
-					 System.out.println("resign");
+				ChessBoard.getInstance().printBoard();
 			}
 
 			command = reader.next();

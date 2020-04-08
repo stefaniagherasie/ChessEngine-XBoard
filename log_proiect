@@ -62,3 +62,8 @@ bishop and rook done!
 == Stefi - 3 apr ==
 Knight, King, Queen done
 Regele tot intra in sah la miscari random
+
+== Rares - 8 apr ==
+m.am uitat peste cod si l.am verificat in mare.
+am reparat unbug la regina unde lua in considerare la miscari posibile doar patratelele din jurul ei.
+Coechipier: TODO refaceti fct de getPossibleMoves apeland verifyMove()

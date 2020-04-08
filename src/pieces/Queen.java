@@ -24,19 +24,15 @@ public class Queen extends AbstractPiece {
 
 				int k = 1;
 				while(board.getPiece(new Position(pos, k*i, k*j)) != null) {
-					
-					if(!(board.getPiece(new Position(pos, k*i, k*j)) instanceof VoidPiece) &&
-						board.getPiece(new Position(pos, k*i, k*j)).color != board.isPlayingColor()){
-						possibleMoves.add(new Position(pos, k*i, k*j));
-						break;	
-					}
-
-					if(!(board.getPiece(new Position(pos, k*i, k*j)) instanceof VoidPiece) &&
-						board.getPiece(new Position(pos, k*i, k*j)).color == board.isPlayingColor())
+					Position posToCheck = new Position(pos, k*i, k*j);
+					if (verifyMove(posToCheck)) {
+						possibleMoves.add(posToCheck);
+						if (! (ChessBoard.getInstance().getPiece(posToCheck) instanceof VoidPiece)) {
+							break;
+						}
+					} else {
 						break;
-
-					if((board.getPiece(new Position(pos, k*i, k*j)) instanceof VoidPiece))
-						possibleMoves.add(new Position(pos, k*i, k*j));
+					}
 					
 					k++;						
 				}
@@ -48,8 +44,18 @@ public class Queen extends AbstractPiece {
 	}
 
 	@Override
-	public boolean verifyMove(Position pos) {
-		// TODO Auto-generated method stub
+	public boolean verifyMove(Position newPos) {
+		ChessBoard board = ChessBoard.getInstance();
+		
+		if(!(board.getPiece(newPos) instanceof VoidPiece) &&
+				board.getPiece(newPos).color != super.getColor()){
+				return true;
+			}
+
+		if((board.getPiece(newPos) instanceof VoidPiece)){
+			return true;
+		}
+		
 		return false;
 	}
 

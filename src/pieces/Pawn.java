@@ -6,49 +6,65 @@ import auxiliary.Position;
 
 public class Pawn extends AbstractPiece{
 	private boolean moved = false;
+	private final int D;
 	
 	public Pawn (String color, String position) {
 		super(color, position);
+		if (super.getColor() == true) {
+			D = 1;
+		} else {
+			D = -1; 
+		}
 	}
 
 	@Override
 	public ArrayList<Position> getPossibleMoves() {
 		possibleMoves = new ArrayList<Position>();
-		ChessBoard board = ChessBoard.getInstance();
 		
-		//the direction that the pawn has to go is different for white and black
-		int d;
-		if (ChessBoard.isPlayingColor() == true)
-			d = 1;
-		else
-			d = -1;
+		if (verifyMove(new Position(pos, 0, D*2))) {
+			possibleMoves.add(new Position(pos, 0, D*2));
+		}
 		
-		if (moved == false && 
-				board.getPiece(new Position(pos, 0, d*1)) instanceof VoidPiece &&
-				board.getPiece(new Position(pos, 0, d*2)) instanceof VoidPiece)
-			possibleMoves.add(new Position(pos, 0, d*2));
+		if (verifyMove(new Position(pos, 0, D*1))) {
+			possibleMoves.add(new Position(pos, 0, D*1));
+		}
 		
-		if (board.getPiece(new Position(pos, 0, d*1)) instanceof VoidPiece )
-			possibleMoves.add(new Position(pos, 0, d*1));
+		if (verifyMove(new Position(pos, D*1, D*1))) {
+			possibleMoves.add(new Position(pos, D*1, D*1));
+		}
 		
-		if (board.getPiece(new Position(pos, d*1, d*1)) != null &&
-				!(board.getPiece(new Position(pos, d*(1), d*1)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, d*1, d*1)).color != board.isPlayingColor())
-			possibleMoves.add(new Position(pos, d*1, d*1));
-		
-		if (board.getPiece(new Position(pos, d*(-1), d*1)) != null &&
-				!(board.getPiece(new Position(pos, d*(-1), d*1)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, d*(-1), d*1)).color != board.isPlayingColor())
-			possibleMoves.add(new Position(pos, d*(-1), d*1));
+		if (verifyMove(new Position(pos, (-1), D*(-1)))) {
+			possibleMoves.add(new Position(pos, D*(-1), D*1));
+		}
 		
 		return possibleMoves;
 	}
 	
-	//momentan nefolosita
 	@Override
 	public boolean verifyMove(Position newPos) {
-		if (getPossibleMoves().contains(newPos))
+		ChessBoard board = ChessBoard.getInstance();
+		if (moved == false && 
+				board.getPiece(newPos) instanceof VoidPiece &&
+				board.getPiece(new Position(newPos, 0, -D)) instanceof VoidPiece) {
 			return true;
+		}
+		
+		if (board.getPiece(newPos) instanceof VoidPiece) {
+			return true;
+		}
+		
+		if (board.getPiece(newPos) != null &&
+				!(board.getPiece(newPos) instanceof VoidPiece) &&
+				board.getPiece(newPos).color != super.getColor()) {
+			return true;
+		}
+		
+		if (board.getPiece(newPos) != null &&
+				!(board.getPiece(newPos) instanceof VoidPiece) &&
+				board.getPiece(newPos).color !=super.getColor()) {
+			return true;
+		}
+		
 		return false;
 	}
 
