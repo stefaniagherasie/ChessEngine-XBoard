@@ -16,79 +16,82 @@ public class Rook extends AbstractPiece {
 		possibleMoves = new ArrayList<Position>();
 		ChessBoard board = ChessBoard.getInstance();
 		
-		//an spate
 		int i = 1;
 		while(board.getPiece(new Position(pos, 0, i)) != null) {
-			if(!(board.getPiece(new Position(pos, 0, i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, 0, i)).color != board.isPlayingColor()){
-				possibleMoves.add(new Position(pos, 0, i));
-				break;	
-			}
-			if(!(board.getPiece(new Position(pos, 0, i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, 0, i)).color == board.isPlayingColor())
+			Position posToCheck = new Position(pos, 0, i);
+			
+			if (verifyMove(posToCheck)) {
+				possibleMoves.add(posToCheck);
+				if (! (ChessBoard.getInstance().getPiece(posToCheck) instanceof VoidPiece)) {
+					break;
+				}
+			} else {
 				break;
-			if((board.getPiece(new Position(pos, 0, i)) instanceof VoidPiece))
-				possibleMoves.add(new Position(pos, 0, i));
-				i++;
+			}
+			i++;
 		}
 		
-		//la stanga
 		i = 1;
 		while(board.getPiece(new Position(pos, -i, 0)) != null) {
-			if(!(board.getPiece(new Position(pos, -i, 0)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, -i, 0)).color != board.isPlayingColor()){
-				possibleMoves.add(new Position(pos, -i, 0));
+			Position posToCheck = new Position(pos, -i, 0);
+			
+			if (verifyMove(posToCheck)) {
+				possibleMoves.add(posToCheck);
+				if (! (ChessBoard.getInstance().getPiece(posToCheck) instanceof VoidPiece)) {
+					break;
+				}
+			} else {
 				break;
 			}
-			if(!(board.getPiece(new Position(pos, i, 0)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, -i, 0)).color == board.isPlayingColor())
-				break;
-			if((board.getPiece(new Position(pos, -i, 0)) instanceof VoidPiece))
-				possibleMoves.add(new Position(pos, -i, 0));
-				i++;
+			i++;
 		}
 		
-		
-		//la dreapta
 		i = 1;
 		while(board.getPiece(new Position(pos, i, 0)) != null) {
-			if(!(board.getPiece(new Position(pos, i, 0)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, i, 0)).color != board.isPlayingColor()){
-				possibleMoves.add(new Position(pos, i, 0));
+			Position posToCheck = new Position(pos, i, 0);
+			
+			if (verifyMove(posToCheck)) {
+				possibleMoves.add(posToCheck);
+				if (! (ChessBoard.getInstance().getPiece(posToCheck) instanceof VoidPiece)) {
+					break;
+				}
+			} else {
 				break;
 			}
-			if(!(board.getPiece(new Position(pos, i, 0)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, i, 0)).color == board.isPlayingColor())
-				break;
-			if((board.getPiece(new Position(pos, i, 0)) instanceof VoidPiece))
-				possibleMoves.add(new Position(pos, i, 0));
 			i++;
 		}
 		
-		//tura merge an fatza
 		i = 1;
-		while(board.getPiece(new Position(pos, 0, -i)) != null) {
-			if(!(board.getPiece(new Position(pos, 0, -i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, 0, -i)).color != board.isPlayingColor()){
-				possibleMoves.add(new Position(pos, 0, -i));
+		while (board.getPiece(new Position(pos, 0, -i)) != null) {
+			Position posToCheck = new Position(pos, 0, -i);
+			
+			if (verifyMove(posToCheck)) {
+				possibleMoves.add(posToCheck);
+				if (! (ChessBoard.getInstance().getPiece(posToCheck) instanceof VoidPiece)) {
+					break;
+				}
+			} else {
 				break;
 			}
-			if(!(board.getPiece(new Position(pos, 0, -i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, 0, -i)).color == board.isPlayingColor())
-				break;
-			if((board.getPiece(new Position(pos, 0, -i)) instanceof VoidPiece))
-				possibleMoves.add(new Position(pos, 0, -i));
-			i++;
+			i++;						
 		}
 		
 		return possibleMoves;
 	}
 	
 	@Override
-	public boolean verifyMove(Position pos) {
-		// TODO Auto-generated method stub
-		if (getPossibleMoves().contains(pos))
+	public boolean verifyMove(Position newPos) {
+		ChessBoard board = ChessBoard.getInstance();
+		
+		if (! (board.getPiece(newPos) instanceof VoidPiece) &&
+				board.getPiece(newPos).color != super.getColor()) {
+				return true;
+			}
+		
+		if ((board.getPiece(newPos) instanceof VoidPiece)) {
 			return true;
+		}
+		
 		return false;
 	}
 
@@ -98,8 +101,6 @@ public class Rook extends AbstractPiece {
 		b.setPiece(pos, new VoidPiece());
 		b.setPiece(newPos, this);
 		pos = newPos;
-		if (moved == false)
-			moved = true;
 	}
 
 }

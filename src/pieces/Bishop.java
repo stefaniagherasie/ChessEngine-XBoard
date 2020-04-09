@@ -18,80 +18,90 @@ public class Bishop extends AbstractPiece {
 	
 		int i = 1;
 		while(board.getPiece(new Position(pos, i, i)) != null) {
-			if(!(board.getPiece(new Position(pos, i, i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, i, i)).color != board.isPlayingColor()){
-				possibleMoves.add(new Position(pos, i, i));
-				break;	
-			}
-			if(!(board.getPiece(new Position(pos, i, i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, i, i)).color == board.isPlayingColor())
+			Position posToCheck = new Position(pos, i, i);
+			
+			if (verifyMove(posToCheck)) {
+				possibleMoves.add(posToCheck);
+				if (! (ChessBoard.getInstance().getPiece(posToCheck) instanceof VoidPiece)) {
+					break;
+				}
+			} else {
 				break;
-			if((board.getPiece(new Position(pos, i, i)) instanceof VoidPiece))
-				possibleMoves.add(new Position(pos, i, i));
-				i++;
+			}
+			i++;	
 		}
 
 		i = 1;
 		while(board.getPiece(new Position(pos, -i, -i)) != null) {
-			if(!(board.getPiece(new Position(pos, -i, -i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, -i, -i)).color != board.isPlayingColor()){
-				possibleMoves.add(new Position(pos, -i, -i));
+			Position posToCheck = new Position(pos, -i, -i);
+			
+			if (verifyMove(posToCheck)) {
+				possibleMoves.add(posToCheck);
+				if (! (ChessBoard.getInstance().getPiece(posToCheck) instanceof VoidPiece)) {
+					break;
+				}
+			} else {
 				break;
 			}
-			if(!(board.getPiece(new Position(pos, -i, -i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, -i, -i)).color == board.isPlayingColor())
-				break;
-			if((board.getPiece(new Position(pos, -i, -i)) instanceof VoidPiece))
-				possibleMoves.add(new Position(pos, -i, -i));
-				i++;
+			i++;	
 		}
 		
 		i = 1;
 		while(board.getPiece(new Position(pos, i, -i)) != null) {
-			if(!(board.getPiece(new Position(pos, i, -i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, i, -i)).color != board.isPlayingColor()){
-				possibleMoves.add(new Position(pos, i, -i));
+			Position posToCheck = new Position(pos, i, -i);
+			
+			if (verifyMove(posToCheck)) {
+				possibleMoves.add(posToCheck);
+				if (! (ChessBoard.getInstance().getPiece(posToCheck) instanceof VoidPiece)) {
+					break;
+				}
+			} else {
 				break;
 			}
-			if(!(board.getPiece(new Position(pos, i, -i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, i, -i)).color == board.isPlayingColor())
-				break;
-			if((board.getPiece(new Position(pos, i, -i)) instanceof VoidPiece))
-				possibleMoves.add(new Position(pos, i, -i));
-				i++;
+			i++;	
 		}
 		
 		i = 1;
 		while(board.getPiece(new Position(pos, -i, i)) != null) {
-			if(!(board.getPiece(new Position(pos, -i, i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, -i, i)).color != board.isPlayingColor()){
-				possibleMoves.add(new Position(pos, -i, i));
+			Position posToCheck = new Position(pos, -i, i);
+			
+			if (verifyMove(posToCheck)) {
+				possibleMoves.add(posToCheck);
+				if (! (ChessBoard.getInstance().getPiece(posToCheck) instanceof VoidPiece)) {
+					break;
+				}
+			} else {
 				break;
 			}
-			if(!(board.getPiece(new Position(pos, -i, i)) instanceof VoidPiece) &&
-				board.getPiece(new Position(pos, -i, i)).color == board.isPlayingColor())
-				break;
-			if((board.getPiece(new Position(pos, -i, i)) instanceof VoidPiece))
-				possibleMoves.add(new Position(pos, -i, i));
-				i++;
+			i++;	
 		}
 		
 		return possibleMoves;
 
 	}
-	
+
+	@Override
+	public boolean verifyMove(Position newPos) {
+		ChessBoard board = ChessBoard.getInstance();
+		
+		if (! (board.getPiece(newPos) instanceof VoidPiece) &&
+				board.getPiece(newPos).color != super.getColor()) {
+				return true;
+			}
+		
+		if ((board.getPiece(newPos) instanceof VoidPiece)) {
+			return true;
+		}
+		
+		return false;
+	}
+
 	@Override
 	public void move(Position newPos) {
 		ChessBoard b = ChessBoard.getInstance();
 		b.setPiece(pos, new VoidPiece());
 		b.setPiece(newPos, this);
 		pos = newPos;
-	}
-
-	@Override
-	public boolean verifyMove(Position pos) {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 }
