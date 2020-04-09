@@ -67,3 +67,6 @@ Regele tot intra in sah la miscari random
 m.am uitat peste cod si l.am verificat in mare.
 am reparat unbug la regina unde lua in considerare la miscari posibile doar patratelele din jurul ei.
 Coechipier: TODO refaceti fct de getPossibleMoves apeland verifyMove()
+
+== Stefi - 9 apr ==
+Am refacut miscarile pt Knight si King.
