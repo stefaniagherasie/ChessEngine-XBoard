@@ -70,3 +70,6 @@ Coechipier: TODO refaceti fct de getPossibleMoves apeland verifyMove()
 
 == Stefi - 9 apr ==
 Am refacut miscarile pt Knight si King.
+
+== Cosmina - 9 apr ==
+Am refacut getPossibleMoves pentru Rook si Bishop
