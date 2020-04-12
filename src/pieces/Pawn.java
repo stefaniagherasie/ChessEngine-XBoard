@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import auxiliary.Position;
 
 public class Pawn extends AbstractPiece{
-	private boolean moved = false;
+	private boolean moved;
 	private final int D;
 	
 	public Pawn (String color, String position) {
@@ -15,6 +15,7 @@ public class Pawn extends AbstractPiece{
 		} else {
 			D = -1; 
 		}
+		moved = false;
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class Pawn extends AbstractPiece{
 			possibleMoves.add(new Position(pos, D*1, D*1));
 		}
 		
-		if (verifyMove(new Position(pos, (-1), D*(-1)))) {
+		if (verifyMove(new Position(pos, D*(-1), D*1))) {
 			possibleMoves.add(new Position(pos, D*(-1), D*1));
 		}
 		
@@ -45,36 +46,34 @@ public class Pawn extends AbstractPiece{
 		ChessBoard board = ChessBoard.getInstance();
 		if (moved == false && 
 				board.getPiece(newPos) instanceof VoidPiece &&
-				board.getPiece(new Position(newPos, 0, -D)) instanceof VoidPiece) {
-			return true;
-		}
-		
-		if (board.getPiece(newPos) instanceof VoidPiece) {
-			return true;
-		}
-		
-		if (board.getPiece(newPos) != null &&
-				!(board.getPiece(newPos) instanceof VoidPiece) &&
-				board.getPiece(newPos).color != super.getColor()) {
+				board.getPiece(new Position(newPos, 0, -D)) instanceof VoidPiece &&
+				pos.getLetter() == newPos.getLetter()) {
 			return true;
 		}
 		
 		if (board.getPiece(newPos) != null &&
 				!(board.getPiece(newPos) instanceof VoidPiece) &&
-				board.getPiece(newPos).color !=super.getColor()) {
+				board.getPiece(newPos).getColor() != super.getColor() &&
+				pos.getLetter() != newPos.getLetter()) {
+			return true;
+		}
+		
+		if ((board.getPiece(newPos) instanceof VoidPiece) &&
+				pos.getLetter() == newPos.getLetter() &&
+				pos.getNumber() == newPos.getNumber() - D) {
 			return true;
 		}
 		
 		return false;
 	}
 
+	public void resetMoved() {
+		moved = false;
+	}
+	
 	@Override
 	public void move(Position newPos) {
-		ChessBoard b = ChessBoard.getInstance();
-		b.setPiece(pos, new VoidPiece());
-		b.setPiece(newPos, this);
-		pos = newPos;
-		if (moved == false)
-			moved = true;
+		moved = true;
+		super.move(newPos);
 	}
 }

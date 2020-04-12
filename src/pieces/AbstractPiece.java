@@ -1,6 +1,7 @@
 package pieces;
 import java.util.ArrayList;
 import auxiliary.Position;
+import main.ChessBoard;
 
 public abstract class AbstractPiece {
 	protected Position pos;
@@ -8,13 +9,13 @@ public abstract class AbstractPiece {
 	protected ArrayList<Position> possibleMoves;
 	
 	protected AbstractPiece(String color, String position) {
-		if (color != null && position != null) {
-			pos = new Position(position);
+		if (color != null) {
 			if (color.equals("white"))
 				this.color = true;
 			else
 				this.color = false;
 		}
+		pos = new Position(position);
 	}
 	
 	
@@ -34,9 +35,15 @@ public abstract class AbstractPiece {
 	
 	/**
 	 * changes the piece's position if the move is valid
-	 * @param pos
+	 * @param newPos = new Position of the piece
 	 */
-	public abstract void move(Position pos);
+	public void move(Position newPos) {
+		ChessBoard b = ChessBoard.getInstance();
+		b.recordMove(b.getPiece(newPos), pos);
+		b.setPiece(pos, new VoidPiece(pos.toString()));
+		b.setPiece(newPos, this);
+		pos = newPos;
+	}
 	
 	/**
 	 * @return the color of the piece

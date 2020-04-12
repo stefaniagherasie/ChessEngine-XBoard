@@ -2,16 +2,31 @@ package main;
 import auxiliary.*;
 import commands.*;
 import pieces.*;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ChessMain {
 	
+	static FileWriter pw;
+	
 	public static void main(String[] args) {
+		
+		try {
+			pw  = new FileWriter (new File("log.txt"));
+		} catch (IOException e) {}
 		
 		CommandReader reader = new CommandReader(System.in);
 		
 		playGame(reader);
-		
+		try {
+			pw.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void playGame (CommandReader reader) {
@@ -22,32 +37,51 @@ public class ChessMain {
 		while (!(command instanceof QuitCommand)) {
 			command.execute();
 				
+			if (!(command instanceof VoidCommand)) {
+				try {
+					pw.write(command.getClass().toString() + "\n");
+				} catch (IOException e) {}
+			}
+			
+			if (command instanceof UndoCommand) {
+				ChessBoard.getInstance().printBoard();
+			}
 			
 			//our turn to move
 			if(ChessBoard.isPlayingColor() == ChessBoard.isPlayerTurn() && !ChessBoard.isforceMode()) 
 			{
 				ChessBoard.getInstance().printBoard();
+
+				ChessBoard board = ChessBoard.getInstance();
 				
-				if (ChessBoard.isInCheck()) {
-					System.out.println("I am in check baby!");
-				} else {
-					ArrayList<ArrayList <Position>> positions = new ArrayList<ArrayList <Position>>();
-					ArrayList<AbstractPiece> pieces = new ArrayList<AbstractPiece>();
-					
-					for(int i = 0; i < 8; i++) {
-						for(int j = 0; j < 8; j++) {
-						AbstractPiece p = ChessBoard.getInstance().getPiece(new Position(i, j));
-							if(!(p instanceof VoidPiece) && ChessBoard.isPlayingColor() == p.getColor()) {
+				ArrayList<ArrayList <Position>> positions = new ArrayList<ArrayList <Position>>();
+				ArrayList<AbstractPiece> pieces = new ArrayList<AbstractPiece>();
+				
+				for(int i = 0; i < 8; i++) {
+					for(int j = 0; j < 8; j++) {
+					AbstractPiece p = ChessBoard.getInstance().getPiece(new Position(i, j));
+						if(!(p instanceof VoidPiece) && ChessBoard.isPlayingColor() == p.getColor()) {
+							ArrayList<Position> possMoves = p.getPossibleMoves();
+							
+							ArrayList<Position> getsMeOutOfCheck = new ArrayList<>();
+							for (Position pos: possMoves) {
+								if (board.makeMoveAndCheckInCheck(p.getPosition(), pos)) {
+									getsMeOutOfCheck.add(pos);
+								}
+							}
+							
+							if (getsMeOutOfCheck.size() != 0) {
 								pieces.add(p);
-								positions.add(p.getPossibleMoves());
-							} 
-						}
+								positions.add(getsMeOutOfCheck);
+							}
+						} 
 					}
-					
-					if (!showRandomMove(positions, pieces))
-						 //resign
-						 System.out.println("resign");
 				}
+				
+				if (!showRandomMove(positions, pieces))
+					 //resign
+					 System.out.println("resign");
+				
 				ChessBoard.getInstance().printBoard();
 			}
 
@@ -80,6 +114,9 @@ public class ChessMain {
 		
 		int index2 = (int)(Math.random() * 10) % possibleMoves.size();
 		System.out.println("move " + piece.getPosition().toString() + possibleMoves.get(index2).toString());
+		try {
+			pw.append("move " + piece.getPosition().toString() + possibleMoves.get(index2).toString() + "\n");
+		} catch (IOException e) {}
 		
 		//updating board
 		piece.move(possibleMoves.get(index2));

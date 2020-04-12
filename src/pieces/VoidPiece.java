@@ -10,8 +10,8 @@ import auxiliary.Position;
  */
 public class VoidPiece extends AbstractPiece{
 	
-	public VoidPiece() {
-		super(null, null);
+	public VoidPiece(String pos) {
+		super(null, pos);
 	}
 
 	@Override

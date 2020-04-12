@@ -73,3 +73,12 @@ Am refacut miscarile pt Knight si King.
 
 == Cosmina - 9 apr ==
 Am refacut getPossibleMoves pentru Rook si Bishop
+
+== Rares - 11 apr ==
+Am implementat comanda de "undo" pentru joc, care intoarce jocul inapoi in timp (engineul trb mai intai setat pe force)
+Am facut ca engineul, daca este in sah, sa aleaga doar acele miscari care sa il scoata. (alegere random)
+
+== Rares - 12 apr ==
+Comantat clasa ChessBoard fully.
+Am scapat de toate buggurile pt metoda undo.
+Am implementat rocada ca si miscare posibila pt rege.

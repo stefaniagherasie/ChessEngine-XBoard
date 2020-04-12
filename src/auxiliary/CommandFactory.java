@@ -32,8 +32,11 @@ public class CommandFactory {
 			return new QuitCommand();
 		if (s.equals("resign"))
 			return new ResignCommand();
+		if (s.equals("undo"))
+			return new UndoCommand();
 		if (isMoveCommand(s))
 			return new MoveCommand(s);
+		
 		
 		return new VoidCommand();
 	}

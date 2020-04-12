@@ -88,4 +88,29 @@ public class Position {
 		char [] output = {(char)(letter + 97), (char)(number + 49)};
 		return new String(output);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + letter;
+		result = prime * result + number;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Position other = (Position) obj;
+		if (letter != other.letter)
+			return false;
+		if (number != other.number)
+			return false;
+		return true;
+	}
 }

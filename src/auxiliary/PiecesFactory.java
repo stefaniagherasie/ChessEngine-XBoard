@@ -81,6 +81,6 @@ public class PiecesFactory {
 			return new Pawn("black", "g7");
 		if (s.equals("h7"))
 			return new Pawn("black", "h7");
-		return new VoidPiece();
+		return new VoidPiece(s);
 	}
 }

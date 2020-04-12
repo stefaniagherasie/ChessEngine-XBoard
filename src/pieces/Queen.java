@@ -58,13 +58,4 @@ public class Queen extends AbstractPiece {
 		
 		return false;
 	}
-
-	@Override
-	public void move(Position newPos) {
-		ChessBoard b = ChessBoard.getInstance();
-		b.setPiece(pos, new VoidPiece());
-		b.setPiece(newPos, this);
-		pos = newPos;
-	}
-
 }
