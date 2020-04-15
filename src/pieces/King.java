@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import auxiliary.Position;
 
 public class King extends AbstractPiece {
-	private boolean moved;
+	public int movesMade;
 	
 	public King (String color, String position) {
 		super(color, position);
+		movesMade = 0;
 	}
 
 	@Override
@@ -31,12 +32,21 @@ public class King extends AbstractPiece {
 			}
 		}
 
-		if (verifyMove(new Position(pos, -2, 0))) {
-			possibleMoves.add(new Position(pos, -2, 0));
+		/* checking all castling positions */
+		if (verifyMove(new Position("b1"))) {
+			possibleMoves.add(new Position("b1"));
 		}
 		
-		if (verifyMove(new Position(pos, 3, 0))) {
-			possibleMoves.add(new Position(pos, 3, 0));
+		if (verifyMove(new Position("b8"))) {
+			possibleMoves.add(new Position("b8"));
+		}
+		
+		if (verifyMove(new Position("g1"))) {
+			possibleMoves.add(new Position("g1"));
+		}
+		
+		if (verifyMove(new Position("g8"))) {
+			possibleMoves.add(new Position("g8"));
 		}
 
 		return possibleMoves;
@@ -45,70 +55,105 @@ public class King extends AbstractPiece {
 	private void castling(Position pos) {
 		ChessBoard board = ChessBoard.getInstance();
 		
-		/* kingside castling */
+		/* queenside castling */
 		if (pos.getLetter() == 1) {
-			/* moving the rook */
-			Position corner = new Position(0, pos.getNumber());
-			Rook r = (Rook)board.getPiece(corner);
-			r.pos = new Position(pos, 1, 0);
-			board.setPiece(r.getPosition(), r);
+			/* getting the corner */
+			Position corner;
+			if (super.color == true) {
+				corner = new Position ("a1");
+			} else {
+				corner = new Position ("a8");
+			}
+			
+			Rook rook = (Rook)board.getPiece(corner);
+			rook.setPos(new Position(corner, 2, 0));
+			board.setPiece(rook.getPosition(), rook);
 			board.setPiece(corner, new VoidPiece(corner.toString()));
+			rook.movesMade++;
 			
 			/* moving the king */
 			board.setPiece(pos, this);
-			board.setPiece(super.getPosition(), new VoidPiece(super.getPosition().toString()));
+			board.setPiece(super.pos, new VoidPiece(super.pos.toString()));
 
 			board.recordMove(this, super.pos);
 			super.pos = pos;
+			movesMade++;
+			System.out.println("queenside castling");
 		} else 
-			/* queenside castling */
+			/* kingside castling */
 		{
-			/* moving the rook */
-			Position corner = new Position(7, pos.getNumber());
-			Rook r = (Rook)board.getPiece(corner);
-			r.pos = new Position(pos, -1, 0);
-			board.setPiece(r.getPosition(), r);
+			/* getting the corner */
+			Position corner;
+			if (super.color == true) {
+				corner = new Position ("h1");
+			} else {
+				corner = new Position ("h8");
+			}
+			
+			Rook rook = (Rook)board.getPiece(corner);
+			rook.setPos(new Position(corner, -2, 0));
+			board.setPiece(rook.getPosition(), rook);
 			board.setPiece(corner, new VoidPiece(corner.toString()));
+			rook.movesMade++;
 			
 			/* moving the king */
 			board.setPiece(pos, this);
-			board.setPiece(super.getPosition(), new VoidPiece(super.getPosition().toString()));
+			board.setPiece(super.pos, new VoidPiece(super.pos.toString()));
 
 			board.recordMove(this, super.pos);
 			super.pos = pos;
+			movesMade++;
+			System.out.println("kingside castling");
 		}
+		
+		board.printBoard();
 	}
 
 	@Override
 	public boolean verifyMove(Position newPos) {
 		ChessBoard board = ChessBoard.getInstance();
 		
-		/* checking castling */
-		if (moved == false && newPos.getLetter() == 1) {
-			Position corner = new Position(0, newPos.getNumber());
-			if (board.getPiece(corner) instanceof Rook) {
-					if (board.getPiece(corner).getColor() == super.color &&
-							((Rook)board.getPiece(corner)).isMoved() == false &&
-							board.getPiece(new Position(corner, 1, 0)) instanceof VoidPiece &&
-							board.getPiece(new Position(corner, 2, 0)) instanceof VoidPiece &&
-							board.getPiece(new Position(corner, 3, 0)) instanceof VoidPiece &&
-							ChessBoard.isInCheck() == false) {
-						return true;
-					}
+		/* checking queenside castling */
+		if (movesMade == 0 && newPos.getLetter() == 1) {
+			Position corner;
+			if (super.color == true) {
+				corner = new Position ("a1");
+			} else {
+				corner = new Position ("a8");
+			}
+			
+			if (board.getPiece(corner) instanceof Rook &&
+					newPos.getNumber() == super.pos.getNumber()) {
+				if (board.getPiece(corner).getColor() == super.color &&
+						((Rook)board.getPiece(corner)).movesMade == 0 &&
+						board.getPiece(new Position(corner, 1, 0)) instanceof VoidPiece &&
+						board.getPiece(new Position(corner, 2, 0)) instanceof VoidPiece &&
+						board.getPiece(new Position(corner, 3, 0)) instanceof VoidPiece &&
+						ChessBoard.isInCheck() == false) {
+					return true;
+				}
 			}
 			return false;
 		}
 		
-		if (moved == false && newPos.getLetter() == 6) {
-			Position corner = new Position(7, newPos.getNumber());
-			if (board.getPiece(corner) instanceof Rook) {
-					if (board.getPiece(corner).getColor() == super.color &&
-							((Rook)board.getPiece(corner)).isMoved() == false &&
-							board.getPiece(new Position(corner, -1, 0)) instanceof VoidPiece &&
-							board.getPiece(new Position(corner, -2, 0)) instanceof VoidPiece &&
-							ChessBoard.isInCheck() == false) {
-						return true;
-					}
+		/* checking kingside castling */
+		if (movesMade == 0 && newPos.getLetter() == 6) {
+			Position corner;
+			if (super.color == true) {
+				corner = new Position ("h1");
+			} else {
+				corner = new Position ("h8");
+			}
+			
+			if (board.getPiece(corner) instanceof Rook &&
+					newPos.getNumber() == super.pos.getNumber()) {
+				if (board.getPiece(corner).getColor() == super.color &&
+						((Rook)board.getPiece(corner)).movesMade == 0 &&
+						board.getPiece(new Position(corner, -1, 0)) instanceof VoidPiece &&
+						board.getPiece(new Position(corner, -2, 0)) instanceof VoidPiece &&
+						ChessBoard.isInCheck() == false) {
+					return true;
+				}
 			}
 			return false;
 		}
@@ -125,17 +170,13 @@ public class King extends AbstractPiece {
 		return false;
 	}
 	
-	public void resetMoved() {
-		moved = false;
-	}
-	
 	@Override
 	public void move(Position newPos) {
-		moved = true;
 		if (Math.abs(pos.getLetter() - newPos.getLetter()) <= 1) {
 			super.move(newPos);
 		} else {
 			castling(newPos);
 		}
+		movesMade++;
 	}
 }

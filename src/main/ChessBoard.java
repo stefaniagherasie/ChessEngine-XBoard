@@ -7,6 +7,7 @@ import pieces.*;
 public class ChessBoard {
 	private static ChessBoard uniqueInstance = null;
 	private AbstractPiece[][] board;
+	private final PiecesFactory pf;
 	
 	private static boolean playingColor;
 	private static boolean playerTurn;
@@ -15,6 +16,7 @@ public class ChessBoard {
 	
 	private ChessBoard() {
 		board = new AbstractPiece[8][8];
+		pf = PiecesFactory.getInstance();
 		playerTurn = true;
 		inCheck = false;
 		reset();
@@ -55,7 +57,8 @@ public class ChessBoard {
 
 	/**
 	 * gameMoves records the moves that occured this game
-	 * it remembers the piece that was taken and the position of the piece that took it
+	 * it remembers the piece that was taken and the position of the piece that took it;
+	 * if the taken piece is the king this means that the king castled - special case
 	 */
 	private static ArrayList<Pair<AbstractPiece, Position>> gameMoves;
 	
@@ -66,45 +69,80 @@ public class ChessBoard {
 			
 			/* this was the king castling */
 			if (takenPiece instanceof King) {
+				int side = Math.abs(takenPiece.getPosition().getLetter() - move.second.getLetter());
 				
+				/* kindside */
+				if (side == 2) {
+					if (takenPiece.getColor() == true) {
+						board[4][0] = pf.createPiece("e1");
+						board[5][0] = pf.createPiece("f1");
+						board[6][0] = pf.createPiece("g1");
+						board[7][0] = pf.createPiece("h1");
+					} else {
+						board[4][7] = pf.createPiece("e8");
+						board[5][7] = pf.createPiece("f8");
+						board[6][7] = pf.createPiece("g8");
+						board[7][7] = pf.createPiece("h8");
+					}
+				} else 
+				/* queenside */
+				{
+					if (takenPiece.getColor() == true) {
+						board[0][0] = pf.createPiece("a1");
+						board[1][0] = pf.createPiece("b1");
+						board[2][0] = pf.createPiece("c1");
+						board[3][0] = pf.createPiece("d1");
+						board[4][0] = pf.createPiece("e1");
+					} else {
+						board[0][7] = pf.createPiece("a8");
+						board[1][7] = pf.createPiece("b8");
+						board[2][7] = pf.createPiece("c8");
+						board[3][7] = pf.createPiece("d8");
+						board[4][7] = pf.createPiece("e8");
+					}
+				}
+				
+				 if (takenPiece.getColor() == playingColor) {
+					 ourKing = getPiece(move.second);
+				 } else {
+					 opponentsKing = getPiece(move.second);
+				 }
+				return;
 			}
 			
-			AbstractPiece p = getPiece(takenPiece.getPosition());
-			Position takenPiecePos = p.getPosition();
-			p.move(move.second);
+			AbstractPiece movedPiece = getPiece(takenPiece.getPosition());
+			Position takenPiecePos = movedPiece.getPosition();
+			movedPiece.move(move.second);
 			gameMoves.remove(0);
 			setPiece(takenPiecePos, takenPiece);
 			
 			/* setting player's turn */
-			playerTurn = p.getColor();
+			playerTurn = movedPiece.getColor();
 			
 			/* Resetting pawn/king/rook first move variable */
-			if (p instanceof Pawn) {
-				if (p.getColor() == true) {
-					if (p.getPosition().getNumber() == 1) ((Pawn) p).resetMoved();
+			if (movedPiece instanceof Pawn) {
+				if (movedPiece.getColor() == true) {
+					if (movedPiece.getPosition().getNumber() == 1) ((Pawn) movedPiece).resetMoved();
 				} else {
-					if (p.getPosition().getNumber() == 6) ((Pawn) p).resetMoved();
+					if (movedPiece.getPosition().getNumber() == 6) ((Pawn) movedPiece).resetMoved();
 				}
 			}
-			if (p instanceof King) {
-				if (p.getColor() == true) {
-					if (p.getPosition().getNumber() == 0) ((King) p).resetMoved();
-				} else {
-					if (p.getPosition().getNumber() == 7) ((King) p).resetMoved();
-				}
+			if (movedPiece instanceof King) {
+				((King) movedPiece).movesMade -= 2;
 			}
-			if (p instanceof Rook) {
-				if (p.getColor() == true) {
-					if (p.getPosition().getNumber() == 0) ((Rook) p).resetMoved();
-				} else {
-					if (p.getPosition().getNumber() == 7) ((Rook) p).resetMoved();
-				}
+			if (movedPiece instanceof Rook) {
+				((Rook) movedPiece).movesMade -= 2;
 			}
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Game is in its original state.");
 		}
 	}
 	
+	/**
+	 * adds move to the history of the moves of the game
+	 * @param p = piece that was taken
+	 * @param originalPos = original position of piece that moved onto the square of the taken piece
+	 */
 	public void recordMove (AbstractPiece p, Position originalPos) {
 		gameMoves.add(0, new Pair<>(p, originalPos));
 	}
@@ -119,12 +157,15 @@ public class ChessBoard {
 	public boolean makeMoveAndCheckInCheck(Position pos, Position newPos) {
 		AbstractPiece piece = getPiece(pos);
 		
+		//System.out.println("Checking move: " + pos + " to " + newPos + " by " + piece.getClass().toString());
+		
+		boolean originalInCheck = inCheck;
 		piece.move(newPos);
 		updateInCheck();
 		undo();
 		
 		boolean ans = !inCheck;
-		inCheck = true;
+		inCheck = originalInCheck;
 		return ans;
 	}
 
@@ -134,7 +175,6 @@ public class ChessBoard {
 	
 	public void reset() {
 		gameMoves = new ArrayList<>();
-		PiecesFactory pf = PiecesFactory.getInstance();
 		char[] pos = {'a', '1'};
 		for (int i = 0; i < 8; i++, pos[1]++) {
 			for (int j = 0; j < 8; j++, pos[0]++) {
@@ -177,7 +217,7 @@ public class ChessBoard {
 				if (board[i][j] instanceof Queen)
 					System.out.print("Q");
 				if (board[i][j] instanceof King)
-					System.out.print("K");
+					System.out.print("T");
 				if (board[i][j] instanceof VoidPiece) {
 					System.out.print("0  ");
 					continue;

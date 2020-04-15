@@ -73,6 +73,7 @@ public class ChessMain {
 							if (getsMeOutOfCheck.size() != 0) {
 								pieces.add(p);
 								positions.add(getsMeOutOfCheck);
+								if (p instanceof King) System.out.println(getsMeOutOfCheck);
 							}
 						} 
 					}

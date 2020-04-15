@@ -5,9 +5,11 @@ import auxiliary.Position;
 import main.*;
 
 public class Rook extends AbstractPiece {
-	protected boolean moved;
+	public int movesMade;
+	
 	public Rook (String color, String position) {
 		super(color, position);
+		movesMade = 0;
 	}
 
 	@Override
@@ -79,6 +81,13 @@ public class Rook extends AbstractPiece {
 		return possibleMoves;
 	}
 	
+	/**
+	 * used just for castling
+	 */
+	public void setPos(Position newPos) {
+		super.pos = newPos;
+	}
+	
 	@Override
 	public boolean verifyMove(Position newPos) {
 		ChessBoard board = ChessBoard.getInstance();
@@ -95,17 +104,9 @@ public class Rook extends AbstractPiece {
 		return false;
 	}
 	
-	public void resetMoved() {
-		moved = false;
-	}
-	
-	public boolean isMoved() {
-		return moved;
-	}
-	
 	@Override
 	public void move(Position newPos) {
-		moved = true;
+		movesMade++;
 		super.move(newPos);
 	}
 }
