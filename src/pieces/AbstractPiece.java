@@ -45,9 +45,10 @@ public abstract class AbstractPiece {
 		pos = newPos;
 	}
 	
-	/**
-	 * @return the color of the piece
-	 */
+	public void setPosition(Position p) {
+		pos = p;
+	}
+	
 	public boolean getColor() {
 		return color;
 	}

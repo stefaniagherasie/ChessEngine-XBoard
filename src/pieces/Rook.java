@@ -81,13 +81,6 @@ public class Rook extends AbstractPiece {
 		return possibleMoves;
 	}
 	
-	/**
-	 * used just for castling
-	 */
-	public void setPos(Position newPos) {
-		super.pos = newPos;
-	}
-	
 	@Override
 	public boolean verifyMove(Position newPos) {
 		ChessBoard board = ChessBoard.getInstance();
@@ -106,7 +99,7 @@ public class Rook extends AbstractPiece {
 	
 	@Override
 	public void move(Position newPos) {
-		movesMade++;
 		super.move(newPos);
+		movesMade++;
 	}
 }

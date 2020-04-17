@@ -33,12 +33,12 @@ public class King extends AbstractPiece {
 		}
 
 		/* checking all castling positions */
-		if (verifyMove(new Position("b1"))) {
-			possibleMoves.add(new Position("b1"));
+		if (verifyMove(new Position("c1"))) {
+			possibleMoves.add(new Position("c1"));
 		}
 		
-		if (verifyMove(new Position("b8"))) {
-			possibleMoves.add(new Position("b8"));
+		if (verifyMove(new Position("c8"))) {
+			possibleMoves.add(new Position("c8"));
 		}
 		
 		if (verifyMove(new Position("g1"))) {
@@ -55,58 +55,45 @@ public class King extends AbstractPiece {
 	private void castling(Position pos) {
 		ChessBoard board = ChessBoard.getInstance();
 		
+		/* FIRST, moving the rook */
+		Rook rook;
+		Position corner;
+		
 		/* queenside castling */
-		if (pos.getLetter() == 1) {
+		if (pos.getLetter() == 2) {
 			/* getting the corner */
-			Position corner;
 			if (super.color == true) {
 				corner = new Position ("a1");
 			} else {
 				corner = new Position ("a8");
 			}
 			
-			Rook rook = (Rook)board.getPiece(corner);
-			rook.setPos(new Position(corner, 2, 0));
-			board.setPiece(rook.getPosition(), rook);
-			board.setPiece(corner, new VoidPiece(corner.toString()));
-			rook.movesMade++;
-			
-			/* moving the king */
-			board.setPiece(pos, this);
-			board.setPiece(super.pos, new VoidPiece(super.pos.toString()));
-
-			board.recordMove(this, super.pos);
-			super.pos = pos;
-			movesMade++;
-			System.out.println("queenside castling");
+			rook = (Rook)board.getPiece(corner);
+			rook.pos = new Position(corner, 3, 0);
 		} else 
 			/* kingside castling */
 		{
 			/* getting the corner */
-			Position corner;
 			if (super.color == true) {
 				corner = new Position ("h1");
 			} else {
 				corner = new Position ("h8");
 			}
 			
-			Rook rook = (Rook)board.getPiece(corner);
-			rook.setPos(new Position(corner, -2, 0));
-			board.setPiece(rook.getPosition(), rook);
-			board.setPiece(corner, new VoidPiece(corner.toString()));
-			rook.movesMade++;
-			
-			/* moving the king */
-			board.setPiece(pos, this);
-			board.setPiece(super.pos, new VoidPiece(super.pos.toString()));
-
-			board.recordMove(this, super.pos);
-			super.pos = pos;
-			movesMade++;
-			System.out.println("kingside castling");
+			rook = (Rook)board.getPiece(corner);
+			rook.setPosition(new Position(corner, -2, 0));
 		}
+		board.setPiece(rook.getPosition(), rook);
+		board.setPiece(corner, new VoidPiece(corner.toString()));
+		rook.movesMade++;
 		
-		board.printBoard();
+		/* SECOND, moving the king */
+		board.setPiece(pos, this);
+		board.setPiece(super.pos, new VoidPiece(super.pos.toString()));
+		
+		board.recordMove(this, super.pos);
+		setPosition(pos);
+		movesMade++;
 	}
 
 	@Override
@@ -114,7 +101,7 @@ public class King extends AbstractPiece {
 		ChessBoard board = ChessBoard.getInstance();
 		
 		/* checking queenside castling */
-		if (movesMade == 0 && newPos.getLetter() == 1) {
+		if (movesMade == 0 && newPos.getLetter() == 2) {
 			Position corner;
 			if (super.color == true) {
 				corner = new Position ("a1");

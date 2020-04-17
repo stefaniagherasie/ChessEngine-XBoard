@@ -33,7 +33,7 @@ public class ChessBoard {
 	 */
 	
 	private static boolean inCheck;
-	private static AbstractPiece ourKing, opponentsKing;
+	private static King ourKing, opponentsKing;
 	
 	public static void updateInCheck() {
 		for (int i = 0; i < 8; i++) {
@@ -56,7 +56,7 @@ public class ChessBoard {
 	 */
 
 	/**
-	 * gameMoves records the moves that occured this game
+	 * gameMoves records the moves that occurred this game
 	 * it remembers the piece that was taken and the position of the piece that took it;
 	 * if the taken piece is the king this means that the king castled - special case
 	 */
@@ -69,44 +69,53 @@ public class ChessBoard {
 			
 			/* this was the king castling */
 			if (takenPiece instanceof King) {
-				int side = Math.abs(takenPiece.getPosition().getLetter() - move.second.getLetter());
+				Rook rook;
 				
 				/* kindside */
-				if (side == 2) {
+				if (takenPiece.getPosition().getLetter() == 6) {
 					if (takenPiece.getColor() == true) {
-						board[4][0] = pf.createPiece("e1");
-						board[5][0] = pf.createPiece("f1");
-						board[6][0] = pf.createPiece("g1");
-						board[7][0] = pf.createPiece("h1");
+						rook = (Rook) getPiece(new Position("f1"));
+						board[4][0] = takenPiece; takenPiece.setPosition(new Position ("e1"));
+						board[5][0] = new VoidPiece("f1");
+						board[6][0] = new VoidPiece("g1");
+						board[7][0] = rook; rook.setPosition(new Position ("h1"));
 					} else {
-						board[4][7] = pf.createPiece("e8");
-						board[5][7] = pf.createPiece("f8");
-						board[6][7] = pf.createPiece("g8");
-						board[7][7] = pf.createPiece("h8");
+						rook = (Rook) getPiece(new Position("f8"));
+						board[4][7] = takenPiece; takenPiece.setPosition(new Position ("e8"));
+						board[5][7] = new VoidPiece("f8");
+						board[6][7] = new VoidPiece("g8");
+						board[7][7] = rook; rook.setPosition(new Position ("h8"));
 					}
 				} else 
 				/* queenside */
 				{
 					if (takenPiece.getColor() == true) {
-						board[0][0] = pf.createPiece("a1");
-						board[1][0] = pf.createPiece("b1");
-						board[2][0] = pf.createPiece("c1");
-						board[3][0] = pf.createPiece("d1");
-						board[4][0] = pf.createPiece("e1");
+						rook = (Rook) getPiece(new Position("d1"));
+						board[0][0] = rook; rook.setPosition(new Position("a1"));
+						board[1][0] = new VoidPiece("b1");
+						board[2][0] = new VoidPiece("c1");
+						board[3][0] = new VoidPiece("d1");
+						board[4][0] = takenPiece; takenPiece.setPosition(new Position("e1"));
 					} else {
-						board[0][7] = pf.createPiece("a8");
-						board[1][7] = pf.createPiece("b8");
-						board[2][7] = pf.createPiece("c8");
-						board[3][7] = pf.createPiece("d8");
-						board[4][7] = pf.createPiece("e8");
+						rook = (Rook) getPiece(new Position("d8"));
+						board[0][7] = rook; rook.setPosition(new Position("a8"));
+						board[1][7] = new VoidPiece("b8");
+						board[2][7] = new VoidPiece("c8");
+						board[3][7] = new VoidPiece("d8");
+						board[4][7] = takenPiece; takenPiece.setPosition(new Position("e8"));
 					}
 				}
+				rook.movesMade = 0;
+				((King)takenPiece).movesMade = 0;
 				
 				 if (takenPiece.getColor() == playingColor) {
-					 ourKing = getPiece(move.second);
+					 ourKing = ((King) takenPiece);
 				 } else {
-					 opponentsKing = getPiece(move.second);
+					 opponentsKing = ((King) takenPiece);
 				 }
+				 /* setting player's turn */
+				playerTurn = !playerTurn;
+				 
 				return;
 			}
 			
@@ -156,12 +165,15 @@ public class ChessBoard {
 	 */
 	public boolean makeMoveAndCheckInCheck(Position pos, Position newPos) {
 		AbstractPiece piece = getPiece(pos);
-		
-		//System.out.println("Checking move: " + pos + " to " + newPos + " by " + piece.getClass().toString());
-		
+		/*
+		System.out.println("====================================");
+		printBoard();
+		System.out.println("Checking move: " + pos + " to " + newPos + " by " + piece.getClass().toString());
+		*/
 		boolean originalInCheck = inCheck;
 		piece.move(newPos);
 		updateInCheck();
+		printBoard();
 		undo();
 		
 		boolean ans = !inCheck;
@@ -180,8 +192,8 @@ public class ChessBoard {
 			for (int j = 0; j < 8; j++, pos[0]++) {
 				board[j][i] = pf.createPiece(new String (pos));
 				if (board[j][i] instanceof King) {
-					if (board[j][i].getColor() == playingColor) ourKing = board[j][i];
-					else opponentsKing = board[j][i];
+					if (board[j][i].getColor() == playingColor) ourKing = ((King) board[j][i]);
+					else opponentsKing = ((King) board[j][i]);
 				}
 			}
 			pos[0] = 'a';
@@ -249,7 +261,7 @@ public class ChessBoard {
 
 	public void setPlayingColor(boolean playingC) {
 		playingColor = playingC;
-		AbstractPiece temp = ourKing;
+		King temp = ourKing;
 		ourKing = opponentsKing;
 		opponentsKing = temp;
 		updateInCheck();
