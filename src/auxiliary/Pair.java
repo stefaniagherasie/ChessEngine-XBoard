@@ -13,4 +13,9 @@ public class Pair<E,F> {
 		first = fst;
 		second = snd;
 	}
+
+	@Override
+	public String toString() {
+		return "<" + first + ", " + second + ">";
+	}
 }

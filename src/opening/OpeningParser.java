@@ -1,5 +1,6 @@
 package opening;
 import auxiliary.*;
+import engine.OpeningStrategy;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,13 +10,14 @@ import java.util.*;
 import static java.util.stream.Collectors.toList;
 
 public class OpeningParser {
+	private static File file = new File("book.cvs");
 	
     /**
      * Parses the opening strategies from the csv file.
      * @param file "book.csv" - contains moves for opening strategies
      * @return A HashMap with game states from well known chess strategies.
      */
-    public static OpeningStrategy parse(File file) throws IOException, LineErrorException {
+    public static OpeningStrategy parse() throws IOException, LineErrorException {
     	// Strategies under the format <List of past moves, List of next moves and their gain>
         Map<ArrayList<Pair<Position, Position>>, List<OpeningMove>> gameStates;
 

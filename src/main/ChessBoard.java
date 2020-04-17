@@ -156,6 +156,16 @@ public class ChessBoard {
 		gameMoves.add(0, new Pair<>(p, originalPos));
 	}
 	
+	public ArrayList<Pair<Position, Position>> convertHistory () {
+		ArrayList<Pair<Position, Position>> history = new ArrayList<>();
+		
+		for (Pair<AbstractPiece, Position> move: gameMoves) {
+			history.add(0, new Pair<>(move.second, move.first.getPosition()));
+		}
+		
+		return history;
+	}
+	
 	/**
 	 * Method that is given a move, executes the move,
 	 * checks if the engine is still in check and then undoes the move
@@ -166,14 +176,9 @@ public class ChessBoard {
 	public boolean makeMoveAndCheckInCheck(Position pos, Position newPos) {
 		AbstractPiece piece = getPiece(pos);
 		
-		System.out.println("====================================");
-		printBoard();
-		System.out.println("Checking move: " + pos + " to " + newPos + " by " + piece.getClass().toString());
-		
 		boolean originalInCheck = inCheck;
 		piece.move(newPos);
 		updateInCheck();
-		printBoard();
 		undo();
 		
 		boolean ans = !inCheck;

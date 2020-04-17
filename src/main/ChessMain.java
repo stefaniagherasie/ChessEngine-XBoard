@@ -73,7 +73,6 @@ public class ChessMain {
 							if (getsMeOutOfCheck.size() != 0) {
 								pieces.add(p);
 								positions.add(getsMeOutOfCheck);
-								if (p instanceof King) System.out.println(getsMeOutOfCheck);
 							}
 						} 
 					}
@@ -82,6 +81,8 @@ public class ChessMain {
 				if (!showRandomMove(positions, pieces))
 					 //resign
 					 System.out.println("resign");
+				
+				System.out.println(ChessBoard.getInstance().convertHistory().toString());
 				
 				ChessBoard.getInstance().printBoard();
 			}

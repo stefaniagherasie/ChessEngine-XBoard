@@ -53,7 +53,7 @@ public class PiecesFactory {
 			return new Rook("black", "a8");
 		if (s.equals("h8"))
 			return new Rook("black", "h8");
-		/*if (s.equals("b8"))
+		if (s.equals("b8"))
 			return new Knight("black", "b8");
 		if (s.equals("g8"))
 			return new Knight("black", "g8");	
@@ -62,10 +62,10 @@ public class PiecesFactory {
 		if (s.equals("f8"))
 			return new Bishop("black", "f8");		
 		if (s.equals("d8"))
-			return new Queen("black", "d8");*/
+			return new Queen("black", "d8");
 		if (s.equals("e8"))
 			return new King("black", "e8");	
-		/*if (s.equals("a7"))
+		if (s.equals("a7"))
 			return new Pawn("black", "a7");
 		if (s.equals("b7"))
 			return new Pawn("black", "b7");
@@ -80,7 +80,7 @@ public class PiecesFactory {
 		if (s.equals("g7"))
 			return new Pawn("black", "g7");
 		if (s.equals("h7"))
-			return new Pawn("black", "h7");*/
+			return new Pawn("black", "h7");
 		return new VoidPiece(s);
 	}
 }

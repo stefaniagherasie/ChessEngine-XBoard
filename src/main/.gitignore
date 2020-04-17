@@ -2,3 +2,5 @@
 /ChessMain.class
 /Position.class
 /CommandReader.class
+/MainStrategy.class
+/Engine.class
