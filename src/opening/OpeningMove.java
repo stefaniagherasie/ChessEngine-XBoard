@@ -27,16 +27,39 @@ public class OpeningMove {
     public int getGain() {
     	return this.gain;
     }
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((fromPos == null) ? 0 : fromPos.hashCode());
+		result = prime * result + gain;
+		result = prime * result + ((toPos == null) ? 0 : toPos.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OpeningMove other = (OpeningMove) obj;
+		if (fromPos == null) {
+			if (other.fromPos != null)
+				return false;
+		} else if (!fromPos.equals(other.fromPos))
+			return false;
+		if (gain != other.gain)
+			return false;
+		if (toPos == null) {
+			if (other.toPos != null)
+				return false;
+		} else if (!toPos.equals(other.toPos))
+			return false;
+		return true;
+	}
     
-    @Override
-    public boolean equals(Object o) {
-    	if(this == o) return true;
-    	OpeningMove obj = (OpeningMove)o;
-    	return (this.fromPos == obj.fromPos) && (this.toPos == obj.toPos) && (this.gain == obj.gain);
-    }
-    
-    @Override 
-    public int hashCode() {
-    	return Objects.hash(fromPos, toPos, gain);
-    }
 }
