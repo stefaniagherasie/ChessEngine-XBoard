@@ -82,3 +82,7 @@ Am facut ca engineul, daca este in sah, sa aleaga doar acele miscari care sa il 
 Comantat clasa ChessBoard fully.
 Am scapat de toate buggurile pt metoda undo.
 Am implementat rocada ca si miscare posibila pt rege.
+
+== Cosmina - 17 apr ==
+mici modificari la package opening, au mai ramas de tratat cazurile de eroare
+Stefii verifica daca am adaugat bine in map.
