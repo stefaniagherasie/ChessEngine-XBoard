@@ -15,7 +15,7 @@ import static java.util.stream.Collectors.toSet;
 
 public class OpeningParser {
     public static OpeningStrategy parse(File file) throws IOException {
-        Map< Pair<Position, Position>, List<OpeningMove>> gameStates;
+        Map< ArrayList<Pair<Position, Position>>, List<OpeningMove>> gameStates;
 
         try {
             List<String> lines = Files.lines(file.toPath())
@@ -31,8 +31,8 @@ public class OpeningParser {
         return new OpeningStrategy(gameStates);
     }
     
-    static Map<Pair<Position, Position>, List<OpeningMove>> parseLines(List<String> lines) {
-        Map<Pair<Position, Position>, List<OpeningMove>> gameStates = new HashMap<>();
+    static Map< ArrayList<Pair<Position, Position>>, List<OpeningMove>> parseLines(List<String> lines) {
+        Map< ArrayList <Pair<Position, Position>>, List<OpeningMove>> gameStates = new HashMap<>();
 
         for (String line : lines) {
             String[] fields = line.split(";", -1);
@@ -42,30 +42,19 @@ public class OpeningParser {
 
             String[] moves = fields[0].trim().split(" ");
             String nextMove = fields[1].trim();
-
-            AbstractPiece[][] gameState;
-            ChessBoard board = ChessBoard.getInstance();
-            try {
-                if (moves.length == 1 && moves[0].isBlank()) {
-                    gameState = board.start(); 
-                } else {
-                    gameState = board.setStates(asList(moves)); //returneaza boardul dupa efectuarea miscarilor
-                }
-            } catch (IllegalMoveException e) {
-                continue;
-                //verificare miscare ilegala
+           
+            ArrayList <Pair<Position, Position>> pairMoves = new ArrayList <Pair<Position, Position>>();
+            if (moves.length == 1 && moves[0].isBlank()) {   
+            	//nu stiu exact ce trebuie aici
+            } else {
+            	for(String move : moves) {
+               		pairMoves.add(new Pair<>(new Position(move.substring(0, 1)), new Position(move.substring(2, 3))));
+               	}
             }
-
-            // Get/create the list of possible moves for this position
-            List<OpeningMove> nextMoves = gameStates.computeIfAbsent(gameState, key -> new ArrayList<>());
-
-            // Create book move and add to list
-            try {
-                String[] moveAndGain = nextMove.split(("/"));
-                nextMoves.add(new OpeningMove(moveAndGain[0], Integer.parseInt(moveAndGain[1]));
-            } catch (IllegalMoveException e) {
-              //eroare
-            }
+            
+            List<OpeningMove> nextMoves = gameStates.computeIfAbsent(pairMoves, key -> new ArrayList<>());
+            String[] moveAndGain = nextMove.split(("/"));
+            nextMoves.add(new OpeningMove(moveAndGain[0], Integer.parseInt(moveAndGain[1])));
         }
 
         return gameStates;
