@@ -100,49 +100,52 @@ public class King extends AbstractPiece {
 	public boolean verifyMove(Position newPos) {
 		ChessBoard board = ChessBoard.getInstance();
 		
-		/* checking queenside castling */
-		if (movesMade == 0 && newPos.getLetter() == 2) {
-			Position corner;
-			if (super.color == true) {
-				corner = new Position ("a1");
-			} else {
-				corner = new Position ("a8");
-			}
-			
-			if (board.getPiece(corner) instanceof Rook &&
-					newPos.getNumber() == super.pos.getNumber()) {
-				if (board.getPiece(corner).getColor() == super.color &&
-						((Rook)board.getPiece(corner)).movesMade == 0 &&
-						board.getPiece(new Position(corner, 1, 0)) instanceof VoidPiece &&
-						board.getPiece(new Position(corner, 2, 0)) instanceof VoidPiece &&
-						board.getPiece(new Position(corner, 3, 0)) instanceof VoidPiece &&
-						ChessBoard.isInCheck() == false) {
-					return true;
+		if (movesMade == 0) {
+			/* checking queenside castling */
+			if ((newPos.equals(new Position("c1")) && super.color == true)||
+					(newPos.equals(new Position("c8")) && super.color == false)) {
+				Position corner;
+				if (super.color == true) {
+					corner = new Position ("a1");
+				} else {
+					corner = new Position ("a8");
 				}
-			}
-			return false;
-		}
-		
-		/* checking kingside castling */
-		if (movesMade == 0 && newPos.getLetter() == 6) {
-			Position corner;
-			if (super.color == true) {
-				corner = new Position ("h1");
-			} else {
-				corner = new Position ("h8");
-			}
-			
-			if (board.getPiece(corner) instanceof Rook &&
-					newPos.getNumber() == super.pos.getNumber()) {
-				if (board.getPiece(corner).getColor() == super.color &&
-						((Rook)board.getPiece(corner)).movesMade == 0 &&
-						board.getPiece(new Position(corner, -1, 0)) instanceof VoidPiece &&
-						board.getPiece(new Position(corner, -2, 0)) instanceof VoidPiece &&
-						ChessBoard.isInCheck() == false) {
-					return true;
+				
+				if (board.getPiece(corner) instanceof Rook) {
+					if (board.getPiece(corner).getColor() == super.color &&
+							((Rook)board.getPiece(corner)).movesMade == 0 &&
+							board.getPiece(new Position(corner, 1, 0)) instanceof VoidPiece &&
+							board.getPiece(new Position(corner, 2, 0)) instanceof VoidPiece &&
+							board.getPiece(new Position(corner, 3, 0)) instanceof VoidPiece &&
+							ChessBoard.isInCheck() == false) {
+						return true;
+					}
 				}
+				return false;
+			} else if ((newPos.equals(new Position("g1")) && super.color == true)||
+					(newPos.equals(new Position("g8")) && super.color == false)) {
+				/* checking kingside castling */
+				Position corner;
+				if (super.color == true) {
+					corner = new Position ("h1");
+				} else {
+					corner = new Position ("h8");
+				}
+				
+				if (board.getPiece(corner) instanceof Rook &&
+						newPos.getNumber() == super.pos.getNumber()) {
+					if (board.getPiece(corner).getColor() == super.color &&
+							((Rook)board.getPiece(corner)).movesMade == 0 &&
+							board.getPiece(new Position(corner, -1, 0)) instanceof VoidPiece &&
+							board.getPiece(new Position(corner, -2, 0)) instanceof VoidPiece &&
+							ChessBoard.isInCheck() == false) {
+						return true;
+					}
+				}
+				return false;
+			} else {
+				return false;
 			}
-			return false;
 		}
 
 		if(!(board.getPiece(newPos) instanceof VoidPiece) &&

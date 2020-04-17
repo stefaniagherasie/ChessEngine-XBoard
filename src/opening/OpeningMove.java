@@ -1,8 +1,6 @@
 package opening;
 import auxiliary.*;
 
-
-
 public class OpeningMove {
 	/**
 	 * Stores the recommended next moves from a certain board state.

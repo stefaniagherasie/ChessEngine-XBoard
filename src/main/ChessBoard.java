@@ -165,11 +165,11 @@ public class ChessBoard {
 	 */
 	public boolean makeMoveAndCheckInCheck(Position pos, Position newPos) {
 		AbstractPiece piece = getPiece(pos);
-		/*
+		
 		System.out.println("====================================");
 		printBoard();
 		System.out.println("Checking move: " + pos + " to " + newPos + " by " + piece.getClass().toString());
-		*/
+		
 		boolean originalInCheck = inCheck;
 		piece.move(newPos);
 		updateInCheck();
@@ -182,7 +182,7 @@ public class ChessBoard {
 	}
 
 	/**
-	 * Section thta deals with the state of the board
+	 * Section that deals with the state of the board
 	 */
 	
 	public void reset() {
