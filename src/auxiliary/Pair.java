@@ -1,8 +1,8 @@
 package auxiliary;
 
 public class Pair<E,F> {
-	public E first;
-	public F second;
+	public E first = null;
+	public F second = null;
 	
 	/**
 	 * Constructs a pair of 2 elements
@@ -12,6 +12,17 @@ public class Pair<E,F> {
 	public Pair(E fst, F snd) {
 		first = fst;
 		second = snd;
+	}
+	
+	public Pair() {}
+	
+	public Pair(Pair<E, F> p) {
+		first = p.first;
+		second = p.second;
+	}
+	
+	public boolean isEmpty() {
+		return (first == null) || (second == null);
 	}
 
 	@Override

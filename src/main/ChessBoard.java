@@ -176,8 +176,6 @@ public class ChessBoard {
 	public boolean makeMoveAndCheckInCheck(Position pos, Position newPos) {
 		AbstractPiece piece = getPiece(pos);
 		
-		System.out.println(ourKing.getPosition());
-		
 		boolean originalInCheck = inCheck;
 		piece.move(newPos);
 		updateInCheck();

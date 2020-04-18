@@ -50,6 +50,19 @@ public class ChessMain {
 			//our turn to move
 			if(ChessBoard.isPlayingColor() == ChessBoard.isPlayerTurn() && !ChessBoard.isforceMode()) 
 			{
+				/*
+				ChessBoard.getInstance().printBoard();
+				Pair<Position, Position> move = engine.nextBestMove();
+				if (move != null) {
+					ChessBoard.getInstance().computeMove(move);
+					System.out.println("move " + move.first + move.second);
+				} else {
+					System.out.println("resign");
+				}
+				ChessBoard.getInstance().printBoard();
+				*/
+				
+				
 				ChessBoard.getInstance().printBoard();
 
 				ChessBoard board = ChessBoard.getInstance();

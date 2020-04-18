@@ -12,8 +12,8 @@ public class OpeningMove {
     private int gain;
 
     public OpeningMove(String move, int gain) {
-    	nextMove = new Pair<Position, Position>(new Position(move.substring(0, 1)),
-    											new Position(move.substring(2, 3)));
+    	nextMove = new Pair<Position, Position>(new Position(move.substring(0, 2)),
+    											new Position(move.substring(2, 4)));
         this.gain = gain;
     }
     

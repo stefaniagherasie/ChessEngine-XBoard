@@ -12,38 +12,56 @@ public class OpeningStrategy implements Strategy{
 	 */
 	private Map< ArrayList<Pair<Position, Position>>, List<OpeningMove>> gameStates;
 	
+	private int DEPTH;
+	
+	private List<OpeningMove> nextBest;
 
 	public OpeningStrategy(Map< ArrayList <Pair<Position, Position>>, List<OpeningMove>> gameStates) {
 		this.gameStates = gameStates;
+		DEPTH = 6;
+		nextBest = new ArrayList<>();
 	}
 
 
 	@Override
-	public int eval() {
-		
+	public int eval(boolean player) {
 		return 0;
 	}
 
 
 	@Override
-	public Pair<Position, Position> bestNextMove() {
-		ChessBoard board = ChessBoard.getInstance();
-		ArrayList<Pair<Position, Position>> gameHistory = board.convertHistory();
-		
-		List<OpeningMove> nextMoves = gameStates.get(gameHistory);
-		
-		int gain = 0;
-		List<Pair<Position, Position>> bestGainMoves = new ArrayList<>();
-		for (OpeningMove move: nextMoves) {
-			if (move.getGain() == gain) {
-				bestGainMoves.add(move.getNextMove());
-			} else if (move.getGain() > gain) {
-				gain = move.getGain();
-				bestGainMoves = new ArrayList<>();
-				bestGainMoves.add(move.getNextMove());
+	public Pair<Position, Position> nextMove() {
+		if (nextBest.size() == 0) {
+			ChessBoard board = ChessBoard.getInstance();
+			ArrayList<Pair<Position, Position>> gameHistory = board.convertHistory();
+			
+			List<OpeningMove> nextMoves = gameStates.get(gameHistory);
+			
+			int gain = 0;
+			for (OpeningMove move: nextMoves) {
+				if (move.getGain() == gain) {
+					nextBest.add(move);
+				} else if (move.getGain() > gain) {
+					gain = move.getGain();
+					nextBest = new ArrayList<>();
+					nextBest.add(move);
+				}
 			}
+			
+			if (nextBest.size() == 0) {
+				return null;
+			}
+			
+			return nextBest.remove(0).getNextMove();
+		} else {
+			return nextBest.remove(0).getNextMove();
 		}
-		return null;
+	}
+
+
+	@Override
+	public int getDepth() {
+		return DEPTH;
 	}
 
 }
