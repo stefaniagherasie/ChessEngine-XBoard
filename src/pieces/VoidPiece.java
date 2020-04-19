@@ -9,6 +9,7 @@ import auxiliary.Position;
  * not to be confused with null
  */
 public class VoidPiece extends AbstractPiece{
+	public int score;
 	
 	public VoidPiece(String pos) {
 		super(null, pos);

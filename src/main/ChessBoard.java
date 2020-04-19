@@ -18,7 +18,6 @@ public class ChessBoard {
 		board = new AbstractPiece[8][8];
 		pf = PiecesFactory.getInstance();
 		playerTurn = true;
-		inCheck = false;
 		reset();
 	}
 	
@@ -32,22 +31,21 @@ public class ChessBoard {
 	 * Section that deals with the engine being in check
 	 */
 	
-	private static boolean inCheck;
 	private static King ourKing, opponentsKing;
 	
-	public static void updateInCheck() {
+	public static void updateOurInCheck() {
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
 				AbstractPiece p = ChessBoard.getInstance().getPiece(new Position(i, j));
 				if (!(p instanceof VoidPiece) && p.getColor() != playingColor) {
 					if (p.getPossibleMoves().contains(ourKing.getPosition())) {
-						inCheck = true;
+						ourKing.inCheck = true;
 						return;
 					}
 				}
 			}
 		}
-		inCheck = false;
+		ourKing.inCheck = false;
 	}
 	
 	/**
@@ -63,15 +61,13 @@ public class ChessBoard {
 	private static ArrayList<Pair<AbstractPiece, Position>> gameMoves;
 	
 	public void undo() {
-		try {
+		try {			
 			Pair<AbstractPiece, Position> move = gameMoves.remove(0);
 			AbstractPiece takenPiece = move.first;
 			
 			/* this was the king castling */
 			if (takenPiece instanceof King) {
 				Rook rook;
-				
-				printBoard();
 				
 				/* kindside */
 				if (takenPiece.getPosition().getLetter() == 6) {
@@ -110,22 +106,16 @@ public class ChessBoard {
 				rook.movesMade = 0;
 				((King)takenPiece).movesMade = 0;
 				
-				 if (takenPiece.getColor() == playingColor) {
-					 ourKing = ((King) takenPiece);
-				 } else {
-					 opponentsKing = ((King) takenPiece);
-				 }
 				 /* setting player's turn */
-				playerTurn = !playerTurn;
+				playerTurn = takenPiece.getColor();
 				 
 				return;
 			}
 			
 			AbstractPiece movedPiece = getPiece(takenPiece.getPosition());
-			Position takenPiecePos = movedPiece.getPosition();
 			movedPiece.move(move.second);
 			gameMoves.remove(0);
-			setPiece(takenPiecePos, takenPiece);
+			setPiece(takenPiece.getPosition(), takenPiece);
 			
 			/* setting player's turn */
 			playerTurn = movedPiece.getColor();
@@ -178,13 +168,13 @@ public class ChessBoard {
 	public boolean makeMoveAndCheckInCheck(Position pos, Position newPos) {
 		AbstractPiece piece = getPiece(pos);
 		
-		boolean originalInCheck = inCheck;
+		boolean originalInCheck = ourKing.inCheck;
 		piece.move(newPos);
-		updateInCheck();
+		updateOurInCheck();
 		undo();
 		
-		boolean ans = !inCheck;
-		inCheck = originalInCheck;
+		boolean ans = !ourKing.inCheck;
+		ourKing.inCheck = originalInCheck;
 		return ans;
 	}
 
@@ -266,7 +256,7 @@ public class ChessBoard {
 	}
 	
 	public static boolean isInCheck() {
-		return inCheck;
+		return ourKing.inCheck;
 	}
 	
 	public static void updatePlayerTurn() {
@@ -285,7 +275,6 @@ public class ChessBoard {
 		}
 		
 		playingColor = playingC;
-		updateInCheck();
 	}
 
 	public static boolean isPlayerTurn() {

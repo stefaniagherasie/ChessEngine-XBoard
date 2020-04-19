@@ -5,7 +5,7 @@ import main.ChessBoard;
 
 public abstract class AbstractPiece {
 	protected Position pos;
-	protected boolean color;
+	protected final boolean color;
 	protected ArrayList<Position> possibleMoves;
 	
 	protected AbstractPiece(String color, String position) {
@@ -14,16 +14,11 @@ public abstract class AbstractPiece {
 				this.color = true;
 			else
 				this.color = false;
+		} else {
+			this.color = false;
 		}
 		pos = new Position(position);
 	}
-	
-	
-	@Override
-	public String toString() {
-		return "AbstractPiece [pos=" + pos + ", color=" + color + "]";
-	}
-
 
 	public abstract ArrayList<Position> getPossibleMoves();
 	

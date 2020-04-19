@@ -34,7 +34,7 @@ public class ChessMain {
 				
 				ChessBoard.getInstance().printBoard();
 				Pair<Position, Position> move = engine.nextBestMove();
-				if (move != null) {
+				if (!move.isEmpty()) {
 					ChessBoard.getInstance().computeMove(move);
 					System.out.println("move " + move.first + move.second);
 				} else {

@@ -22,7 +22,7 @@ public class OpeningStrategy implements Strategy{
 
 	@Override
 	public int eval(boolean player) {
-		return (int)Math.random() * 100;
+		return (int)(Math.random() * 100);
 	}
 
 

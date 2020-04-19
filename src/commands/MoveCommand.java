@@ -1,26 +1,23 @@
 package commands;
+import auxiliary.Pair;
 import auxiliary.Position;
-import pieces.AbstractPiece;
-import pieces.VoidPiece;
 import main.ChessBoard;
 
 public class MoveCommand extends Command{
-	private Position startPos, endPos;
+	private Pair<Position, Position> move;
 	
 	public MoveCommand(String arg) {
-		startPos = new Position(arg.substring(0, 2));
-		endPos = new Position(arg.substring(2));
+		move = new Pair<>();
+		move.first = new Position(arg.substring(0, 2));
+		move.second = new Position(arg.substring(2));
 	}
 	
 	@Override
 	public void execute() {
 		/* changing the board */
-		ChessBoard.getInstance().getPiece(startPos).move(endPos);
+		ChessBoard.getInstance().computeMove(move);
 		
 		/* checking if the engine is in check */
-		ChessBoard.updateInCheck();
-		
-		/* next player's turn */
-		ChessBoard.updatePlayerTurn();
+		ChessBoard.updateOurInCheck();
 	}
 }

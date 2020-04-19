@@ -5,13 +5,14 @@ import auxiliary.Pair;
 import auxiliary.Position;
 import main.ChessBoard;
 import pieces.AbstractPiece;
+import pieces.King;
 import pieces.VoidPiece;
 
 public class MainStrategy implements Strategy{
 
 	@Override
 	public int eval(boolean player) {
-		return (int)Math.random() * 100;
+		return (int)(Math.random() * 100);
 	}
 
 	@Override
@@ -22,8 +23,8 @@ public class MainStrategy implements Strategy{
 		
 		for(int i = 0; i < 8; i++) {
 			for(int j = 0; j < 8; j++) {
-			AbstractPiece p = ChessBoard.getInstance().getPiece(new Position(i, j));
-				if(!(p instanceof VoidPiece) && ChessBoard.isPlayingColor() == p.getColor()) {
+			AbstractPiece p = board.getPiece(new Position(i, j));
+				if(!(p instanceof VoidPiece) && ChessBoard.isPlayerTurn() == p.getColor()) {
 					ArrayList<Position> possMoves = p.getPossibleMoves();
 					
 					ArrayList<Position> getsMeOutOfCheck = new ArrayList<>();
@@ -47,7 +48,6 @@ public class MainStrategy implements Strategy{
 
 	@Override
 	public int getDepth() {
-		// TODO Auto-generated method stub
 		return 4;
 	}
 }
