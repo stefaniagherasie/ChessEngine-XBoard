@@ -11,16 +11,14 @@ public class MainStrategy implements Strategy{
 
 	@Override
 	public int eval(boolean player) {
-		// TODO Auto-generated method stub
-		return 1;
+		return (int)Math.random() * 100;
 	}
 
 	@Override
-	public Pair<Position, Position> nextMove() {
+	public ArrayList<Pair<Position, Position>> nextMoves() {
 		ChessBoard board = ChessBoard.getInstance();
-		
-		ArrayList<ArrayList <Position>> positions = new ArrayList<ArrayList <Position>>();
-		ArrayList<AbstractPiece> pieces = new ArrayList<AbstractPiece>();
+
+		ArrayList<Pair<Position, Position>> result = new ArrayList<>();
 		
 		for(int i = 0; i < 8; i++) {
 			for(int j = 0; j < 8; j++) {
@@ -36,48 +34,20 @@ public class MainStrategy implements Strategy{
 					}
 					
 					if (getsMeOutOfCheck.size() != 0) {
-						pieces.add(p);
-						positions.add(getsMeOutOfCheck);
+						for (Position pp: getsMeOutOfCheck) {
+							result.add(new Pair<>(p.getPosition(), pp));
+						}
 					}
 				} 
 			}
 		}
 		
-		return showRandomMove(positions, pieces);
+		return result;
 	}
 
 	@Override
 	public int getDepth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 4;
 	}
-
-	public static Pair<Position, Position> showRandomMove(ArrayList<ArrayList <Position>> positions, ArrayList<AbstractPiece> pieces) {
-		//verifiacre daca mai exista miscari
-		int totalNumberOfMoves = 0;
-		for (ArrayList<Position> p: positions) {
-			totalNumberOfMoves += p.size();
-		}
-		if (totalNumberOfMoves == 0)
-			return null;
-		
-		
-		AbstractPiece piece;
-		ArrayList<Position> possibleMoves;
-		
-		do {
-			int index = (int)(Math.random() * 10) % pieces.size();
-			piece = pieces.get(index);
-			possibleMoves = positions.get(index);
-		} while (possibleMoves.size() == 0);
-		
-		int index2 = (int)(Math.random() * 10) % possibleMoves.size();
-		System.out.println("move " + piece.getPosition().toString() + possibleMoves.get(index2).toString());
-		
-		piece.move(possibleMoves.get(index2));
-		ChessBoard.updatePlayerTurn();
-		
-		return new Pair<>(piece.getPosition(), possibleMoves.get(index2));
-	}
-
 }

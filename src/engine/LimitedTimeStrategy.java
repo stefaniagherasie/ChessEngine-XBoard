@@ -1,5 +1,7 @@
 package engine;
 
+import java.util.ArrayList;
+
 import auxiliary.Pair;
 import auxiliary.Position;
 
@@ -12,7 +14,7 @@ public class LimitedTimeStrategy implements Strategy{
 	}
 
 	@Override
-	public Pair<Position, Position> nextMove() {
+	public ArrayList<Pair<Position, Position>> nextMoves() {
 		// TODO Auto-generated method stub
 		return null;
 	}

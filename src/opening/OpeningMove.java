@@ -53,5 +53,8 @@ public class OpeningMove {
 		return true;
 	}
 
-    
+	@Override
+	public String toString() {
+		return "OpeningMove [nextMove=" + nextMove + ", gain=" + gain + "]";
+	}
 }

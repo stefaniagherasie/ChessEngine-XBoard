@@ -1,5 +1,7 @@
 package engine;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import auxiliary.*;
 import main.ChessBoard;
 import opening.OpeningParser;
@@ -16,53 +18,65 @@ public class Engine {
 		}
 	}
 	
-	public Pair<Position, Position> nextBestMove() {
-		return minmax(ChessBoard.isPlayerTurn(), strategy.getDepth()).second;
+	public Pair<Position, Position> nextBestMove() {		
+		return minmax(strategy.getDepth(), strategy).second;
 	}
 	
-	private Pair<Integer, Pair<Position, Position>> minmax(boolean player, int depth) {
+	private Pair<Integer, Pair<Position, Position>> minmax(int depth, Strategy strat) {
+		ChessBoard board = ChessBoard.getInstance();
+		
 		if (depth == 0) {
-			return new Pair<>(strategy.eval(player), new Pair<>());
+			return new Pair<>(strat.eval(ChessBoard.isPlayerTurn()), new Pair<>());
 		}
 		
-		ChessBoard board = ChessBoard.getInstance();
-		int gameValue = -INF;
-		if (player != ChessBoard.isPlayingColor()) {
-			gameValue *= -1;
-		}
+		int gameValue = INF;
 		Pair<Position, Position> bestMove = new Pair<>();
 		
+		ArrayList<Pair<Position, Position>> moves = strat.nextMoves();
 		
-		Pair<Position, Position> move = strategy.nextMove();
-		if (move == null && strategy instanceof OpeningStrategy) {
-			strategy = new MainStrategy();
-			move = strategy.nextMove();
+		/** Depth is not 0, but the engine has run out of openings
+		 *  So switching to MainStrategy for the resto of the depth
+		 */
+		if (moves == null && strat instanceof OpeningStrategy) {
+			strat = new MainStrategy();
+			moves = strat.nextMoves();
+			System.out.println("improvising");
+			
+			/**
+			 * Forever switching to main strategy
+			 */
+			if (depth == strategy.getDepth()) {
+				switchToMainStrategy();
+			}
+			depth = Math.min(depth, strategy.getDepth());
 		}
-		bestMove = new Pair<>(move);
+		bestMove = new Pair<>(moves.get(0));
 		
-		while (move != null) {
+		for (Pair<Position, Position> move: moves) {
 			board.computeMove(move);
 			
-			int moveValue = minmax(!player, depth - 1).first;
+			board.reversePlayingColor();
+			int moveValue = minmax(depth - 1, strat).first;
+			board.reversePlayingColor();
+			ChessBoard.updatePlayerTurn();
 			
 			board.undo();
 			
-			if (player == ChessBoard.isPlayingColor()) {
-				if (moveValue > gameValue) {
+			if (ChessBoard.isPlayerTurn() == ChessBoard.isPlayingColor()) {
+				if (moveValue > gameValue || gameValue == INF) {
 					bestMove = new Pair<>(move);
 					gameValue = moveValue;
-				} else if (moveValue < gameValue) {
+				} else if (moveValue < gameValue || gameValue == INF) {
 					gameValue = moveValue;
 				}
-			}
-			
-			move = strategy.nextMove();
-			
-			if (strategy instanceof OpeningStrategy && move == null && depth != 0) {
-				move = new MainStrategy().nextMove();
 			}
 		}
 		
 		return new Pair<>(0, bestMove);
+	}
+	
+	private void switchToMainStrategy() {
+		System.out.println("switching to main!");
+		strategy = new MainStrategy();
 	}
 }

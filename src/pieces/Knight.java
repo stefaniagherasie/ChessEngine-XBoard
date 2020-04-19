@@ -35,6 +35,11 @@ public class Knight extends AbstractPiece {
 	public boolean verifyMove(Position newPos) {
 		ChessBoard board = ChessBoard.getInstance();
 		
+		if (newPos.equals(ChessBoard.getOpponentsKing().getPosition()) ||
+				newPos.equals(ChessBoard.getOurKing().getPosition())) {
+			return false;
+		}
+		
 		if(!(board.getPiece(newPos) instanceof VoidPiece) &&
 				board.getPiece(newPos).color != super.getColor()){
 				return true;

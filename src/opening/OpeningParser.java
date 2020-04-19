@@ -66,7 +66,7 @@ public class OpeningParser {
             } else {
             	// Add all past moves as Pairs
             	for(String move : moves) {
-               		pastMoves.add(new Pair<>(new Position(move.substring(0, 1)), new Position(move.substring(2, 3))));
+               		pastMoves.add(new Pair<>(new Position(move.substring(0, 2)), new Position(move.substring(2, 4))));
                	}
             }
             

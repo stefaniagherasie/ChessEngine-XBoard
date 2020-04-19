@@ -71,6 +71,8 @@ public class ChessBoard {
 			if (takenPiece instanceof King) {
 				Rook rook;
 				
+				printBoard();
+				
 				/* kindside */
 				if (takenPiece.getPosition().getLetter() == 6) {
 					if (takenPiece.getColor() == true) {
@@ -219,9 +221,12 @@ public class ChessBoard {
 	public void computeMove(Pair<Position, Position> move) {
 		AbstractPiece piece = getPiece(move.first);
 		piece.move(move.second);
+		updatePlayerTurn();
 	}
 
 	public void printBoard() {
+		System.out.println();
+		System.out.println("========================");
 		System.out.println("  1  2  3  4  5  6  7  8");
 		
 		for (int i = 0; i < 8; i++) {
@@ -256,6 +261,9 @@ public class ChessBoard {
 	/**
 	 * Setters and getters
 	 */
+	public void reversePlayingColor() {
+		setPlayingColor(!playingColor);
+	}
 	
 	public static boolean isInCheck() {
 		return inCheck;
@@ -270,10 +278,13 @@ public class ChessBoard {
 	}
 
 	public void setPlayingColor(boolean playingC) {
+		if (playingColor != playingC) {
+			King temp = ourKing;
+			ourKing = opponentsKing;
+			opponentsKing = temp;
+		}
+		
 		playingColor = playingC;
-		King temp = ourKing;
-		ourKing = opponentsKing;
-		opponentsKing = temp;
 		updateInCheck();
 	}
 
@@ -292,4 +303,14 @@ public class ChessBoard {
 	public void setforceMode(boolean forceM) {
 		forceMode = forceM;
 	}
+
+	public static King getOurKing() {
+		return ourKing;
+	}
+
+	public static King getOpponentsKing() {
+		return opponentsKing;
+	}
+	
+	
 }

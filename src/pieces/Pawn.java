@@ -44,6 +44,12 @@ public class Pawn extends AbstractPiece{
 	@Override
 	public boolean verifyMove(Position newPos) {
 		ChessBoard board = ChessBoard.getInstance();
+		
+		if (newPos.equals(ChessBoard.getOpponentsKing().getPosition()) ||
+				newPos.equals(ChessBoard.getOurKing().getPosition())) {
+			return false;
+		}
+		
 		if (moved == false && 
 				board.getPiece(newPos) instanceof VoidPiece &&
 				board.getPiece(new Position(newPos, 0, -D)) instanceof VoidPiece &&
