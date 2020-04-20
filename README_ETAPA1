@@ -2,9 +2,9 @@
 Proiect PROIECTAREA ALGORITMILOR
 Echipa DUMB.BLONDES (grupa 323CB)
 
-MEMBRII:	BADITA Rares-Octavian(capitan)
-			GHERASIE Stefania-Elena
-			MANDRU Cosmina
+MEMBRII:    BADITA Rares-Octavian(capitan)
+            GHERASIE Stefania-Elena
+            MANDRU Cosmina
 
 
 
@@ -33,7 +33,7 @@ Proiectul este implementat in Java si urmareste interactiune cu XBoard-ul.
 Am realizat 4 pachete pentru structurarea claselor(main, commands, pieces,
 auxiliary).
 
-					-- pachetul "main" --
+			-- pachetul "main" --
 Am creat clasa ChessBoard pentru reprezentarea interna a tablei de sah. Am
 folosit Design Pattern-ul Singleton pentru a asigura unicitatea tablei, 
 creearea instantei facandu-se prin apelarea metodei getInstance(). Tabla este
@@ -49,7 +49,7 @@ de la XBoard. Se porneste jocul,care pentru aceasta etapa se rezuma la miscarea
 pionilor pe tabla prin generare aleatorie a miscarilor. Se dau XBoard-ului
 miscari random. Aceasta parte de cod urmeaza a fi inlocuita pentru etapele viitoare.
 
-					-- pachetul "pieces" --
+			-- pachetul "pieces" --
 Reprezentarea pieselor porneste de la clasa abstracta AbstractPiece. Piesele
 sunt caracterizate prin pozitie si culoare. Constructorul clasei asigneaza 
 pozitia si culoarea. Se definesc si metodele getPossibleMoves, verifyMove,
@@ -69,7 +69,7 @@ mutarile legale ale pionului si de marginile tablei. Mutarile se realizeaza
 tinand cont de culoarea jucata, de pozitiile ocupate pe tabla, de locurile
 libere. Metoda move() plaseaza piesa pe pozitia data.
 
-					-- pachetul "commands" --
+			-- pachetul "commands" --
 S-a creat clasa Command care reprezinta comenzile continand metoda execute().
 Aceasta clasa va fi mostenita pentru individualizarea comenzilor. Clasa 
 VoidCommand reprezinta o comanda nula.
@@ -78,7 +78,7 @@ S-au creat clase pentru fiecare comanda specificata in cerinta(xboard, new,
 force, go, white, black, quit, resign si protover). Fiecare comanda respecta
 specificatiile mentionate in documentatie.
 
-					-- pachetul "auxiliary" --
+			-- pachetul "auxiliary" --
 Se foloseste clasa Position pentru a reprezenta pozitia pe tabla a unei piese.
 Aceasta contine metode pentru a corela pozitia data sub forma de String cu 
 matricea prin care este reprezentata tabla de joc. S-au mai utilizat metode
