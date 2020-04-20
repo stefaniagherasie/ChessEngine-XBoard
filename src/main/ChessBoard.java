@@ -134,6 +134,14 @@ public class ChessBoard {
 			if (movedPiece instanceof Rook) {
 				((Rook) movedPiece).movesMade -= 2;
 			}
+			if(movedPiece instanceof Queen && ((Queen) movedPiece).prevPos != null) {
+				Position pos = movedPiece.getPosition();
+				Position prevPos = ((Queen) movedPiece).prevPos;
+				if((movedPiece.getColor() && pos.getNumber() == 7) || (!movedPiece.getColor() && pos.getNumber() == 0)) {
+					setPiece(pos, new VoidPiece(pos.toString()));
+					setPiece(prevPos, new Pawn(movedPiece.getColorName(), prevPos.toString()));
+				}
+			}
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Game is in its original state.");
 		}

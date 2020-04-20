@@ -50,6 +50,12 @@ public abstract class AbstractPiece {
 		return color;
 	}
 	
+	public String getColorName(){
+		if(getColor())
+			return "white";
+		else return "black";
+	}
+	
 	public Position getPosition() {
 		return pos;
 	}

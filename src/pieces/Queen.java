@@ -7,8 +7,19 @@ import auxiliary.Position;
 
 public class Queen extends AbstractPiece {
 	
+
+	public Position prevPos;
+	public int movesMade;
+	
 	public Queen (String color, String position) {
 		super(color, position);
+		prevPos = null;
+	}
+
+	public Queen (String color, String position, Position prevPos) {
+		super(color, position);
+		movesMade = 0;
+		this.prevPos = prevPos;
 	}
 
 	@Override
@@ -57,6 +68,12 @@ public class Queen extends AbstractPiece {
 		}
 		
 		return false;
+	}
+	
+	@Override
+	public void move(Position newPos) {
+		super.move(newPos);
+		movesMade++;
 	}
 
 	@Override

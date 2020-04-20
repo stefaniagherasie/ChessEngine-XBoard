@@ -1,7 +1,8 @@
 package pieces;
 import main.*;
 import java.util.ArrayList;
-
+import java.io.IOException;
+import java.io.FileWriter;
 import auxiliary.Position;
 
 public class Pawn extends AbstractPiece{
@@ -74,8 +75,25 @@ public class Pawn extends AbstractPiece{
 	
 	@Override
 	public void move(Position newPos) {
+		ChessBoard board = ChessBoard.getInstance();
+		
+		if(super.getColor() && newPos.getNumber() == 7) {
+			board.setPiece(pos, new VoidPiece(pos.toString()));
+			board.setPiece(newPos, new Queen("white", newPos.toString(), pos));
+			board.recordMove(board.getPiece(newPos), pos);
+		}
+
+		else if((!super.getColor()) && newPos.getNumber() == 0) {
+			board.setPiece(pos, new VoidPiece(pos.toString()));
+			board.setPiece(newPos, new Queen("black", newPos.toString(), pos));
+			board.recordMove(board.getPiece(newPos), pos);
+		}
+		else {
+			super.move(newPos);
+		}
+
 		moved = true;
-		super.move(newPos);
+		
 	}
 
 	@Override
