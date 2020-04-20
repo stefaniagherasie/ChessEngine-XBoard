@@ -46,4 +46,9 @@ public class Knight extends AbstractPiece {
 		
 		return false;
 	}
+
+	@Override
+	public void resetScore() {
+		score = 3.25;
+	}
 }

@@ -77,4 +77,9 @@ public class Pawn extends AbstractPiece{
 		moved = true;
 		super.move(newPos);
 	}
+
+	@Override
+	public void resetScore() {
+		score = 1;
+	}
 }

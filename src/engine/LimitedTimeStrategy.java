@@ -8,7 +8,7 @@ import auxiliary.Position;
 public class LimitedTimeStrategy implements Strategy{
 
 	@Override
-	public int eval(boolean player) {
+	public double eval(boolean player) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

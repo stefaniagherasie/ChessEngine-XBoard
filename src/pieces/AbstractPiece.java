@@ -5,8 +5,9 @@ import main.ChessBoard;
 
 public abstract class AbstractPiece {
 	protected Position pos;
-	protected final boolean color;
+	protected boolean color;
 	protected ArrayList<Position> possibleMoves;
+	protected double score;
 	
 	protected AbstractPiece(String color, String position) {
 		if (color != null) {
@@ -14,10 +15,9 @@ public abstract class AbstractPiece {
 				this.color = true;
 			else
 				this.color = false;
-		} else {
-			this.color = false;
 		}
 		pos = new Position(position);
+		resetScore();
 	}
 
 	public abstract ArrayList<Position> getPossibleMoves();
@@ -40,6 +40,8 @@ public abstract class AbstractPiece {
 		pos = newPos;
 	}
 	
+	public abstract void resetScore();
+	
 	public void setPosition(Position p) {
 		pos = p;
 	}
@@ -50,5 +52,9 @@ public abstract class AbstractPiece {
 	
 	public Position getPosition() {
 		return pos;
+	}
+
+	public double getScore() {
+		return score;
 	}
 }

@@ -102,4 +102,9 @@ public class Rook extends AbstractPiece {
 		super.move(newPos);
 		movesMade++;
 	}
+
+	@Override
+	public void resetScore() {
+		score = 5;
+	}
 }

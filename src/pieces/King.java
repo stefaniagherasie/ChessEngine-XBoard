@@ -203,4 +203,9 @@ public class King extends AbstractPiece {
 		}
 		movesMade++;
 	}
+
+	@Override
+	public void resetScore() {
+		score = 10000;
+	}
 }

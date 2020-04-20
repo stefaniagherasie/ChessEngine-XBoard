@@ -33,10 +33,11 @@ public class ChessMain {
 			if(ChessBoard.isPlayingColor() == ChessBoard.isPlayerTurn() && !ChessBoard.isforceMode()) {
 				
 				ChessBoard.getInstance().printBoard();
-				Pair<Position, Position> move = engine.nextBestMove();
-				if (!move.isEmpty()) {
-					ChessBoard.getInstance().computeMove(move);
-					System.out.println("move " + move.first + move.second);
+				Pair<Double, Pair<Position, Position>> move = engine.nextBestMove();
+				if (!move.second.isEmpty()) {
+					ChessBoard.getInstance().computeMove(move.second);
+					System.out.println("move " + move.second.first + move.second.second);
+					System.out.println("game value: " + move.first);
 				} else {
 					System.out.println("resign");
 				}

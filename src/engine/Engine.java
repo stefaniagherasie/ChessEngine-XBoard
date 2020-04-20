@@ -8,7 +8,7 @@ import opening.OpeningParser;
 
 public class Engine {
 	private Strategy strategy;
-	private final int INF = 123456789;
+	private final double INF = 123456789;
 	
 	public Engine() {
 		try {
@@ -18,18 +18,19 @@ public class Engine {
 		}
 	}
 	
-	public Pair<Position, Position> nextBestMove() {		
-		return minmax(strategy.getDepth(), strategy, true).second;
+	public Pair<Double, Pair<Position, Position>> nextBestMove() {		
+		return minmax(strategy.getDepth(), strategy, true);
 	}
 	
-	private Pair<Integer, Pair<Position, Position>> minmax(int depth, Strategy strat, boolean ourTurn) {
+	private Pair<Double, Pair<Position, Position>> minmax(int depth, Strategy strat, boolean ourTurn) {
 		try {			
 			if (depth == 0) {
 				return new Pair<>(strat.eval(ChessBoard.isPlayerTurn()), new Pair<>());
 			}
 
 			ChessBoard board = ChessBoard.getInstance();
-			int gameValue = -INF;
+			double gameValue = INF;
+			if (ourTurn) gameValue = -INF;
 			Pair<Position, Position> bestMove = new Pair<>();
 			
 			ArrayList<Pair<Position, Position>> moves = strat.nextMoves();
@@ -58,14 +59,17 @@ public class Engine {
 				
 				board.reversePlayingColor();
 				ChessBoard.updateOurInCheck();
-				int gain = minmax(depth - 1, strat, !ourTurn).first;				
+				double gain = minmax(depth - 1, strat, !ourTurn).first;				
 				board.undo();
 				board.reversePlayingColor();
 				
-				if (gain > gameValue) {
-					System.out.println("depth: " + depth + "; gain: " + gain + "; old gain:" + gameValue);
+				if (ourTurn) {
+					if (gain > gameValue) {
+						gameValue = gain;
+						bestMove = new Pair<>(move);
+					}
+				} else if (gain < gameValue) {
 					gameValue = gain;
-					bestMove = new Pair<>(move);
 				}
 			}
 			

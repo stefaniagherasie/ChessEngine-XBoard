@@ -236,7 +236,12 @@ public class ChessBoard {
 				if (board[i][j] instanceof King)
 					System.out.print("T");
 				if (board[i][j] instanceof VoidPiece) {
-					System.out.print("0  ");
+					System.out.print((int)board[i][j].getScore());
+					if ((int)board[i][j].getScore() < 0) {
+						System.out.print(" ");
+					} else {
+						System.out.print("  ");
+					}
 					continue;
 				}
 				if (board[i][j].getColor())

@@ -95,4 +95,9 @@ public class Bishop extends AbstractPiece {
 		
 		return false;
 	}
+
+	@Override
+	public void resetScore() {
+		score = 3.25;
+	}
 }

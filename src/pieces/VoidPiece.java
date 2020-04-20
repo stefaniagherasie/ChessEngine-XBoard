@@ -9,10 +9,10 @@ import auxiliary.Position;
  * not to be confused with null
  */
 public class VoidPiece extends AbstractPiece{
-	public int score;
 	
 	public VoidPiece(String pos) {
 		super(null, pos);
+		score = 0;
 	}
 
 	@Override
@@ -27,5 +27,16 @@ public class VoidPiece extends AbstractPiece{
 	public ArrayList<Position> getPossibleMoves() {
 		return null;
 	}
-
+	
+	public void resetScore() {
+		score = 0;
+	}
+	
+	public void incScore() {
+		score++;
+	}
+	
+	public void decScore() {
+		score--;
+	}
 }

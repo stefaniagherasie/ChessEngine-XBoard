@@ -21,8 +21,23 @@ public class OpeningStrategy implements Strategy{
 
 
 	@Override
-	public int eval(boolean player) {
-		return (int)(Math.random() * 100);
+	public double eval(boolean player) {
+		ChessBoard board = ChessBoard.getInstance();
+		ArrayList<Pair<Position, Position>> gameHistory = board.convertHistory();
+		List<OpeningMove> nextMoves = gameStates.get(gameHistory);
+		
+		if (nextMoves == null) {
+			gameHistory.remove(gameHistory.size() - 1);
+			nextMoves = gameStates.get(gameHistory);
+		}
+		
+		double result = 0;
+		
+		for (OpeningMove m: nextMoves) {
+			result += m.getGain();
+		}
+		
+		return result / nextMoves.size();
 	}
 
 

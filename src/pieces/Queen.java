@@ -58,4 +58,9 @@ public class Queen extends AbstractPiece {
 		
 		return false;
 	}
+
+	@Override
+	public void resetScore() {
+		score = 9.75;
+	}
 }
