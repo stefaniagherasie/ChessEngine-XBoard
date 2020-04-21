@@ -114,6 +114,8 @@ public class ChessBoard {
 
 			AbstractPiece movedPiece = getPiece(takenPiece.getPosition());
 
+			/* nota mentala ca aici intra intr-un loop de miscare a reginei fata-spate */
+			
 			/* Under-promote Queen to Pawn and undo the previous move */
 			if(movedPiece instanceof Queen && ((Queen) movedPiece).wasPawn && ((Queen) movedPiece).movesMade == 0) {
 				if(movedPiece.getColor()) {
