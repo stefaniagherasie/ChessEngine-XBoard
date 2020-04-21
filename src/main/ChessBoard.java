@@ -66,7 +66,7 @@ public class ChessBoard {
 			AbstractPiece takenPiece = move.first;
 			
 			/* this was the king castling */
-			if (takenPiece instanceof King) {
+			if (takenPiece instanceof King && getPiece(move.second) instanceof VoidPiece) {
 				Rook rook;
 				
 				/* kindside */
@@ -111,8 +111,24 @@ public class ChessBoard {
 				 
 				return;
 			}
-			
+
 			AbstractPiece movedPiece = getPiece(takenPiece.getPosition());
+
+			if(movedPiece instanceof Queen && ((Queen) movedPiece).wasPawn && ((Queen) movedPiece).movesMade == 0) {
+				if(movedPiece.getColor()) {
+					setPiece(move.second, new Pawn("white", move.second.toString()));
+					setPiece(takenPiece.getPosition(), takenPiece);
+					((Pawn) getPiece(move.second)).moved = true;
+				}
+
+				else {
+					setPiece(move.second, new Pawn("black", move.second.toString()));
+					setPiece(takenPiece.getPosition(), takenPiece);
+					((Pawn) getPiece(move.second)).moved = true;
+				}
+				return;
+			}
+			
 			movedPiece.move(move.second);
 			gameMoves.remove(0);
 			setPiece(takenPiece.getPosition(), takenPiece);
@@ -133,14 +149,6 @@ public class ChessBoard {
 			}
 			if (movedPiece instanceof Rook) {
 				((Rook) movedPiece).movesMade -= 2;
-			}
-			if(movedPiece instanceof Queen && ((Queen) movedPiece).prevPos != null) {
-				Position pos = movedPiece.getPosition();
-				Position prevPos = ((Queen) movedPiece).prevPos;
-				if((movedPiece.getColor() && pos.getNumber() == 7) || (!movedPiece.getColor() && pos.getNumber() == 0)) {
-					setPiece(pos, new VoidPiece(pos.toString()));
-					setPiece(prevPos, new Pawn(movedPiece.getColorName(), prevPos.toString()));
-				}
 			}
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Game is in its original state.");
@@ -222,43 +230,46 @@ public class ChessBoard {
 		updatePlayerTurn();
 	}
 
-	public void printBoard() {
-		System.out.println();
-		System.out.println("========================");
-		System.out.println("  1  2  3  4  5  6  7  8");
+	public String printBoard() {
+		String result = "";
+		result += "========================\n";
+		result += "  1  2  3  4  5  6  7  8\n";
 		
 		for (int i = 0; i < 8; i++) {
 			char line = (char)(i + 'a');
-			System.out.print(line + ":");
+			result += line + ":";
 			for (int j = 0; j < 8; j++) {
 				if (board[i][j] instanceof Pawn)
-					System.out.print("P");
+					result +="P";
 				if (board[i][j] instanceof Rook)
-					System.out.print("R");
+					result +="R";
 				if (board[i][j] instanceof Bishop)
-					System.out.print("B");
+					result +="B";
 				if (board[i][j] instanceof Knight)
-					System.out.print("k");
+					result +="K";
 				if (board[i][j] instanceof Queen)
-					System.out.print("Q");
+					result +="Q";
 				if (board[i][j] instanceof King)
-					System.out.print("T");
+					result +="T";
 				if (board[i][j] instanceof VoidPiece) {
-					System.out.print((int)board[i][j].getScore());
+					result += (int)board[i][j].getScore();
 					if ((int)board[i][j].getScore() < 0) {
-						System.out.print(" ");
+						result +=" ";
 					} else {
-						System.out.print("  ");
+						result +="  ";
 					}
 					continue;
 				}
 				if (board[i][j].getColor())
-					System.out.print("w ");
+					result +="w ";
 				else
-					System.out.print("b ");
+					result +="b ";
 			}
-			System.out.println();
+			result += "\n";
 		}
+		result += "========================\n";
+		result += "\n";
+		return result;
 	}
 	
 	/**

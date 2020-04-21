@@ -28,15 +28,8 @@ public class VoidPiece extends AbstractPiece{
 		return null;
 	}
 	
+	@Override
 	public void resetScore() {
 		score = 0;
-	}
-	
-	public void incScore() {
-		score++;
-	}
-	
-	public void decScore() {
-		score--;
 	}
 }

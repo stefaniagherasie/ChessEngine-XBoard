@@ -1,12 +1,11 @@
 package pieces;
 import main.*;
 import java.util.ArrayList;
-import java.io.IOException;
-import java.io.FileWriter;
+
 import auxiliary.Position;
 
 public class Pawn extends AbstractPiece{
-	private boolean moved;
+	public boolean moved;
 	private final int D;
 	
 	public Pawn (String color, String position) {
@@ -57,7 +56,16 @@ public class Pawn extends AbstractPiece{
 				!(board.getPiece(newPos) instanceof VoidPiece) &&
 				board.getPiece(newPos).getColor() != super.getColor() &&
 				pos.getLetter() != newPos.getLetter()) {
+			board.getPiece(newPos).decSafety();
 			return true;
+		}
+		
+		if (board.getPiece(newPos) != null &&
+				!(board.getPiece(newPos) instanceof VoidPiece) &&
+				board.getPiece(newPos).getColor() == super.getColor() &&
+				pos.getLetter() != newPos.getLetter()) {
+			board.getPiece(newPos).incSafety();
+			return false;
 		}
 		
 		if ((board.getPiece(newPos) instanceof VoidPiece) &&
@@ -79,14 +87,14 @@ public class Pawn extends AbstractPiece{
 		
 		if(super.getColor() && newPos.getNumber() == 7) {
 			board.setPiece(pos, new VoidPiece(pos.toString()));
-			board.setPiece(newPos, new Queen("white", newPos.toString(), pos));
 			board.recordMove(board.getPiece(newPos), pos);
+			board.setPiece(newPos, new Queen("white", newPos.toString(), true));
 		}
 
 		else if((!super.getColor()) && newPos.getNumber() == 0) {
 			board.setPiece(pos, new VoidPiece(pos.toString()));
-			board.setPiece(newPos, new Queen("black", newPos.toString(), pos));
 			board.recordMove(board.getPiece(newPos), pos);
+			board.setPiece(newPos, new Queen("black", newPos.toString(), true));
 		}
 		else {
 			super.move(newPos);

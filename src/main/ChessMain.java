@@ -2,12 +2,7 @@ package main;
 import auxiliary.*;
 import commands.*;
 import engine.Engine;
-import pieces.*;
-
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import pieces.King;
 
 public class ChessMain {
 	public static void main(String[] args) {
@@ -20,13 +15,11 @@ public class ChessMain {
 		Command command = reader.next();
 		Engine engine = new Engine();
 		
-		ChessBoard.getInstance().printBoard();
-		
 		while (!(command instanceof QuitCommand)) {
 			command.execute();
 			
 			if (command instanceof UndoCommand) {
-				ChessBoard.getInstance().printBoard();
+				System.out.println(ChessBoard.getInstance().printBoard());
 			}
 			
 			//our turn to move
@@ -35,16 +28,32 @@ public class ChessMain {
 				ChessBoard.getInstance().printBoard();
 				Pair<Double, Pair<Position, Position>> move = engine.nextBestMove();
 				if (!move.second.isEmpty()) {
-					ChessBoard.getInstance().computeMove(move.second);
-					System.out.println("move " + move.second.first + move.second.second);
-					System.out.println("game value: " + move.first);
+					makeMove(move.second);
 				} else {
 					System.out.println("resign");
 				}
-				ChessBoard.getInstance().printBoard();
 			}
 
 			command = reader.next();
 		}
+	}
+	
+	private static void makeMove(Pair<Position, Position> move) {
+		ChessBoard board = ChessBoard.getInstance();
+		board.computeMove(move);
+		
+		if (move.first.equals(new Position("e1")) || move.first.equals(new Position("e8"))) {
+			if (board.getPiece(move.first) instanceof King) {
+				if (move.second.getLetter() == 6) {
+					System.out.println("O-O");
+					return;
+				} else if (move.second.getLetter() == 2) {
+					System.out.println("O-O-O");
+					return;
+				}
+			}
+		}
+		
+		System.out.println("move " + move.first + move.second);
 	}
 }

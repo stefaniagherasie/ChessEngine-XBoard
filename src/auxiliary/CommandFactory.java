@@ -1,5 +1,6 @@
 package auxiliary;
 import commands.*;
+import main.ChessBoard;
 
 public class CommandFactory {
 	private static CommandFactory uniqueInstance;
@@ -42,6 +43,12 @@ public class CommandFactory {
 	}
 	
 	private boolean isMoveCommand(String s) {
+		if (s.equals("O-O")) {
+			return true;
+		} else if (s.equals("O-O-O")) {
+			return true;
+		}
+		
 		if(s.length() >= 4)
 			return Position.legalPosition(s.substring(0,2)) && Position.legalPosition(s.substring(2));
 		else return false;

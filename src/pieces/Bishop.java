@@ -84,10 +84,17 @@ public class Bishop extends AbstractPiece {
 	public boolean verifyMove(Position newPos) {
 		ChessBoard board = ChessBoard.getInstance();
 		
+		if (!(board.getPiece(newPos) instanceof VoidPiece) &&
+				board.getPiece(newPos).color == super.getColor()) {
+			board.getPiece(newPos).incSafety();
+			return false;
+		}
+		
 		if (! (board.getPiece(newPos) instanceof VoidPiece) &&
 				board.getPiece(newPos).color != super.getColor()) {
-				return true;
-			}
+			board.getPiece(newPos).decSafety();
+			return true;
+		}
 		
 		if ((board.getPiece(newPos) instanceof VoidPiece)) {
 			return true;

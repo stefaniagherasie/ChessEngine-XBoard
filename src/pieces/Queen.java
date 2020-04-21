@@ -7,20 +7,20 @@ import auxiliary.Position;
 
 public class Queen extends AbstractPiece {
 	
-
-	public Position prevPos;
+	public boolean wasPawn;
 	public int movesMade;
 	
 	public Queen (String color, String position) {
 		super(color, position);
-		prevPos = null;
+		wasPawn = false;
 	}
 
-	public Queen (String color, String position, Position prevPos) {
+	public Queen (String color, String position, boolean wasPawn) {
 		super(color, position);
 		movesMade = 0;
-		this.prevPos = prevPos;
+		this.wasPawn = wasPawn;
 	}
+
 
 	@Override
 	public ArrayList<Position> getPossibleMoves() {
@@ -58,18 +58,25 @@ public class Queen extends AbstractPiece {
 	public boolean verifyMove(Position newPos) {
 		ChessBoard board = ChessBoard.getInstance();
 		
-		if(!(board.getPiece(newPos) instanceof VoidPiece) &&
-				board.getPiece(newPos).color != super.getColor()){
-				return true;
-			}
-
-		if((board.getPiece(newPos) instanceof VoidPiece)){
+		if (!(board.getPiece(newPos) instanceof VoidPiece) &&
+				board.getPiece(newPos).color == super.getColor()) {
+			board.getPiece(newPos).incSafety();
+			return false;
+		}
+		
+		if (! (board.getPiece(newPos) instanceof VoidPiece) &&
+				board.getPiece(newPos).color != super.getColor()) {
+			board.getPiece(newPos).decSafety();
+			return true;
+		}
+		
+		if ((board.getPiece(newPos) instanceof VoidPiece)) {
 			return true;
 		}
 		
 		return false;
 	}
-	
+
 	@Override
 	public void move(Position newPos) {
 		super.move(newPos);

@@ -1,5 +1,8 @@
 package engine;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import auxiliary.*;
@@ -49,9 +52,16 @@ public class Engine {
 					strat = new MainStrategy();
 				}
 				moves = strat.nextMoves();
-				System.out.println("improvising");
 				depth = Math.min(depth, strategy.getDepth());
 			}
+			
+			/**
+			 * somebody is in check mate
+			 */
+			if (moves.size() == 0) {
+				return new Pair<>(-INF, new Pair<>());
+			}
+			
 			bestMove = new Pair<>(moves.get(0));
 			
 			for (Pair<Position, Position> move: moves) {
@@ -74,23 +84,21 @@ public class Engine {
 			}
 			
 			return new Pair<>(gameValue, bestMove);
-		} catch (IndexOutOfBoundsException e) {
-			/**
-			 * somebody is in check mate
-			 */
-			System.out.println("somebody is in check mate");
-			if (ourTurn) {
-				return new Pair<>(-INF, new Pair<>());
-			} else {
-				return new Pair<>(INF, new Pair<>());
-			}
-		} catch (Exception e) {
-			
-			//Temporara, sa prind greselile
-			ChessBoard.getInstance().printBoard();
-			System.out.println(ChessBoard.getInstance().convertHistory());
-			e.printStackTrace();
+		}  catch (NullPointerException e) { 
 			return null;
+		} catch (Exception e) {
+			try {
+				FileWriter pw = new FileWriter(new File("ERRlog.txt"));
+				//Temporara, sa prind greselile
+				pw.append(ChessBoard.getInstance().printBoard());
+				pw.append(ChessBoard.getInstance().convertHistory().toString());
+				pw.append(e.getStackTrace().toString());
+				pw.close();
+				return null;
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				return null;
+			}
 		}
 	}
 	

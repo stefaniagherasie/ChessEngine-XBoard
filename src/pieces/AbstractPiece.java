@@ -8,6 +8,7 @@ public abstract class AbstractPiece {
 	protected boolean color;
 	protected ArrayList<Position> possibleMoves;
 	protected double score;
+	protected int safety;
 	
 	protected AbstractPiece(String color, String position) {
 		if (color != null) {
@@ -17,6 +18,7 @@ public abstract class AbstractPiece {
 				this.color = false;
 		}
 		pos = new Position(position);
+		safety = 0;
 		resetScore();
 	}
 
@@ -42,18 +44,32 @@ public abstract class AbstractPiece {
 	
 	public abstract void resetScore();
 	
+	public void resetSafety() {
+		safety = 0;
+	}
+	
+	public void incSafety() {
+		safety++;
+	}
+	
+	public void decSafety() {
+		safety--;
+	}
+	
+	public int getSafety() {
+		return safety;
+	}
+	
+	public boolean isInDanger() {
+		return (safety < 0);
+	}
+	
 	public void setPosition(Position p) {
 		pos = p;
 	}
 	
 	public boolean getColor() {
 		return color;
-	}
-	
-	public String getColorName(){
-		if(getColor())
-			return "white";
-		else return "black";
 	}
 	
 	public Position getPosition() {
