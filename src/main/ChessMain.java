@@ -5,6 +5,8 @@ import engine.Engine;
 import pieces.King;
 
 public class ChessMain {
+	private static boolean didTrialRun = false;
+	
 	public static void main(String[] args) {
 		CommandReader reader = new CommandReader(System.in);
 		
@@ -54,6 +56,11 @@ public class ChessMain {
 			}
 		}
 		
-		System.out.println("move " + move.first + move.second);
+		if (didTrialRun == false) {
+			didTrialRun = true;
+			ChessBoard.updatePlayerTurn();
+		} else {
+			System.out.println("move " + move.first + move.second);
+		}
 	}
 }

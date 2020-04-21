@@ -9,6 +9,7 @@ import main.ChessBoard;
 import opening.OpeningParser;
 
 public class Engine {
+	private boolean trialRun = true;
 	private Strategy strategy;
 	private final double INF = 123456789;
 	
@@ -20,8 +21,13 @@ public class Engine {
 		}
 	}
 	
-	public Pair<Double, Pair<Position, Position>> nextBestMove() {		
-		return minmax(strategy.getDepth(), strategy, true);
+	public Pair<Double, Pair<Position, Position>> nextBestMove() {
+		if (trialRun) {
+			trialRun = false;
+			return minmax(1, strategy, true);
+		} else {
+			return minmax(strategy.getDepth(), strategy, true);
+		}
 	}
 	
 	private Pair<Double, Pair<Position, Position>> minmax(int depth, Strategy strat, boolean ourTurn) {
