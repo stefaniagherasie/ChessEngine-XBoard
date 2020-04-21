@@ -32,10 +32,7 @@ public class OpeningParser {
         } catch (IOException error) {
             throw error;
         }
-        
-        // TO WE NEED IT??
-        // Do some counting 
-        /*Set<Integer> hashCodes = gameStates.keySet().stream().map(ChessBoard::hashCode).collect(toSet());;*/
+
         return new OpeningStrategy(gameStates);
     }
     
@@ -43,7 +40,8 @@ public class OpeningParser {
      * Treat the moves from each line
      * @return A HashMap with game states from well known chess strategies.
      */
-    static Map< ArrayList<Pair<Position, Position>>, List<OpeningMove>> parseLines(List<String> lines) throws LineErrorException {
+    static Map< ArrayList<Pair<Position, Position>>, List<OpeningMove>> 
+                                parseLines(List<String> lines) throws LineErrorException {
     	// Strategies under the format <List of past moves, List of next moves and their gain>
     	Map< ArrayList <Pair<Position, Position>>, List<OpeningMove>> gameStates = new HashMap<>();
 
@@ -59,19 +57,22 @@ public class OpeningParser {
             String nextMove = fields[1].trim();
             
             // Store the past moves into an ArrayList
-            ArrayList <Pair<Position, Position>> pastMoves = new ArrayList <Pair<Position, Position>>();
+            ArrayList <Pair<Position, Position>> pastMoves = 
+                                            new ArrayList <Pair<Position, Position>>();
             
             if (moves.length == 1 && moves[0].isBlank()) {   
             	// pastMoves remains empty
             } else {
             	// Add all past moves as Pairs
             	for(String move : moves) {
-               		pastMoves.add(new Pair<>(new Position(move.substring(0, 2)), new Position(move.substring(2, 4))));
+               		pastMoves.add(new Pair<>(new Position(move.substring(0, 2)), 
+                                                new Position(move.substring(2, 4))));
                	}
             }
             
             // From the past moves we have a list of possible next moves
-            List<OpeningMove> nextMoves = gameStates.computeIfAbsent(pastMoves, key -> new ArrayList<>());
+            List<OpeningMove> nextMoves = 
+                        gameStates.computeIfAbsent(pastMoves, key -> new ArrayList<>());
             
             String[] moveAndGain = nextMove.split(("/"));
             

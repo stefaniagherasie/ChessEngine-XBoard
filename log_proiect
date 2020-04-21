@@ -96,3 +96,7 @@ Am inceput lucrul la engine.
 
 == Stefi - 20 apr ==
 Am incercat cu Comsina sa rezolvam transformarea pionului in regina. Ceva nu e tocmai bine si nici nu prea reusim sa ajungem sa testam. Also, engine ul se cam blocheaza la un moment dat(pare sa gandeasca cam mult - l-am lasat vreo 5min si nu face nimic) dupa imi da broken pipe. Rezolvam maine together!
+
+== Stefi - 21 apr ==
+S-a rezolvat problema cu regina transformata din pion.
+Am updatat README-ul

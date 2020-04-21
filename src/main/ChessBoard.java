@@ -114,6 +114,7 @@ public class ChessBoard {
 
 			AbstractPiece movedPiece = getPiece(takenPiece.getPosition());
 
+			/* Under-promote Queen to Pawn and undo the previous move */
 			if(movedPiece instanceof Queen && ((Queen) movedPiece).wasPawn && ((Queen) movedPiece).movesMade == 0) {
 				if(movedPiece.getColor()) {
 					setPiece(move.second, new Pawn("white", move.second.toString()));
@@ -152,6 +153,9 @@ public class ChessBoard {
 			}
 			if (movedPiece instanceof Rook) {
 				((Rook) movedPiece).movesMade -= 2;
+			}
+			if (movedPiece instanceof Queen) {
+				((Queen) movedPiece).movesMade -= 2;
 			}
 		} catch (IndexOutOfBoundsException e) {
 			System.out.println("Game is in its original state.");

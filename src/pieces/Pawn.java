@@ -85,12 +85,13 @@ public class Pawn extends AbstractPiece{
 	public void move(Position newPos) {
 		ChessBoard board = ChessBoard.getInstance();
 		
-		if(super.getColor() && newPos.getNumber() == 7) {
+		/* Promote Pawn to white Queen if it reaches the end of the board  */
+			if(super.getColor() && newPos.getNumber() == 7) {
 			board.setPiece(pos, new VoidPiece(pos.toString()));
 			board.recordMove(board.getPiece(newPos), pos);
 			board.setPiece(newPos, new Queen("white", newPos.toString(), true));
 		}
-
+		/* Promote Pawn to black Queen if it reaches the end of the board */
 		else if((!super.getColor()) && newPos.getNumber() == 0) {
 			board.setPiece(pos, new VoidPiece(pos.toString()));
 			board.recordMove(board.getPiece(newPos), pos);
@@ -101,7 +102,6 @@ public class Pawn extends AbstractPiece{
 		}
 
 		moved = true;
-		
 	}
 
 	@Override

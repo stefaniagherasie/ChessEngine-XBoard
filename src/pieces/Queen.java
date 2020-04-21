@@ -7,6 +7,9 @@ import auxiliary.Position;
 
 public class Queen extends AbstractPiece {
 	
+	/**
+	 * true if the Queen is promoted from Pawn
+	 */
 	public boolean wasPawn;
 	public int movesMade;
 	
@@ -15,6 +18,9 @@ public class Queen extends AbstractPiece {
 		wasPawn = false;
 	}
 
+	/**
+	 * Constructor for a Queen promoted from Pawn
+	 */
 	public Queen (String color, String position, boolean wasPawn) {
 		super(color, position);
 		movesMade = 0;
