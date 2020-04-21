@@ -1,6 +1,5 @@
 package engine;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -32,8 +31,8 @@ public class Engine {
 			}
 
 			ChessBoard board = ChessBoard.getInstance();
-			double gameValue = INF;
-			if (ourTurn) gameValue = -INF;
+			double gameValue = INF + 1;
+			if (ourTurn) gameValue = -INF - 1;
 			Pair<Position, Position> bestMove = new Pair<>();
 			
 			ArrayList<Pair<Position, Position>> moves = strat.nextMoves();
@@ -52,14 +51,18 @@ public class Engine {
 					strat = new MainStrategy();
 				}
 				moves = strat.nextMoves();
-				depth = Math.min(depth, strategy.getDepth());
+				depth = Math.min(depth, new MainStrategy().getDepth());
 			}
 			
 			/**
 			 * somebody is in check mate
 			 */
 			if (moves.size() == 0) {
-				return new Pair<>(-INF, new Pair<>());
+				if (ourTurn) {
+					return new Pair<>(-INF, new Pair<>());
+				} else {
+					return new Pair<>(INF, new Pair<>());
+				}
 			}
 			
 			bestMove = new Pair<>(moves.get(0));
@@ -88,11 +91,15 @@ public class Engine {
 			return null;
 		} catch (Exception e) {
 			try {
-				FileWriter pw = new FileWriter(new File("ERRlog.txt"));
 				//Temporara, sa prind greselile
+				
+				File file = new File("ERRlog.txt");
+				PrintWriter pw = new PrintWriter(file);
 				pw.append(ChessBoard.getInstance().printBoard());
 				pw.append(ChessBoard.getInstance().convertHistory().toString());
-				pw.append(e.getStackTrace().toString());
+				pw.append("\n");
+				pw.append(e.getMessage());
+				e.printStackTrace(pw);
 				pw.close();
 				return null;
 			} catch (IOException e1) {

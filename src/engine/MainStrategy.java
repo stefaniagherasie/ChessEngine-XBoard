@@ -49,7 +49,7 @@ public class MainStrategy implements Strategy{
 		return result;
 	}
 	
-	private double boardEvaluatuion(boolean player) {
+	private double boardEvaluation(boolean player) {
 		double boardOccupancyScore = 0;
 		double dangerScore = 0;
 		ChessBoard board = ChessBoard.getInstance();
@@ -97,7 +97,7 @@ public class MainStrategy implements Strategy{
 	public double eval(boolean player) {
 		double result = boardScoreReset();
 		
-		result += boardEvaluatuion(player);
+		result += boardEvaluation(player);
 		
 		return result;
 	}

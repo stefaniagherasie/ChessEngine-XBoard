@@ -125,7 +125,10 @@ public class ChessBoard {
 					setPiece(move.second, new Pawn("black", move.second.toString()));
 					setPiece(takenPiece.getPosition(), takenPiece);
 					((Pawn) getPiece(move.second)).moved = true;
-				}
+				}				
+				/* setting player's turn */
+				playerTurn = movedPiece.getColor();
+				
 				return;
 			}
 			
