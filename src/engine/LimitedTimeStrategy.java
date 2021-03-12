@@ -22,7 +22,7 @@ public class LimitedTimeStrategy implements Strategy{
 	@Override
 	public int getDepth() {
 		// TODO Auto-generated method stub
-		return 0;
+		return 2;
 	}
 
 }
