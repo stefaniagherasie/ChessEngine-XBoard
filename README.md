@@ -22,8 +22,12 @@ Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 
 	Pentru rularea temei in cadrul XBoard-ului se poate folosi "make xboard" apelat in folderul sursa (src/).
 	Se recomanda rularea "make clean" pentru testari repetate.
+	
+	Pentru testarea impotriva lui FairyMax:
+		xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” 
+		-tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false
 
-
+<br>
 
 #### DETALII DESPRE STRUCTURA PROIECTULUI == ETAPA 1 ==
 
@@ -36,7 +40,7 @@ Proiectul este implementat in Java si urmareste interactiune cu XBoard-ul.
 Am realizat 4 pachete pentru structurarea claselor(main, commands, pieces,
 auxiliary).
 
-* pachetul "main"
+* **pachetul "main"**
  
 Am creat clasa ChessBoard pentru reprezentarea interna a tablei de sah. Am
 folosit Design Pattern-ul Singleton pentru a asigura unicitatea tablei, 
@@ -53,7 +57,7 @@ de la XBoard. Se porneste jocul,care pentru aceasta etapa se rezuma la miscarea
 pionilor pe tabla prin generare aleatorie a miscarilor. Se dau XBoard-ului
 miscari random. Aceasta parte de cod urmeaza a fi inlocuita pentru etapele viitoare.
 
-* pachetul "pieces"
+* **pachetul "pieces"**
 
 Reprezentarea pieselor porneste de la clasa abstracta AbstractPiece. Piesele
 sunt caracterizate prin pozitie si culoare. Constructorul clasei asigneaza 
@@ -74,7 +78,7 @@ mutarile legale ale pionului si de marginile tablei. Mutarile se realizeaza
 tinand cont de culoarea jucata, de pozitiile ocupate pe tabla, de locurile
 libere. Metoda move() plaseaza piesa pe pozitia data.
 
-* pachetul "commands"
+* **pachetul "commands"**
 
 S-a creat clasa Command care reprezinta comenzile continand metoda execute().
 Aceasta clasa va fi mostenita pentru individualizarea comenzilor. Clasa 
@@ -84,7 +88,7 @@ S-au creat clase pentru fiecare comanda specificata in cerinta(xboard, new,
 force, go, white, black, quit, resign si protover). Fiecare comanda respecta
 specificatiile mentionate in documentatie.
 
-* pachetul "auxiliary"
+* **pachetul "auxiliary"**
 
 Se foloseste clasa Position pentru a reprezenta pozitia pe tabla a unei piese.
 Aceasta contine metode pentru a corela pozitia data sub forma de String cu 
@@ -96,8 +100,8 @@ functie de pozitie. CommandFactory utilizeaza Design Pattern-ul factory pentru a
 in functie de argumentul primit la citire. CommandReader este folosit pentru citirea de la stdin a comenzilor. Se
 proceseaza pe rand comenzile si se asigura prelucrarea argumentelor primite de
 la XBoard.
-
-
+<br>
+<br>
 
 #### DETALII DESPRE STRUCTURA PROIECTULUI == ETAPA 2 ==
 
@@ -160,8 +164,8 @@ posibila a playerului curent. Initial alegem sa jucam dupa OpeningStrategy, stii
 ca incepem jocul folosind strategii cunoscute in sah. Cand OpeningStrategy a ramas 
 insa fara mutari se trece la MainStrategy. Folosind functiile de evaluare, se alege 
 mutarea considerata cea mai avantajoasa de algoritmul de Minimax.
-
-
+<br>
+<br>
 
 #### ABORDAREA ALGORITMICA
 
@@ -174,10 +178,8 @@ avand adancimea de 2.
 Functiile de evaluare de care ne-am folosit tin cont de gain-ul pieselor pentru 
 miscarile de inceput, trecand apoi la evaluarea pieselor in functie de importanta lor 
 si de nivelul de siguranta a acestora, de pericolul in care acestea de afla.
-
-
-
-
+<br>
+<br>
 
 #### Bibliografie
 
