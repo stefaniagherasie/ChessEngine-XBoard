@@ -1,26 +1,25 @@
-=== README PROIECT ===
 Proiect PROIECTAREA ALGORITMILOR
 Echipa DUMB.BLONDES (grupa 323CB)
 
-MEMBRII:    
-			BADITA Rares-Octavian(capitan)
-            GHERASIE Stefania-Elena
-            MANDRU Cosmina
+Proiectul presupune realizarea reprezentarii internă a tablei de joc și a pieselor
+de joc, precum și o interfațare cu programul XBoard.
+
+# MEMBRII:   	BADITA Rares-Octavian
+		GHERASIE Stefania-Elena
+		MANDRU Cosmina
 
 
 
-== INSTRUCTIUNI DE COMPILARE
+	Makefile-ul contine urmatoarele reguli:
+		default - la fel ca make jar
+		make jar - realizeaza fisierul cu extensia .jar
+		make run - face fisierul .jar
+		make xboard - face fisierul .jar si il pune ca fcp pentru XBoard
+		make clean - sterge fisierele .class
 
-Makefile-ul contine urmatoarele reguli:
-	default - la fel ca make jar
-	make jar - realizeaza fisierul cu extensia .jar
-	make run - face fisierul .jar
-	make xboard - face fisierul .jar si il pune ca fcp pentru XBoard
-	make clean - sterge fisierele .class
-
-Pentru rularea temei in cadrul XBoard-ului se poate folosi "make xboard" apelat 
-in folderul sursa (src/).
-Se recomanda rularea "make clean" pentru testari repetate.
+	Pentru rularea temei in cadrul XBoard-ului se poate folosi "make xboard" apelat 
+	in folderul sursa (src/).
+	Se recomanda rularea "make clean" pentru testari repetate.
 
 
 
@@ -183,23 +182,6 @@ si de nivelul de siguranta a acestora, de pericolul in care acestea de afla.
 
 
 
-== RESPONSABILITATEA FIECARUI MEMBRU DIN ECHIPA == ETAPA 1 ==
-
-Deoarece dificultatea principala a acestei etape a fost descoperirea unei
-metode de interactiune cu XBoard-ul, am lucrat impreuna pentru a ne familiariza
-cu engine-ul de XBoard si a decide ce structura sa abordam pentru implementarea
-proiectului.
-
-Am pornit prin a structura un schelet de cod, care a fost apoi dezvoltat
-individual si in echipa pentru a se potrivi cerintelor proiectului. 
-Pentru a da exemplu de responsibilitati individuale, Rares s-a ocupat de 
-crearea tablei, a pozitiilor si a piesei implementate(pion), citirea comenzilor, 
-Cosmina de implementarea comenzilor si Stefania de generarea
-aleatorie a miscarilor si realizarea unui ReadMe.
-Fiecare membru a incercat sa contribuie la proiect, mai ales in rezolvarea
-erorilor si problemelor care au aparut.
-
-
 
 == RESPONSABILITATEA FIECARUI MEMBRU DIN ECHIPA == ETAPA 2 ==
 
@@ -222,11 +204,3 @@ Toti membrii s-au ocupat de rezolvarea problemelor aparute.
 [4] - https://stackoverflow.com/questions/22060432/how-to-make-a-simple-protocol-to-winboard
 [5] - https://codereview.stackexchange.com/questions/194736/chess-application-in-java
 [6] - https://stackoverflow.com/questions/9556577/communicating-with-xboard-chess-engine-c-c
-
-
-
-== ADAUGARI
-
-Codul contine functii care au fost utilizate pentru testare si care
-ar putea fi utile in realizarea etapelor viitoare. De aceea, am ales sa
-le pastram. Aceastea nu incurca insa testarea programului.
