@@ -37,8 +37,7 @@ Interfațarea va presupune posibilitatea de a interpreta și interacționa cu ur
 comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move.
 
 Proiectul este implementat in Java si urmareste interactiune cu XBoard-ul.
-Am realizat 4 pachete pentru structurarea claselor(main, commands, pieces,
-auxiliary).
+Am realizat 4 pachete pentru structurarea claselor(main, commands, pieces, auxiliary).
 
 * **pachetul "main"**
  
