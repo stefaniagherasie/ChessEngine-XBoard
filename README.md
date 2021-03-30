@@ -7,7 +7,6 @@ Tema proiectului este realizarea unei inteligențe artificiale capabile să joac
 Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 
 
-
 #### MEMBRII
             BADITA Rares-Octavian
 		GHERASIE Stefania-Elena
