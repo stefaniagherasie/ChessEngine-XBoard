@@ -6,11 +6,18 @@
 Tema proiectului este realizarea unei inteligențe artificiale capabile să joace șah. <br>
 Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 
+## Descriere
+Se urmareste realizare reprezentarii interne a tablei de joc și a pieselor
+de joc, precum și o interfațare cu programul XBoard. Interfațarea va urmari posibilitatea de a interpreta și interacționa cu următoarele 
+comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move. <br>
+Programul va implementa algoritmul Minimax pentru a juca impotriva unui adversar. Programul va trebui să poată interpreta orice mișcare legală primită de la adversar, respectand toate regulile jocului.
+<br>
+
 ## Membrii
 > BADITA Rares-Octavian 	&nbsp;&nbsp; &nbsp; &nbsp;			[@WhyNotRaresh](https://github.com/WhyNotRaresh) <br>
 > GHERASIE Stefania-Elena 	&nbsp; &nbsp; 					        [@stefania.gherasie](https://github.com/stefaniagherasie) <br>
 > MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06) <br>
-<br>
+
 
 ## Compilare si Rulare
 Pentru rulare, programul necesita Xboard 4.8(sau o versiune mai noua). 
@@ -29,17 +36,12 @@ Pentru testarea impotriva lui FairyMax:
 <br>
 
 ## Structura proiectului
-Proiectul presupune realizarea reprezentarii internă a tablei de joc și a pieselor
-de joc, precum și o interfațare cu programul XBoard.
-Interfațarea va urmari posibilitatea de a interpreta și interacționa cu următoarele 
-comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move.
-
 Proiectul are urmatoarea organizare:
-* pachetele: ```main```, ```pieces```, ```engine```, ```opening```, ```commands```, ```auxiliary``` - contin codul efectiv
-* ```Makefile``` - compileaza si ruleaza in XBoard
-* ```MANIFEST.MF```
-* ```README.md```
-* ```book.csv``` - contine succesiunea de miscari pentru deschideri celebre ale jocului de sah.
+> * pachetele: ```main```, ```pieces```, ```engine```, ```opening```, ```commands```, ```auxiliary``` - contin codul efectiv
+> * ```Makefile``` - compileaza si ruleaza in XBoard
+> * ```MANIFEST.MF```
+> * ```README.md```
+> * ```book.csv``` - contine succesiunea de miscari pentru deschideri celebre ale jocului de sah.
 
 | Pachet      | Componenta  |
 | ----------- | ----------- |
@@ -56,12 +58,11 @@ Clasa ```ChessMain``` ruleaza programul. Se creeaza o tabla, se interpreteaza co
 
 
 #### ► Tabla de sah
-Clasa ```ChessBoard``` contine reprezentarea interna a tablei de sah. Am folosit Design Pattern-ul Singleton pentru a asigura unicitatea tablei. Tabla este
+Clasa ```ChessBoard``` contine reprezentarea interna a tablei de sah. Am folosit Design Pattern-ul Singleton pentru a asigura unicitate. Tabla este
 reprezentata sub forma unei matrici 8x8 de piese. Variabilele ```playingColor/ 
 playerTurn``` sunt folosite pentru a retine ce culoare joaca si ce culoare urmeaza
 sa mute.Aceasta clasa contine metode pentru resetarea tablei la pozitia initiala,
 obtinerea unei piese in functie de pozitie.
-<br>
 <br>
 
 #### ► Piesele
@@ -77,7 +78,6 @@ Am implementat scoaterea regelui din sah cand acesta este amenint de piesele
 adversarului. Ne-am ocupat si de alte detalii ale jocului de sah, cum ar fi 
 rocada sau promovarea pionului la regina cand ajunge la marginea opusa a tablei.
 <br>
-<br>
 
 #### ► Interpretarea Comenzilor
  ```CommandReader``` este folosit pentru citirea de la stdin a comenzilor. Se
@@ -87,7 +87,6 @@ la XBoard.
 Clasa ```Command``` reprezinta aceste comenzi si va fi mostenita pentru individualizarea comenzilor. Clasa 
 ```VoidCommand``` reprezinta o comanda nula. S-au creat clase pentru fiecare comanda specificata in cerinta(```xboard```, ```new```, 
 ```force```, ```go```, ```white```, ```black```, ```quit```, ```resign``` si ```protover```).
-<br>
 <br>
 
 #### ► Strategia de Deschidere 
@@ -103,7 +102,6 @@ miscarii.
 Pentru ```OpeningStrategy``` se alege cea mai buna miscare dupa ```gain```, in functie de miscarile din istoric.
 In acest fel ne asiguram ca pentru inceputul jocului avem o strategie destul de
 buna atat timp cat succesiunea de miscari respecta un tipar.
-<br>
 <br>
 
 #### ► Strategia Principala
@@ -123,9 +121,8 @@ raportul dintre ```boardOccupacyScore```(suma safety-urilor pozitiilor vide) si
 ```dangerScore```(suma scorurilor pozitiilor in pericol - scade cand piesele noastre sunt
 in pericol mare, creste cand piesele adversatului sunt in pericol).
 
-Am urmarit sa facem comanda de ```undo``` folosita in special pentru a ne intoarce
+Am implementat comanda de ```undo``` folosita in special pentru a ne intoarce in timp
 cand facem o miscare proasta (ex: o piesa importanta ne-ar fi luata). 
-<br>
 <br>
 
 #### ► Engine-ul
@@ -148,6 +145,7 @@ Functiile de evaluare de care ne-am folosit tin cont de gain-ul pieselor pentru
 miscarile de inceput, trecand apoi la evaluarea pieselor in functie de importanta lor 
 si de nivelul de siguranta a acestora, de pericolul in care acestea de afla.
 <br>
+
 
 ## Bibliografie
 1. https://www.gnu.org/software/xboard/
