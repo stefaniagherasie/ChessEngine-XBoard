@@ -70,8 +70,7 @@ obtinerea unei piese in functie de pozitie.
 
 #### ► Piesele
 Reprezentarea pieselor porneste de la clasa abstracta ```AbstractPiece```. Se foloseste clasa ```Position``` pentru a reprezenta pozitia pe tabla a unei piese.
-Pentru a reprezenta locul liber pe tabla se foloseste clasa ```VoidPiece```, adica o piesa nula.
-
+Pentru a reprezenta locul liber pe tabla se foloseste clasa ```VoidPiece```, adica o piesa nula. <br>
 Am creat clase pentru fiecare tip de piesa(```Pawn```, ```Bishop```, ```King```, ```Knight```, ```Queen```,
 ```Rook```) si am implementat miscarile specifice. Se salveaza pozitiile mutarilor posibile, tinand cont de 
 mutarile legale si de marginile tablei. Mutarile se realizeaza in functie de culoarea jucata, de pozitiile ocupate pe tabla, de locurile
@@ -81,17 +80,14 @@ Am implementat scoaterea regelui din sah cand acesta este amenint de piesele
 adversarului. Ne-am ocupat si de alte detalii ale jocului de sah, cum ar fi 
 rocada sau promovarea pionului la regina cand ajunge la marginea opusa a tablei.
 <br>
-<br>
 
 #### ► Interpretarea Comenzilor
  ```CommandReader``` este folosit pentru citirea de la stdin a comenzilor. Se
 proceseaza pe rand comenzile si se asigura prelucrarea argumentelor primite de
-la XBoard.
-
+la XBoard. <br>
 Clasa ```Command``` reprezinta aceste comenzi si va fi mostenita pentru individualizarea comenzilor. Clasa 
 ```VoidCommand``` reprezinta o comanda nula. S-au creat clase pentru fiecare comanda specificata in cerinta(```xboard```, ```new```, 
 ```force```, ```go```, ```white```, ```black```, ```quit```, ```resign``` si ```protover```).
-<br>
 <br>
 
 #### ► Strategia de Deschidere 
@@ -102,12 +98,10 @@ de sah care ne-ar putea ajuta sa avem un avantaj pentru inceputul jocului.
 In ```OpeningParser``` am parsat succesiunile de miscari, salvandu-le intr-un Map
 sub forma <Lista de miscari anterioare, Lista cu miscari urmatoare avantajoase>.
 Am folosit clasa ```OpeningMove``` pentru a retine miscarea urmatoare, asociind un ```gain``` care reprezinta importanta
-miscarii. 
-
+miscarii. <br>
 Pentru ```OpeningStrategy``` se alege cea mai buna miscare dupa ```gain```, in functie de miscarile din istoric.
 In acest fel ne asiguram ca pentru inceputul jocului avem o strategie destul de
 buna atat timp cat succesiunea de miscari respecta un tipar.
-<br>
 <br>
 
 #### ► Strategia Principala
@@ -125,12 +119,11 @@ cat de avantajos ar fi sa mutam o piesa in pozitia aceea libera. Se calculeaza u
 rezultat care reprezinta cat de valoroasa este tabla noastra, reprezentand
 raportul dintre ```boardOccupacyScore```(suma safety-urilor pozitiilor vide) si 
 ```dangerScore```(suma scorurilor pozitiilor in pericol - scade cand piesele noastre sunt
-in pericol mare, creste cand piesele adversatului sunt in pericol).
-
+in pericol mare, creste cand piesele adversatului sunt in pericol). <br>
 Am implementat comanda de ```undo``` folosita in special pentru a ne intoarce in timp
 cand facem o miscare proasta (ex: o piesa importanta ne-ar fi luata). 
 <br>
-<br>
+
 #### ► Engine-ul
 Clasa ```Engine``` implementeaza algoritmul de Minimax, calculand cea mai buna miscare 
 posibila a jucatorului curent. Initial alegem sa jucam dupa OpeningStrategy, stiind
