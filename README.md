@@ -18,7 +18,6 @@ Programul va implementa algoritmul Minimax pentru a juca impotriva unui adversar
 > BADITA Rares-Octavian 	&nbsp;&nbsp; &nbsp; &nbsp;			[@WhyNotRaresh](https://github.com/WhyNotRaresh) <br>
 > GHERASIE Stefania-Elena 	&nbsp; &nbsp; 					        [@stefania.gherasie](https://github.com/stefaniagherasie) <br>
 > MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06)
-<br>
 
 ## Compilare si Rulare
 Pentru rulare, programul necesita Xboard 4.8(sau o versiune mai noua). 
