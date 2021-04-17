@@ -32,76 +32,54 @@ de joc, precum și o interfațare cu programul XBoard.
 Interfațarea va urmari posibilitatea de a interpreta și interacționa cu următoarele 
 comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move.
 
-Proiectul este implementat in Java si urmareste interactiune cu XBoard-ul. 
+Proiectul are urmatoarea organizare:
+* pachetele: ```main```, ```pieces```, ```engine```, ```opening```, ```commands```, ```auxiliary``` - contin codul efectiv
+* ```Makefile``` - compileaza si ruleaza in XBoard
+* ```MANIFEST.MF```
+* ```README.md```
+* ```book.csv``` - contine succesiunea de miscari pentru deschideri celebre ale jocului de sah.
+
 | Pachet      | Componenta  |
 | ----------- | ----------- |
-| main        | ChessBoard, ChessMain |
+| main        | ChessBoard, ChessMain|
 | pieces      | AbstractPiece, Bishop, King, Knight, Pawn, Queen, Rook, VoidPiece|
 | engine      | Engine, Strategy, OpeningStrateg, MainStrategy, LimitedTimeStrategy|
 | opening     | OpeningMove, OpeningParser|
 | commands    | BlackCommand, Command, ForceCommand, GoCommand, MoveCommand, NewCommand, ProtoverCommand, QuitCommand, ResignCommand, UndoCommand, VoidCommand, WhiteCommand, XBoardCommand|
 | auxiliary   | CommandFactory, CommandReader, LineErrorException, Pair, PiecesFactory, Position|
 
-**pachetul "main"**
- 
-Am creat clasa ```ChessBoard``` pentru reprezentarea interna a tablei de sah. Am
-folosit Design Pattern-ul Singleton pentru a asigura unicitatea tablei, 
-creearea instantei facandu-se prin apelarea metodei ```getInstance()```. Tabla este
+## Implementare
+
+#### Tabla de sah
+Clasa ```ChessBoard``` contine reprezentarea interna a tablei de sah. Am
+folosit Design Pattern-ul Singleton pentru a asigura unicitatea tablei. Tabla este
 reprezentata sub forma unei matrici 8x8 de piese. Variabilele ```playingColor/ 
 playerTurn``` sunt folosite pentru a retine ce culoare joaca si ce culoare urmeaza
-sa mute. Variabila ```forceMode``` este folosita pentru comanda Force.
-Aceasta clasa contine metode pentru resetarea tablei la pozitia initiala,
-obtinerea unei piese in functie de pozitie si metode de set si get pentru 
-variabile.
+sa mute.Aceasta clasa contine metode pentru resetarea tablei la pozitia initiala,
+obtinerea unei piese in functie de pozitie.
 
 Clasa ```ChessMain``` ruleaza programul. Se creeaza o tabla si se citesc comenzile 
-de la XBoard. Se porneste jocul,care pentru aceasta etapa se rezuma la miscarea
-pionilor pe tabla prin generare aleatorie a miscarilor. Se dau XBoard-ului
-miscari random. Aceasta parte de cod urmeaza a fi inlocuita pentru etapele viitoare.
+de la XBoard, pornindu-se jocul.
 
-**pachetul "pieces"**
-
-Reprezentarea pieselor porneste de la clasa abstracta ```AbstractPiece```. Piesele
-sunt caracterizate prin pozitie si culoare. Constructorul clasei asigneaza 
-pozitia si culoarea. Se definesc si metodele ```getPossibleMoves, verifyMove,
-move``` pentru realizarea mutarilor.
-
-Pentru a reprezenta locul liber pe tabla se foloseste clasa ```VoidPiece``` care este
-o piesa nula care ajuta la mutari.
+#### Piesele
+Reprezentarea pieselor porneste de la clasa abstracta ```AbstractPiece```. Se foloseste clasa ```Position``` pentru a reprezenta pozitia pe tabla a unei piese.
+Pentru a reprezenta locul liber pe tabla se foloseste clasa ```VoidPiece```, adica o piesa nula.
 
 Am creat clase pentru fiecare tip de piesa(Pawn, Bishop, King, Knight, Queen,
-Rook) si am implementat miscarile doar pentru pion, celelalte piese urmand sa
-fie realizate in etapele viitoare. S-a facut un ```PieceFactory``` pentru realizarea 
-de piese corespunzatoare tinand cont de pozitie, folosind Design Pattern-ul Factory.
-
-Clasa ```Pawn``` extinde clasa ```AbstactPiece``` si implementeaza metoda ```getPossibleMoves```.
-Se salveaza intr-un ArrayList pozitiile mutarilor posibile, tinand cont de 
-mutarile legale ale pionului si de marginile tablei. Mutarile se realizeaza
+Rook) si am implementat miscarile specifice. Se salveaza intr-un ArrayList pozitiile mutarilor posibile, tinand cont de 
+mutarile legale si de marginile tablei. Mutarile se realizeaza
 tinand cont de culoarea jucata, de pozitiile ocupate pe tabla, de locurile
-libere. Metoda ```move()``` plaseaza piesa pe pozitia data.
+libere. S-a facut un ```PieceFactory``` pentru realizarea 
+de piese corespunzatoare tinand cont de pozitie.
 
-**pachetul "commands"**
-
-S-a creat clasa ```Command``` care reprezinta comenzile continand metoda ```execute()```.
-Aceasta clasa va fi mostenita pentru individualizarea comenzilor. Clasa 
-```VoidCommand``` reprezinta o comanda nula.
-
-S-au creat clase pentru fiecare comanda specificata in cerinta(xboard, new, 
-force, go, white, black, quit, resign si protover). Fiecare comanda respecta
-specificatiile mentionate in documentatie.
-
-**pachetul "auxiliary"**
-
-Se foloseste clasa ```Position``` pentru a reprezenta pozitia pe tabla a unei piese.
-Aceasta contine metode pentru a corela pozitia data sub forma de String cu 
-matricea prin care este reprezentata tabla de joc. S-au mai utilizat metode
-care testeaza daca pozitiile date ca parametru sunt legale.
-
-PieceFactory foloseste Design Pattern-ul factory pentru generarea de piese in 
-functie de pozitie. ```CommandFactory``` utilizeaza Design Pattern-ul factory pentru a construi comenzi
-in functie de argumentul primit la citire. ```CommandReader``` este folosit pentru citirea de la stdin a comenzilor. Se
+#### Interpretarea Comenzilor
+ ```CommandReader``` este folosit pentru citirea de la stdin a comenzilor. Se
 proceseaza pe rand comenzile si se asigura prelucrarea argumentelor primite de
 la XBoard.
+Clasa ```Command``` reprezinta aceste comenzi si va fi mostenita pentru individualizarea comenzilor. Clasa 
+```VoidCommand``` reprezinta o comanda nula. S-au creat clase pentru fiecare comanda specificata in cerinta(xboard, new, 
+force, go, white, black, quit, resign si protover).
+
 <br>
 <br>
 
