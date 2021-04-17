@@ -128,12 +128,13 @@ cand facem o miscare proasta (ex: o piesa importanta ne-ar fi luata).
 <br>
 <br>
 
-#### ► Algoritmul Minimax
+#### ► Engine-ul
 Clasa ```Engine``` implementeaza algoritmul de Minimax, calculand cea mai buna miscare 
 posibila a jucatorului curent. Initial alegem sa jucam dupa OpeningStrategy, stiind
 ca incepem jocul folosind strategii cunoscute in sah. Cand OpeningStrategy a ramas 
 insa fara mutari se trece la MainStrategy. Folosind functiile de evaluare, se alege 
-mutarea considerata cea mai avantajoasa de algoritmul de Minimax.
+mutarea considerata cea mai avantajoasa de algoritmul Minimax.
+<br>
 <br>
 
 ## Abordare Algoritmica
