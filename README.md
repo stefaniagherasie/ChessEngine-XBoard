@@ -49,9 +49,7 @@ Proiectul are urmatoarea organizare:
 | auxiliary   | CommandFactory, CommandReader, LineErrorException, Pair, PiecesFactory, Position|
 
 ## Implementare
-
-Clasa ```ChessMain``` ruleaza programul. Se creeaza o tabla si se citesc comenzile 
-de la XBoard, pornindu-se jocul.
+Clasa ```ChessMain``` ruleaza programul. Se creeaza o tabla, se interpreteaza comenzile de la Xboard si se ruleaza algoritmul Minimax pentru a castiga jocul.
 
 #### Tabla de sah
 Clasa ```ChessBoard``` contine reprezentarea interna a tablei de sah. Am folosit Design Pattern-ul Singleton pentru a asigura unicitatea tablei. Tabla este
@@ -59,6 +57,8 @@ reprezentata sub forma unei matrici 8x8 de piese. Variabilele ```playingColor/
 playerTurn``` sunt folosite pentru a retine ce culoare joaca si ce culoare urmeaza
 sa mute.Aceasta clasa contine metode pentru resetarea tablei la pozitia initiala,
 obtinerea unei piese in functie de pozitie.
+<br>
+<br>
 
 #### Piesele
 Reprezentarea pieselor porneste de la clasa abstracta ```AbstractPiece```. Se foloseste clasa ```Position``` pentru a reprezenta pozitia pe tabla a unei piese.
@@ -69,6 +69,12 @@ Am creat clase pentru fiecare tip de piesa(```Pawn```, ```Bishop```, ```King```,
 mutarile legale si de marginile tablei. Mutarile se realizeaza in functie de culoarea jucata, de pozitiile ocupate pe tabla, de locurile
 libere. S-a facut un ```PieceFactory``` pentru realizarea de piese corespunzatoare tinand cont de pozitie.
 
+Am implementat scoaterea regelui din sah cand acesta este amenint de piesele 
+adversarului. Ne-am ocupat si de alte detalii ale jocului de sah, cum ar fi 
+rocada sau promovarea pionului la regina cand ajunge la marginea opusa a tablei.
+<br>
+<br>
+
 #### Interpretarea Comenzilor
  ```CommandReader``` este folosit pentru citirea de la stdin a comenzilor. Se
 proceseaza pe rand comenzile si se asigura prelucrarea argumentelor primite de
@@ -77,20 +83,8 @@ la XBoard.
 Clasa ```Command``` reprezinta aceste comenzi si va fi mostenita pentru individualizarea comenzilor. Clasa 
 ```VoidCommand``` reprezinta o comanda nula. S-au creat clase pentru fiecare comanda specificata in cerinta(```xboard```, ```new```, 
 ```force```, ```go```, ```white```, ```black```, ```quit```, ```resign``` si ```protover```).
-
-#### Algoritmul Minimax
-Am urmarit sa facem comanda de undo folosita in special pentru a ne intoarce
-cand facem o miscare proasta (ex: o piesa importanta ne-ar fi luata). De asemenea,
-am implementat scoaterea regelui din sah cand acesta este amenint de piesele 
-adversarului. Ne-am ocupat si de alte detalii ale jocului de sah, cum ar fi 
-rocada sau promovarea pionului la regina cand ajunge la marginea opusa a tablei.
-
-Am realizat o clasa ```Pair``` care ne ajuta sa retinem intr-un istoric miscarile 
-realizate pana in acel moment.
-
-
-Dupa ce am terminat de facut toate regulile jocului, am inceput lucrul la 
-implementarea algoritmului de minimax.
+<br>
+<br>
 
 #### Strategia de Deschidere 
 Pentru primele miscari, am folosit strategii populare de sah.
@@ -105,6 +99,8 @@ miscarii.
 Pentru ```OpeningStrategy``` se alege cea mai buna miscare dupa ```gain```, in functie de miscarile din istoric.
 In acest fel ne asiguram ca pentru inceputul jocului avem o strategie destul de
 buna atat timp cat succesiunea de miscari respecta un tipar.
+<br>
+<br>
 
 #### Strategia Principala
 ```MainStrategy``` reprezinta strategia principala care se bazeaza pe Minimax si care 
@@ -122,6 +118,11 @@ rezultat care reprezinta cat de valoroasa este tabla noastra, reprezentand
 raportul dintre ```boardOccupacyScore```(suma safety-urilor pozitiilor vide) si 
 ```dangerScore```(suma scorurilor pozitiilor in pericol - scade cand piesele noastre sunt
 in pericol mare, creste cand piesele adversatului sunt in pericol).
+
+Am urmarit sa facem comanda de ```undo``` folosita in special pentru a ne intoarce
+cand facem o miscare proasta (ex: o piesa importanta ne-ar fi luata). 
+<br>
+<br>
 
 #### Algoritmul Minimax
 Clasa ```Engine``` implementeaza algoritmul de Minimax, calculand cea mai buna miscare 
