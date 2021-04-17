@@ -11,13 +11,11 @@ Se urmareste realizare reprezentarii interne a tablei de joc și a pieselor
 de joc, precum și o interfațare cu programul XBoard. Interfațarea va urmari posibilitatea de a interpreta și interacționa cu următoarele 
 comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move. <br>
 Programul va implementa algoritmul Minimax pentru a juca impotriva unui adversar. Programul va trebui să poată interpreta orice mișcare legală primită de la adversar, respectand toate regulile jocului.
-<br>
 
 ## Membrii
 > BADITA Rares-Octavian 	&nbsp;&nbsp; &nbsp; &nbsp;			[@WhyNotRaresh](https://github.com/WhyNotRaresh) <br>
 > GHERASIE Stefania-Elena 	&nbsp; &nbsp; 					        [@stefania.gherasie](https://github.com/stefaniagherasie) <br>
 > MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06)
-<br>
 
 ## Compilare si Rulare
 Pentru rulare, programul necesita Xboard 4.8(sau o versiune mai noua). 
@@ -33,7 +31,6 @@ Pentru rularea in cadrul XBoard-ului:
  
 Pentru testarea impotriva lui FairyMax:
 > ``` xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
-<br>
 
 ## Structura proiectului
 Proiectul are urmatoarea organizare:
@@ -52,7 +49,6 @@ Proiectul are urmatoarea organizare:
 | opening     | OpeningMove, OpeningParser|
 | commands    | BlackCommand, Command, ForceCommand, GoCommand, MoveCommand, NewCommand, ProtoverCommand, QuitCommand, ResignCommand, UndoCommand, VoidCommand, WhiteCommand, XBoardCommand|
 | auxiliary   | CommandFactory, CommandReader, LineErrorException, Pair, PiecesFactory, Position|
-<br>
 
 ## Implementare
 Clasa ```ChessMain``` ruleaza programul. Se creeaza o tabla, se interpreteaza comenzile de la Xboard si se ruleaza algoritmul Minimax pentru a castiga jocul.
@@ -149,8 +145,6 @@ avand adancimea de 2.
 Functiile de evaluare de care ne-am folosit tin cont de gain-ul pieselor pentru 
 miscarile de inceput, trecand apoi la evaluarea pieselor in functie de importanta lor 
 si de nivelul de siguranta a acestora, de pericolul in care acestea de afla.
-<br><br>
-
 
 ## Bibliografie
 1. https://www.gnu.org/software/xboard/
