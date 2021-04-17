@@ -20,7 +20,7 @@ Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 > * ```make xboard``` - face fisierul .jar si il pune ca fcp pentru XBoard
 > * ```make clean``` - sterge fisierele .class
 > 
-> Pentru rularea temei in cadrul XBoard-ului se poate folosi ```make xboard``` apelat in folderul sursa (src/).
+> Pentru rularea temei in cadrul XBoard-ului se poate folosi ```make xboard``` apelat in folderul sursa (src/). <br>
 > Se recomanda rularea ```make clean``` pentru testari repetate.
 > 
 > Pentru testarea impotriva lui FairyMax:
