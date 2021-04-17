@@ -12,13 +12,12 @@ Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 > MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06) <br>
 
 ## Compilare si Rulare
-
 Makefile-ul contine urmatoarele reguli:
-* ```default``` - la fel ca make jar <br>
-* ```make jar``` - realizeaza fisierul cu extensia .jar
-* ```make run``` - face fisierul .jar
-* ```make xboard``` - face fisierul .jar si il pune ca fcp pentru XBoard
-* ```make clean``` - sterge fisierele .class
+> * ```default``` - la fel ca make jar <br>
+> * ```make jar``` - realizeaza fisierul cu extensia .jar
+> * ```make run``` - face fisierul .jar
+> * ```make xboard``` - face fisierul .jar si il pune ca fcp pentru XBoard
+> * ```make clean``` - sterge fisierele .class
 
 Pentru rularea in cadrul XBoard-ului:
 > ```make xboard```  - apelat in folderul sursa (src/). <br>
@@ -26,10 +25,8 @@ Pentru rularea in cadrul XBoard-ului:
  
 Pentru testarea impotriva lui FairyMax:
 > ``` xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
-<br>
 
 ## Detalii despre structura proiectului == Etapa 1 ==
-
 Proiectul presupune realizarea reprezentarii internă a tablei de joc și a pieselor
 de joc, precum și o interfațare cu programul XBoard.
 Interfațarea va presupune posibilitatea de a interpreta și interacționa cu următoarele 
@@ -102,7 +99,6 @@ la XBoard.
 <br>
 
 ## Detalii despre structura proiectului == Etapa 2 ==
-
 Pentru aceasta etapa se urmareste implementarea unui algoritm Minimax pentru a
 juca impotriva unui adversar.
 
@@ -166,7 +162,6 @@ mutarea considerata cea mai avantajoasa de algoritmul de Minimax.
 <br>
 
 ## Abordare Algoritmica
-
 S-a implementat un algoritm de Minimax care se bazeaza pe ideea
 ca jucatorul maxi urmareste sa-si maximizeze castigul prin mutarea pe care o face,
 iar jucatorul mini sa isi minimizeze pierderea. Pentru miscarile din OpeningStrategy
@@ -180,7 +175,6 @@ si de nivelul de siguranta a acestora, de pericolul in care acestea de afla.
 <br>
 
 ## Bibliografie
-
 1. https://www.gnu.org/software/xboard/
 2. https://www.gnu.org/software/xboard/engine-intf.html
 3. https://www.howtoforge.com/tutorial/xboard-add-chess-engines/
