@@ -13,7 +13,7 @@ Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 
 ## Compilare si Rulare
 
-Makefile-ul contine urmatoarele reguli:
+> Makefile-ul contine urmatoarele reguli:
 > * ```default``` - la fel ca make jar <br>
 > * ```make jar``` - realizeaza fisierul cu extensia .jar
 > * ```make run``` - face fisierul .jar
@@ -22,9 +22,9 @@ Makefile-ul contine urmatoarele reguli:
 > 
 > Pentru rularea temei in cadrul XBoard-ului se poate folosi ```make xboard``` apelat in folderul sursa (src/).
 Se recomanda rularea ```make clean``` pentru testari repetate.
-> 
-> Pentru testarea impotriva lui FairyMax:
+ 
 ```shell
+Pentru testarea impotriva lui FairyMax:
 	xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” 
 	-tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false
 ```
