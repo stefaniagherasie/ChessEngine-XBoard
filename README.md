@@ -10,6 +10,7 @@ Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 > BADITA Rares-Octavian 	&nbsp;&nbsp; &nbsp; &nbsp;			[@WhyNotRaresh](https://github.com/WhyNotRaresh) <br>
 > GHERASIE Stefania-Elena 	&nbsp; &nbsp; 					        [@stefania.gherasie](https://github.com/stefaniagherasie) <br>
 > MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06) <br>
+<br>
 
 ## Compilare si Rulare
 Pentru rulare, programul necesita Xboard 4.8(sau o versiune mai noua). 
@@ -25,6 +26,7 @@ Pentru rularea in cadrul XBoard-ului:
  
 Pentru testarea impotriva lui FairyMax:
 > ``` xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
+<br>
 
 ## Structura proiectului
 Proiectul presupune realizarea reprezentarii internă a tablei de joc și a pieselor
@@ -47,11 +49,13 @@ Proiectul are urmatoarea organizare:
 | opening     | OpeningMove, OpeningParser|
 | commands    | BlackCommand, Command, ForceCommand, GoCommand, MoveCommand, NewCommand, ProtoverCommand, QuitCommand, ResignCommand, UndoCommand, VoidCommand, WhiteCommand, XBoardCommand|
 | auxiliary   | CommandFactory, CommandReader, LineErrorException, Pair, PiecesFactory, Position|
+<br>
 
 ## Implementare
 Clasa ```ChessMain``` ruleaza programul. Se creeaza o tabla, se interpreteaza comenzile de la Xboard si se ruleaza algoritmul Minimax pentru a castiga jocul.
 
-#### Tabla de sah
+
+#### ► Tabla de sah
 Clasa ```ChessBoard``` contine reprezentarea interna a tablei de sah. Am folosit Design Pattern-ul Singleton pentru a asigura unicitatea tablei. Tabla este
 reprezentata sub forma unei matrici 8x8 de piese. Variabilele ```playingColor/ 
 playerTurn``` sunt folosite pentru a retine ce culoare joaca si ce culoare urmeaza
@@ -60,7 +64,7 @@ obtinerea unei piese in functie de pozitie.
 <br>
 <br>
 
-#### Piesele
+#### ► Piesele
 Reprezentarea pieselor porneste de la clasa abstracta ```AbstractPiece```. Se foloseste clasa ```Position``` pentru a reprezenta pozitia pe tabla a unei piese.
 Pentru a reprezenta locul liber pe tabla se foloseste clasa ```VoidPiece```, adica o piesa nula.
 
@@ -75,7 +79,7 @@ rocada sau promovarea pionului la regina cand ajunge la marginea opusa a tablei.
 <br>
 <br>
 
-#### Interpretarea Comenzilor
+#### ► Interpretarea Comenzilor
  ```CommandReader``` este folosit pentru citirea de la stdin a comenzilor. Se
 proceseaza pe rand comenzile si se asigura prelucrarea argumentelor primite de
 la XBoard.
@@ -86,7 +90,7 @@ Clasa ```Command``` reprezinta aceste comenzi si va fi mostenita pentru individu
 <br>
 <br>
 
-#### Strategia de Deschidere 
+#### ► Strategia de Deschidere 
 Pentru primele miscari, am folosit strategii populare de sah.
 In fisierul ```"book.csv"``` se afla succesiuni de miscari din strategii bine cunoscute
 de sah care ne-ar putea ajuta sa avem un avantaj pentru inceputul jocului.
@@ -102,7 +106,7 @@ buna atat timp cat succesiunea de miscari respecta un tipar.
 <br>
 <br>
 
-#### Strategia Principala
+#### ► Strategia Principala
 ```MainStrategy``` reprezinta strategia principala care se bazeaza pe Minimax si care 
 va fi folosita cand ```OpeningStrategy``` ramane fara miscari prevazute sau esueaza.
 
@@ -124,13 +128,13 @@ cand facem o miscare proasta (ex: o piesa importanta ne-ar fi luata).
 <br>
 <br>
 
-#### Algoritmul Minimax
+#### ► Algoritmul Minimax
 Clasa ```Engine``` implementeaza algoritmul de Minimax, calculand cea mai buna miscare 
 posibila a jucatorului curent. Initial alegem sa jucam dupa OpeningStrategy, stiind
 ca incepem jocul folosind strategii cunoscute in sah. Cand OpeningStrategy a ramas 
 insa fara mutari se trece la MainStrategy. Folosind functiile de evaluare, se alege 
 mutarea considerata cea mai avantajoasa de algoritmul de Minimax.
-
+<br>
 
 ## Abordare Algoritmica
 S-a implementat un algoritm de Minimax care se bazeaza pe ideea
@@ -142,6 +146,7 @@ avand adancimea de 2.
 Functiile de evaluare de care ne-am folosit tin cont de gain-ul pieselor pentru 
 miscarile de inceput, trecand apoi la evaluarea pieselor in functie de importanta lor 
 si de nivelul de siguranta a acestora, de pericolul in care acestea de afla.
+<br>
 
 ## Bibliografie
 1. https://www.gnu.org/software/xboard/
