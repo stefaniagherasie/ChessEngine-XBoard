@@ -13,18 +13,19 @@ Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 
 ## Compilare si Rulare
 
-> Makefile-ul contine urmatoarele reguli:
-> * ```default``` - la fel ca make jar <br>
-> * ```make jar``` - realizeaza fisierul cu extensia .jar
-> * ```make run``` - face fisierul .jar
-> * ```make xboard``` - face fisierul .jar si il pune ca fcp pentru XBoard
-> * ```make clean``` - sterge fisierele .class
-> 
-> Pentru rularea temei in cadrul XBoard-ului se poate folosi ```make xboard``` apelat in folderul sursa (src/). <br>
-> Se recomanda rularea ```make clean``` pentru testari repetate.
-> 
-> Pentru testarea impotriva lui FairyMax:
->> ``` xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
+Makefile-ul contine urmatoarele reguli:
+* ```default``` - la fel ca make jar <br>
+* ```make jar``` - realizeaza fisierul cu extensia .jar
+* ```make run``` - face fisierul .jar
+* ```make xboard``` - face fisierul .jar si il pune ca fcp pentru XBoard
+* ```make clean``` - sterge fisierele .class
+
+**Pentru rularea in cadrul XBoard-ului:**
+> ```make xboard```  - apelat in folderul sursa (src/). <br>
+> ```make clean```  - se recomanda pentru testari repetate.
+ 
+**Pentru testarea impotriva lui FairyMax:**
+> ``` xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
 <br>
 
 ## Detalii despre structura proiectului == Etapa 1 ==
