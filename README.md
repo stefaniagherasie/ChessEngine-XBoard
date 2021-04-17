@@ -45,7 +45,7 @@ Proiectul are urmatoarea organizare:
 > * ```book.csv``` - contine succesiunea de miscari pentru deschideri celebre ale jocului de sah.
 <br>
 
-| Pachet      | Componenta  |
+| Pachet      | Componență  |
 | ----------- | ----------- |
 | main        | ChessBoard, ChessMain|
 | pieces      | AbstractPiece, Bishop, King, Knight, Pawn, Queen, Rook, VoidPiece|
