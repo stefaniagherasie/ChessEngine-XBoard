@@ -12,6 +12,7 @@ Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 > MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06) <br>
 
 ## Compilare si Rulare
+Pentru rulare, programul necesita Xboard 4.8(sau o versiune mai noua). 
 Makefile-ul contine urmatoarele reguli:
 > * ```make jar / default``` - realizeaza fisierul cu extensia .jar
 > * ```make run``` - face fisierul .jar
