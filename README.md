@@ -6,14 +6,13 @@
 Tema proiectului este realizarea unei inteligențe artificiale capabile să joace șah. <br>
 Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 
-#### MEMBRII 
-- - - 
+## Membrii
 > BADITA Rares-Octavian 	&nbsp;&nbsp; &nbsp; &nbsp;			[@WhyNotRaresh](https://github.com/WhyNotRaresh) <br>
 > GHERASIE Stefania-Elena 	&nbsp; &nbsp; 					[@stefania.gherasie](https://github.com/stefaniagherasie) <br>
 > MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06) <br>
 
-#### RULARE
-- - - 
+## Compilare si Rulare
+
 Makefile-ul contine urmatoarele reguli:
 > * ```default``` - la fel ca make jar <br>
 > * ```make jar``` - realizeaza fisierul cu extensia .jar
@@ -31,8 +30,8 @@ Pentru testarea impotriva lui FairyMax:
 ```
 <br>
 
-#### DETALII DESPRE STRUCTURA PROIECTULUI == ETAPA 1 ==
-- - - 
+## Detalii despre structura proiectului == Etapa 1 ==
+
 Proiectul presupune realizarea reprezentarii internă a tablei de joc și a pieselor
 de joc, precum și o interfațare cu programul XBoard.
 Interfațarea va presupune posibilitatea de a interpreta și interacționa cu următoarele 
@@ -104,8 +103,8 @@ la XBoard.
 <br>
 <br>
 
-#### DETALII DESPRE STRUCTURA PROIECTULUI == ETAPA 2 ==
-- - - 
+## Detalii despre structura proiectului == Etapa 2 ==
+
 Pentru aceasta etapa se urmareste implementarea unui algoritm Minimax pentru a
 juca impotriva unui adversar.
 
@@ -168,8 +167,8 @@ mutarea considerata cea mai avantajoasa de algoritmul de Minimax.
 <br>
 <br>
 
-#### ABORDAREA ALGORITMICA
-- - - 
+## Abordare Algoritmica
+
 S-a implementat un algoritm de Minimax care se bazeaza pe ideea
 ca jucatorul maxi urmareste sa-si maximizeze castigul prin mutarea pe care o face,
 iar jucatorul mini sa isi minimizeze pierderea. Pentru miscarile din OpeningStrategy
@@ -182,8 +181,8 @@ si de nivelul de siguranta a acestora, de pericolul in care acestea de afla.
 <br>
 <br>
 
-#### BIBLIOGRAFIE
-- - - 
+## Bibliografie
+
 1. https://www.gnu.org/software/xboard/
 2. https://www.gnu.org/software/xboard/engine-intf.html
 3. https://www.howtoforge.com/tutorial/xboard-add-chess-engines/
