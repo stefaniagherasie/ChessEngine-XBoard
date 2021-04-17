@@ -80,6 +80,7 @@ Am implementat scoaterea regelui din sah cand acesta este amenint de piesele
 adversarului. Ne-am ocupat si de alte detalii ale jocului de sah, cum ar fi 
 rocada sau promovarea pionului la regina cand ajunge la marginea opusa a tablei.
 <br>
+<br>
 
 #### ► Interpretarea Comenzilor
  ```CommandReader``` este folosit pentru citirea de la stdin a comenzilor. Se
@@ -88,6 +89,7 @@ la XBoard. <br>
 Clasa ```Command``` reprezinta aceste comenzi si va fi mostenita pentru individualizarea comenzilor. Clasa 
 ```VoidCommand``` reprezinta o comanda nula. S-au creat clase pentru fiecare comanda specificata in cerinta(```xboard```, ```new```, 
 ```force```, ```go```, ```white```, ```black```, ```quit```, ```resign``` si ```protover```).
+<br>
 <br>
 
 #### ► Strategia de Deschidere 
@@ -102,6 +104,7 @@ miscarii. <br>
 Pentru ```OpeningStrategy``` se alege cea mai buna miscare dupa ```gain```, in functie de miscarile din istoric.
 In acest fel ne asiguram ca pentru inceputul jocului avem o strategie destul de
 buna atat timp cat succesiunea de miscari respecta un tipar.
+<br>
 <br>
 
 #### ► Strategia Principala
@@ -122,6 +125,7 @@ raportul dintre ```boardOccupacyScore```(suma safety-urilor pozitiilor vide) si
 in pericol mare, creste cand piesele adversatului sunt in pericol). <br>
 Am implementat comanda de ```undo``` folosita in special pentru a ne intoarce in timp
 cand facem o miscare proasta (ex: o piesa importanta ne-ar fi luata). 
+<br>
 <br>
 
 #### ► Engine-ul
