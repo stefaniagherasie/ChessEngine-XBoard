@@ -11,12 +11,12 @@ Se urmareste realizare reprezentarii interne a tablei de joc și a pieselor
 de joc, precum și o interfațare cu programul XBoard. Interfațarea va urmari posibilitatea de a interpreta și interacționa cu următoarele 
 comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move. <br>
 Programul va implementa algoritmul Minimax pentru a juca impotriva unui adversar. Programul va trebui să poată interpreta orice mișcare legală primită de la adversar, respectand toate regulile jocului.
-<br><br>
+<br>
 
 ## Membrii
 > BADITA Rares-Octavian 	&nbsp;&nbsp; &nbsp; &nbsp;			[@WhyNotRaresh](https://github.com/WhyNotRaresh) <br>
 > GHERASIE Stefania-Elena 	&nbsp; &nbsp; 					        [@stefania.gherasie](https://github.com/stefaniagherasie) <br>
-> MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06) <br>
+> MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06)
 <br>
 
 ## Compilare si Rulare
@@ -130,7 +130,6 @@ Am implementat comanda de ```undo``` folosita in special pentru a ne intoarce in
 cand facem o miscare proasta (ex: o piesa importanta ne-ar fi luata). 
 <br>
 <br>
-
 #### ► Engine-ul
 Clasa ```Engine``` implementeaza algoritmul de Minimax, calculand cea mai buna miscare 
 posibila a jucatorului curent. Initial alegem sa jucam dupa OpeningStrategy, stiind
