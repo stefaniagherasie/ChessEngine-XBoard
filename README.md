@@ -137,7 +137,7 @@ mutarea considerata cea mai avantajoasa de algoritmul Minimax.
 <br>
 <br>
 
-## Abordare Algoritmica
+## Abordarea Algoritmica
 S-a implementat un algoritm de Minimax care se bazeaza pe ideea
 ca jucatorul maxi urmareste sa-si maximizeze castigul prin mutarea pe care o face,
 iar jucatorul mini sa isi minimizeze pierderea. Pentru miscarile din OpeningStrategy
