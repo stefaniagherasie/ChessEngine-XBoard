@@ -8,7 +8,7 @@ Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 
 ## Membrii
 > BADITA Rares-Octavian 	&nbsp;&nbsp; &nbsp; &nbsp;			[@WhyNotRaresh](https://github.com/WhyNotRaresh) <br>
-> GHERASIE Stefania-Elena 	&nbsp; &nbsp; 					[@stefania.gherasie](https://github.com/stefaniagherasie) <br>
+> GHERASIE Stefania-Elena 	&nbsp; &nbsp; 					        [@stefania.gherasie](https://github.com/stefaniagherasie) <br>
 > MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06) <br>
 
 ## Compilare si Rulare
@@ -20,11 +20,11 @@ Makefile-ul contine urmatoarele reguli:
 * ```make xboard``` - face fisierul .jar si il pune ca fcp pentru XBoard
 * ```make clean``` - sterge fisierele .class
 
-**Pentru rularea in cadrul XBoard-ului:**
+Pentru rularea in cadrul XBoard-ului:
 > ```make xboard```  - apelat in folderul sursa (src/). <br>
 > ```make clean```  - se recomanda pentru testari repetate.
  
-**Pentru testarea impotriva lui FairyMax:**
+Pentru testarea impotriva lui FairyMax:
 > ``` xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
 <br>
 
