@@ -38,7 +38,7 @@ Pentru testarea impotriva lui FairyMax:
 
 ## Structura proiectului
 Proiectul are urmatoarea organizare:
-> * pachetele: ```main```, ```pieces```, ```engine```, ```opening```, ```commands```, ```auxiliary``` - contin codul efectiv
+> * pachetele: ```main```, ```pieces```, ```engine```, ```opening```, ```commands```, ```auxiliary```
 > * ```Makefile``` - compileaza si ruleaza in XBoard
 > * ```MANIFEST.MF```
 > * ```README.md```
