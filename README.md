@@ -11,7 +11,7 @@ Se urmareste realizare reprezentarii interne a tablei de joc și a pieselor
 de joc, precum și o interfațare cu programul XBoard. Interfațarea va urmari posibilitatea de a interpreta și interacționa cu următoarele 
 comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move. <br>
 Programul va implementa algoritmul Minimax pentru a juca impotriva unui adversar. Programul va trebui să poată interpreta orice mișcare legală primită de la adversar, respectand toate regulile jocului.
-<br>
+<br><br>
 
 ## Membrii
 > BADITA Rares-Octavian 	&nbsp;&nbsp; &nbsp; &nbsp;			[@WhyNotRaresh](https://github.com/WhyNotRaresh) <br>
