@@ -13,8 +13,7 @@ Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
 
 ## Compilare si Rulare
 Makefile-ul contine urmatoarele reguli:
-> * ```default``` - la fel ca make jar <br>
-> * ```make jar``` - realizeaza fisierul cu extensia .jar
+> * ```make jar / default``` - realizeaza fisierul cu extensia .jar
 > * ```make run``` - face fisierul .jar
 > * ```make xboard``` - face fisierul .jar si il pune ca fcp pentru XBoard
 > * ```make clean``` - sterge fisierele .class
