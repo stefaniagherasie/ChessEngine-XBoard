@@ -12,6 +12,7 @@ de joc, precum și o interfațare cu programul XBoard. Interfațarea va urmari p
 comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move. <br>
 Programul va implementa algoritmul Minimax pentru a juca impotriva unui adversar. Programul va trebui să poată interpreta orice mișcare legală primită de la adversar, respectand toate regulile jocului.
 <br>
+<br>
 
 ## Membrii
 > BADITA Rares-Octavian 	&nbsp;&nbsp; &nbsp; &nbsp;			[@WhyNotRaresh](https://github.com/WhyNotRaresh) <br>
@@ -149,6 +150,7 @@ avand adancimea de 2.
 Functiile de evaluare de care ne-am folosit tin cont de gain-ul pieselor pentru 
 miscarile de inceput, trecand apoi la evaluarea pieselor in functie de importanta lor 
 si de nivelul de siguranta a acestora, de pericolul in care acestea de afla.
+<br>
 <br>
 
 ## Bibliografie
