@@ -43,6 +43,7 @@ Proiectul are urmatoarea organizare:
 > * ```MANIFEST.MF```
 > * ```README.md```
 > * ```book.csv``` - contine succesiunea de miscari pentru deschideri celebre ale jocului de sah.
+<br>
 
 | Pachet      | Componenta  |
 | ----------- | ----------- |
