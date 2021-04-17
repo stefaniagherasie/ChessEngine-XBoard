@@ -19,11 +19,11 @@ Makefile-ul contine urmatoarele reguli:
 > * ```make run``` - face fisierul .jar
 > * ```make xboard``` - face fisierul .jar si il pune ca fcp pentru XBoard
 > * ```make clean``` - sterge fisierele .class
-
-Pentru rularea temei in cadrul XBoard-ului se poate folosi ```make xboard``` apelat in folderul sursa (src/).
+> 
+> Pentru rularea temei in cadrul XBoard-ului se poate folosi ```make xboard``` apelat in folderul sursa (src/).
 Se recomanda rularea ```make clean``` pentru testari repetate.
-
-Pentru testarea impotriva lui FairyMax:
+> 
+> Pentru testarea impotriva lui FairyMax:
 ```shell
 	xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” 
 	-tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false
