@@ -26,14 +26,21 @@ Pentru rularea in cadrul XBoard-ului:
 Pentru testarea impotriva lui FairyMax:
 > ``` xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
 
-## Detalii despre structura proiectului == Etapa 1 ==
+## Structura proiectului
 Proiectul presupune realizarea reprezentarii internă a tablei de joc și a pieselor
 de joc, precum și o interfațare cu programul XBoard.
-Interfațarea va presupune posibilitatea de a interpreta și interacționa cu următoarele 
+Interfațarea va urmari posibilitatea de a interpreta și interacționa cu următoarele 
 comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move.
 
-Proiectul este implementat in Java si urmareste interactiune cu XBoard-ul.
-Am realizat 4 pachete pentru structurarea claselor(main, commands, pieces, auxiliary).
+Proiectul este implementat in Java si urmareste interactiune cu XBoard-ul. 
+| Pachet      | Componenta  |
+| ----------- | ----------- |
+| main        | ChessBoard, ChessMain |
+| pieces      | AbstractPiece, Bishop, King, Knight, Pawn, Queen, Rook, VoidPiece|
+| engine      | Engine, Strategy, OpeningStrateg, MainStrategy, LimitedTimeStrategy|
+| opening     | OpeningMove, OpeningParser|
+| commands    | BlackCommand, Command, ForceCommand, GoCommand, MoveCommand, NewCommand, ProtoverCommand, QuitCommand, ResignCommand, UndoCommand, VoidCommand, WhiteCommand, XBoardCommand|
+| auxiliary   | CommandFactory, CommandReader, LineErrorException, Pair, PiecesFactory, Position|
 
 **pachetul "main"**
  
