@@ -10,9 +10,8 @@ de joc, precum și o interfațare cu programul XBoard. Interfațarea va urmari p
 comenzi ale XBoard: xboard, new, force, go, white, black, quit, resign, move. <br>
 Programul va implementa algoritmul Minimax pentru a juca impotriva unui adversar. Programul va trebui să poată interpreta orice mișcare legală primită de la adversar, respectand toate regulile jocului.
 <br>
-<br>
 
-## Membrii
+#### Membrii
 > BADITA Rares-Octavian 	&nbsp;&nbsp; &nbsp; &nbsp;			[@WhyNotRaresh](https://github.com/WhyNotRaresh) <br>
 > GHERASIE Stefania-Elena 	&nbsp; &nbsp; 					        [@stefania.gherasie](https://github.com/stefaniagherasie) <br>
 > MANDRU Cosmina  	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;	[@mcosmina06](https://github.com/mcosmina06)
