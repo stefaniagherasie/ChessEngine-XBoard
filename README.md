@@ -61,7 +61,7 @@ Clasa ```ChessMain``` ruleaza programul. Se creeaza o tabla, se interpreteaza co
 Clasa ```ChessBoard``` contine reprezentarea interna a tablei de sah. Am folosit Design Pattern-ul Singleton pentru a asigura unicitate. Tabla este
 reprezentata sub forma unei matrici 8x8 de piese. Variabilele ```playingColor/ 
 playerTurn``` sunt folosite pentru a retine ce culoare joaca si ce culoare urmeaza
-sa mute.Aceasta clasa contine metode pentru resetarea tablei la pozitia initiala,
+sa mute. Aceasta clasa contine metode pentru resetarea tablei la pozitia initiala,
 obtinerea unei piese in functie de pozitie.
 <br>
 <br>
@@ -74,7 +74,7 @@ Am creat clase pentru fiecare tip de piesa(```Pawn```, ```Bishop```, ```King```,
 mutarile legale si de marginile tablei. Mutarile se realizeaza in functie de culoarea jucata, de pozitiile ocupate pe tabla, de locurile
 libere. S-a facut un ```PieceFactory``` pentru realizarea de piese corespunzatoare tinand cont de pozitie.
 
-Am implementat scoaterea regelui din sah cand acesta este amenint de piesele 
+Am implementat scoaterea regelui din sah cand acesta este amenintat de piesele 
 adversarului. Ne-am ocupat si de alte detalii ale jocului de sah, cum ar fi 
 rocada sau promovarea pionului la regina cand ajunge la marginea opusa a tablei.
 <br>
