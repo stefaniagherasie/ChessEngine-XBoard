@@ -140,7 +140,7 @@ S-a implementat un algoritm de Minimax care se bazeaza pe ideea
 ca jucatorul maxi urmareste sa-si maximizeze castigul prin mutarea pe care o face,
 iar jucatorul mini sa isi minimizeze pierderea. Pentru miscarile din OpeningStrategy
 ```DEPTH = 6```, iar pentru MainStrategy ```DEPTH = 4```, algoritmul de FairyMax cu care jucam
-avand adancimea de 2. 
+avand adancimea de 2.  
 
 Functiile de evaluare de care ne-am folosit tin cont de gain-ul pieselor pentru 
 miscarile de inceput, trecand apoi la evaluarea pieselor in functie de importanta lor 
