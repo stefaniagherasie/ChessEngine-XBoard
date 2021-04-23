@@ -24,12 +24,10 @@ Pentru rulare, programul necesita Xboard 4.8 (sau o versiune mai noua). Makefile
 > * ```make run``` - face fisierul .jar
 > * ```make xboard``` - face fisierul .jar si il pune ca fcp pentru XBoard
 > * ```make clean``` - sterge fisierele .class
-<br>
 
 Pentru rularea in cadrul XBoard-ului:
 > ```make xboard```  - apelat in folderul sursa (src/). <br>
 > ```make clean```  - se recomanda pentru testari repetate.
-<br>
  
 Pentru testarea impotriva lui FairyMax:
 > ```shell
