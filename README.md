@@ -25,7 +25,7 @@ Pentru rulare, programul necesita Xboard 4.8 (sau o versiune mai noua). Makefile
 > * ```make xboard``` - face fisierul .jar si il pune ca fcp pentru XBoard
 > * ```make clean``` - sterge fisierele .class
 
-Pentru rularea in cadrul XBoard-ului (apelare in folderul sursa `src/`)
+Pentru rularea in cadrul XBoard-ului (apelare in folderul sursa `src/`):
 > ```shell
 > make xboard
 > make clean   - se recomanda pentru testari repetate.
