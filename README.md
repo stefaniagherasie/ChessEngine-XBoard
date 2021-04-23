@@ -33,7 +33,7 @@ Pentru rularea in cadrul XBoard-ului:
 Pentru testarea impotriva lui FairyMax:
 > ```shell
 > xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” 
-> -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
+>        -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
 > ```
 <br>
 
