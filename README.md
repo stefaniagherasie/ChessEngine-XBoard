@@ -28,7 +28,7 @@ Pentru rulare, programul necesita Xboard 4.8 (sau o versiune mai noua). Makefile
 Pentru rularea in cadrul XBoard-ului (apelare in folderul sursa `src/`):
 > ```shell
 > make xboard
-> make clean   - se recomanda pentru testari repetate.
+> make clean   - se recomanda pentru testari repetate
 > ```
  
 Pentru testarea impotriva lui FairyMax:
