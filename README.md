@@ -2,7 +2,7 @@
 [Proiect - Proiectarea Algoritmilor] [Echipa DUMB.BLONDES]
 
 Tema proiectului este realizarea unei inteligențe artificiale capabile să joace șah. <br>
-Enunt: https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020
+Enuntul se gaseste [aici](https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020).
 
 ## Descriere
 Se urmareste realizare reprezentarii interne a tablei de joc și a pieselor
