@@ -19,7 +19,7 @@ Programul va implementa algoritmul Minimax pentru a juca impotriva unui adversar
 <br>
 
 ## Compilare si Rulare
-Pentru rulare, programul necesita Xboard 4.8(sau o versiune mai noua). 
+Pentru rulare, programul necesita Xboard 4.8 (sau o versiune mai noua). <br>
 Makefile-ul contine urmatoarele reguli:
 > * ```make jar / default``` - realizeaza fisierul cu extensia .jar
 > * ```make run``` - face fisierul .jar
@@ -31,7 +31,9 @@ Pentru rularea in cadrul XBoard-ului:
 > ```make clean```  - se recomanda pentru testari repetate.
  
 Pentru testarea impotriva lui FairyMax:
-> ``` xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
+> ```shell
+> xboard -fcp “make run” -scp “fairymax” -secondInitString “new\nrandom\nsd 2\n” -tc 5 -inc 2 -autoCallFlag true -mg 10 -sgf partide.txt -reuseFirst false```
+> ```
 <br>
 
 ## Structura proiectului
