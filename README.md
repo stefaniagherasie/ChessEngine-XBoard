@@ -1,5 +1,5 @@
 # ChessEngine-XBoard
-[Proiect - Proiectarea Algoritmilor] [Echipa DUMB.BLONDES]
+[Proiect - Proiectarea Algoritmilor] [Echipa DUMB.BLONDES] <br>
 Tema proiectului este realizarea unei inteligențe artificiale capabile să joace șah.
 Enuntul se gaseste [aici](https://ocw.cs.pub.ro/courses/pa/regulament-proiect-2020).
 
